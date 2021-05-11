@@ -1,6 +1,11 @@
 const Index = {
   template: `
-      <h1>Hello World!</h1>
+      <div>
+        <h1>Hello World!</h1>
+        <router-link class="nav-link" to="/test">
+          Test
+        </router-link>
+      </div>
   `,
   data() {
     return {

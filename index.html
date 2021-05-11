@@ -4,27 +4,40 @@
 	<title>FCL Vue Components</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.x"></script>
 	<script src="https://unpkg.com/vue-router@2.0.0"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-	<div id="root">
-		<div>
-			{{Index}}
+	<div id="root" class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 p-0">
+				<Sidebar/>
+			</div>
+			<div class="col p-0">
+				<div class="header bg-light">
+					<router-link class="btn btn-link" to="/">
+						Home
+					</router-link>
+				</div>
+				<div class="p-4">
+					<router-view></router-view>
+				</div>
+			</div>
 		</div>
-		<router-view></router-view>
 	</div>
 </body>
+<script src="./routes.js" type="module"></script>
 <script src="./src/index.js"></script>
-<script>
+<script src="./src/views/Sidebar/Sidebar.js"></script>
+<script src="./src/components/Test/test.js"></script>
+<script type="module">
 	Vue.component("Index", Index);
+	Vue.component("Sidebar", Sidebar);
+	Vue.component("Test", Test);
 
-	const routes = [
-		{
-			path: "/",
-			component: Index,
-		},
-	];
+	import routes from './routes.js';
 
 	const router = new VueRouter({
 		routes: routes,
