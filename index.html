@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>FCL Vue Components</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.x"></script>
 	<script src="https://unpkg.com/vue-router@2.0.0"></script>
@@ -12,8 +8,43 @@
 </head>
 
 <body>
-	<div id="root"></div>
+	<div id="root">
+		<div>
+			{{Index}}
+		</div>
+		<router-view></router-view>
+	</div>
 </body>
-<script src="src/index.js"></script>
+<script src="./src/index.js"></script>
+<script>
+	Vue.component("Index", Index);
+
+	const routes = [
+		{
+			path: "/",
+			component: Index,
+		},
+	];
+
+	const router = new VueRouter({
+		routes: routes,
+		mode: "history",
+		base: "/",
+	});
+
+	var root = new Vue({
+		el: "#root",
+		router: router,
+		data() {
+			return {
+				message: "FCL Vue Components",
+			};
+		},
+		methods: {
+			setAuthStatus(val) {
+			},
+		},
+	});
+</script>
 
 </html>
