@@ -6,14 +6,14 @@
 	<script src="https://unpkg.com/vue-router@2.0.0"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link rel="stylesheet" href="./styles.css">
+	<link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
 <body>
 	<div id="root" class="container-fluid">
 		<div class="row">
 			<div class="col-md-2 p-0">
-				<Sidebar/>
+				<Sidebar />
 			</div>
 			<div class="col p-0">
 				<div class="header bg-light">
@@ -28,14 +28,36 @@
 		</div>
 	</div>
 </body>
+
 <script src="./routes.js" type="module"></script>
-<script src="./src/index.js"></script>
-<script src="./src/views/Sidebar/Sidebar.js"></script>
-<script src="./src/components/Test/test.js"></script>
+
+<script src="./index.js"></script>
+<script src="./src/views/sidebar.js"></script>
+<script src="./src/views/tabsView.js"></script>
+<script src="./src/views/collapseView.js"></script>
+<script src="./src/views/modalView.js"></script>
+<script src="./src/views/tagsView.js"></script>
+<script src="./src/views/popoverView.js"></script>
+<script src="./src/views/carouselView.js"></script>
+<script src="./src/views/progressView.js"></script>
+
+<script src="./src/components/Tabs/tabs.js"></script>
+<script src="./src/components/Collapse/Collapse.js"></script>
+<script src="./src/components/Modal/modal.js"></script>
+<script src="./src/components/Tags/tags.js"></script>
+<script src="./src/components/Popover/popover.js"></script>
+<script src="./src/components/Carousel/carousel.js"></script>
+<script src="./src/components/Progress/progress.js"></script>
+
 <script type="module">
-	Vue.component("Index", Index);
+
 	Vue.component("Sidebar", Sidebar);
-	Vue.component("Test", Test);
+	Vue.component("TabsView", TabsView);
+	Vue.component("CollapseView", CollapseView);
+	Vue.component("ModalView", ModalView);
+	Vue.component("PopoverView", PopoverView);
+	Vue.component("CarouselView", CarouselView);
+	Vue.component("ProgressView", ProgressView);
 
 	import routes from './routes.js';
 
@@ -58,6 +80,7 @@
 			},
 		},
 	});
+
 </script>
 
 </html>
