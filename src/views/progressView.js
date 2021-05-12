@@ -1,14 +1,14 @@
 const ProgressView = {
-	props: ['class'],
-	template: `
-      <div>
-				<h3>Progress</h3>
-				<Progress/>
-			</div>
-  `,
+	props: ['content-class'],
 	data() {
 		return {
 			message: "",
 		};
 	},
+	template: `
+		<div>
+			<h3>Progress</h3>
+			<fv-progress/>
+		</div>
+  `,
 };

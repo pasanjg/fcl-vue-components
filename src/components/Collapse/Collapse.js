@@ -1,4 +1,5 @@
-Vue.component('Collapse', {
+Vue.component('fv-collapse', {
+  props: ['content-class'],
   data: function () {
     return {
       count: 0

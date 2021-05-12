@@ -1,14 +1,14 @@
 const PopoverView = {
-	props: ['class'],
-	template: `
-      <div>
-				<h3>Popover</h3>
-				<Popover/>
-			</div>
-  `,
+	props: ['content-class'],
 	data() {
 		return {
 			message: "",
 		};
 	},
+	template: `
+		<div>
+			<h3>Popover</h3>
+			<fv-popover/>
+		</div>
+  `,
 };

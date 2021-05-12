@@ -1,4 +1,5 @@
-Vue.component('Popover', {
+Vue.component('fv-popover', {
+  props: ['content-class'],
   data: function () {
     return {
       count: 0

@@ -1,4 +1,5 @@
-Vue.component('Tags', {
+Vue.component('fv-tags', {
+  props: ['content-class'],
   data: function () {
     return {
       count: 0

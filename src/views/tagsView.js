@@ -1,14 +1,14 @@
 const TagsView = {
-	props: ['class'],
-	template: `
-      <div>
-				<h3>Tags</h3>
-				<Tags/>
-			</div>
-  `,
+	props: ['content-class'],
 	data() {
 		return {
 			message: "",
 		};
 	},
+	template: `
+		<div>
+			<h3>Tags</h3>
+			<fv-tags/>
+		</div>
+  `,
 };

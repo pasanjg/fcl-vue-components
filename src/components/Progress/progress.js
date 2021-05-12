@@ -1,4 +1,5 @@
-Vue.component('Progress', {
+Vue.component('fv-progress', {
+  props: ['content-class'],
   data: function () {
     return {
       count: 0

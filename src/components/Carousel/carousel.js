@@ -1,4 +1,5 @@
-Vue.component('Carousel', {
+Vue.component('fv-carousel', {
+  props: ['content-class'],
   data: function () {
     return {
       count: 0

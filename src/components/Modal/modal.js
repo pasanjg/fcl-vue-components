@@ -1,4 +1,5 @@
-Vue.component('Modal', {
+Vue.component('fv-modal', {
+  props: ['content-class'],
   data: function () {
     return {
       count: 0
