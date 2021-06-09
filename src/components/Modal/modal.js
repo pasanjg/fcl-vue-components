@@ -1,5 +1,5 @@
 Vue.component('fv-modal', {
-  props: ['contentclass', 'title', 'modalid', 'buttonid', 'center'],
+  props: ['title', 'modalId', 'buttonid', 'center'],
   data: function () {
     return {
       id: undefined,
@@ -7,33 +7,44 @@ Vue.component('fv-modal', {
     }
   },
   mounted() {
-    this.id = this.modalid;
+    this.id = this.modalId;
     this.centerclass = this.center ? 'modal-dialog-centered' : '';
-    this.openModal(this.modalid, this.buttonid);
-    this.closeModal(this.modalid);
+    this.openModal(this.modalId, this.buttonid);
+    this.closeModal(this.modalId);
   },
   methods: {
-    openModal: function (modalid, buttonid) {
-      var modal = document.getElementById(modalid);
+    openModal: function (modalId, buttonid) {
+      const body = document.body;
+      const modal = document.getElementById(modalId);
 
-      document.getElementById(buttonid).addEventListener("click", function (e) {
+      document.getElementById(buttonid).addEventListener("click", (e) => {
         modal.style.display = "block";
-        modal.className = "modal fade show";
+        modal.classList.add('modal', 'fade', 'show');
+        body.classList.add('modal-open');
+        modal.animate([
+          {opacity: 0},
+          {transform: 'translateY(0px)'},
+          {opacity: 1},
+        ], {
+          duration: 200,
+        });
       });
     },
-    closeModal: function (modalid) {
-      var modal = document.getElementById(modalid);
-      var close = document.getElementById('modalClose');
+    closeModal: function (modalId) {
+      const body = document.body;
+      const modal = document.getElementById(modalId);
+      const close = document.getElementById('modalClose');
 
       close.addEventListener('click', (e) => {
         modal.style.display = "none";
         modal.className = "modal fade";
+        body.classList.remove('modal-open');
       });
     }
   },
   template: `
   <div>
-    <div class="modal fade" v-bind:id="modalid" tabindex="-1">
+    <div class="modal fade" role="dialog" v-bind:id="modalId" tabindex="-1">
       <div v-bind:class="['modal-dialog', centerclass]">
         <div class="modal-content">
           <div class="modal-header">
@@ -43,10 +54,10 @@ Vue.component('fv-modal', {
             </button>
           </div>
           <div class="modal-body">
-            <slot name="body"></slot>
+            <slot name="modal-body"></slot>
           </div>
           <div class="modal-footer">
-            <slot name="footer"></slot>
+            <slot name="modal-footer"></slot>
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
  const routes = [
 	{
 		path: "/",
-		component: Index,
+		// component: Index,
+		component: ModalView,
 	},
 	{
 		path: "/tabs",
