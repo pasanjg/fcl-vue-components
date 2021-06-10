@@ -13,34 +13,41 @@ Vue.component('fv-modal', {
     this.closeModal(this.modalId);
   },
   methods: {
+    hasSlot(name = 'default') {
+      return !!this.$slots[name] || !!this.$scopedSlots[name];
+    },
     openModal: function (modalId, buttonid) {
       const body = document.body;
       const modal = document.getElementById(modalId);
+      const modalContent = modal.getElementsByClassName("modal-content")[0];
+      modal.style.backgroundColor = "rgba(0,0,0,0.5)"
 
       document.getElementById(buttonid).addEventListener("click", (e) => {
         modal.style.display = "block";
         modal.classList.add('modal', 'fade', 'show');
         body.classList.add('modal-open');
-        modal.animate([
-          {opacity: 0},
-          {transform: 'translateY(0px)'},
-          {opacity: 1},
+        modalContent.animate([
+          { opacity: 0 },
+          { transform: 'translateY(5px)' },
+          { opacity: 1 },
         ], {
-          duration: 200,
+          duration: 300,
         });
       });
     },
     closeModal: function (modalId) {
       const body = document.body;
       const modal = document.getElementById(modalId);
-      const close = document.getElementById('modalClose');
-
-      close.addEventListener('click', (e) => {
-        modal.style.display = "none";
-        modal.className = "modal fade";
-        body.classList.remove('modal-open');
+      const close = document.querySelectorAll('[data-dismiss="modal"]');
+      close.forEach((element) => {
+        element.addEventListener('click', (e) => {
+          modal.style.display = "none";
+          modal.className = "modal fade";
+          body.classList.remove('modal-open');
+        });
       });
-    }
+
+    },
   },
   template: `
   <div>
@@ -49,15 +56,15 @@ Vue.component('fv-modal', {
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">{{ title }}</h5>
-            <button id="modalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <slot name="modal-body"></slot>
+            <slot name="modalBody"></slot>
           </div>
-          <div class="modal-footer">
-            <slot name="modal-footer"></slot>
+          <div v-if="hasSlot('modalFooter')" class="modal-footer">
+            <slot name="modalFooter"></slot>
           </div>
         </div>
       </div>
