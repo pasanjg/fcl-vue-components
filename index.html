@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 
 <head>
   <title>FCL Vue Components</title>
@@ -16,10 +16,13 @@
         <Sidebar />
       </div>
       <div class="col p-0">
-        <div class="header bg-light">
+        <div class="header bg-light d-flex justify-content-between">
           <router-link class="btn btn-link" to="/">
             Home
           </router-link>
+          <!-- <a class="btn btn-link" href="https://pasanjg.github.io/fcl-vue-components/" target="blank">
+            Live
+          </a> -->
         </div>
         <div class="p-4">
           <router-view></router-view>
@@ -44,6 +47,7 @@
 
 <script src="./src/components/Tabs/tabs.js" type="module"></script>
 <script src="./src/components/Tabs/tab.js" type="module"></script>
+<script src="./src/components/Tabs/tabContent.js" type="module"></script>
 <script src="./src/components/Collapse/Collapse.js" type="module"></script>
 <script src="./src/components/Modal/modal.js" type="module"></script>
 <script src="./src/components/Tags/tags.js" type="module"></script>

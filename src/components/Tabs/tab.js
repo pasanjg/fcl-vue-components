@@ -1,13 +1,18 @@
 Vue.component('fv-tab', {
-  props: ['content-class', 'title'],
+  props: ['contentclass', 'contentId'],
   data: function () {
     return {
-      count: 0
+      count: 0,
     }
   },
+  methods: {
+
+  },
   template: `
-  <div id="{{title}}" class="tab-pane fade show active">
-    <slot class="tab-pane fade" id="{{title}}"></slot>
-  </div>
+    <li class="nav-item" role="presentation">
+      <a v-bind:id="contentId" v-bind:class="['nav-link', contentclass]" data-toggle="tab" role="tab">
+        <slot/>
+      </a>
+    </li>
   `
 });

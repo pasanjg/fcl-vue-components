@@ -1,27 +1,44 @@
 Vue.component('fv-tabs', {
-  props: ['content-class'],
+  props: ['contentclass', 'tabId'],
   data: function () {
     return {
+      tabId: "this.tabId,",
       currentTab: 0,
-      tabs: [],
       registeredTabs: this.$slot,
     }
   },
-  template: `
-  <div>
-    <!--
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-        <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-        <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
-      </div>
-    </nav>
-    -->
+  mounted: function () {
+    const vm = this;
+    const tabId = vm.tabId;
 
-    <div class="tab-content" id="myTabContent">
-      <slot></slot>
-    </div>
-  </div>
+    var tabItems = document.querySelectorAll('#' + tabId + '>li');
+    var tabLinks = document.querySelectorAll('#' + tabId + '>li>a');
+
+    for (var i = 0; i < tabItems.length; i++) {
+      tabItems[i].addEventListener("click", function () {
+
+        var tabs = document.querySelectorAll('#' + tabId + '+.tab-content>.tab-pane');
+        for (var k = 0; k < tabs.length; k++) {
+          tabs[k].classList.remove("active");
+        }
+
+        for (var j = 0; j < tabItems.length; j++) {
+          tabItems[j].className = "";
+          tabLinks[j].classList.remove("active");
+        }
+
+        var tabItem = this.getElementsByTagName("a")[0];
+        tabItem.classList.add("active");
+
+        var tabLink = tabItem.id;
+        var tab = document.querySelectorAll('.tab-content>#' + tabLink)[0];
+        tab.classList.add("active");
+      });
+    };
+  },
+  template: `
+  <ul class="nav nav-tabs" v-bind:id="tabId" role="tablist">
+    <slot/>
+  </ul>   
   `
 });
