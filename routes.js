@@ -31,6 +31,10 @@
 		path: "/progress",
 		component: ProgressView,
 	},
+  {
+		path: "/rating",
+		component: RatingView,
+	},
 ];
 
 export default routes;
