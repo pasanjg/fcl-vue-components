@@ -8,7 +8,8 @@ const TabsView = {
   template: `
 		<div>
 			<h3>Tabs</h3>
-
+      <br />
+      
       <!-- Tab 1 -->
 			<fv-tabs tabId="demoTab">
 				<fv-tab contentId="home" contentclass="active">
@@ -37,6 +38,9 @@ const TabsView = {
 
       <br />
       <br />
+      <br />
+
+      <h6>To set default active, add <code>contentclass="active"</code> for both <code>fv-tab</code> and <code>fv-tab-content</code> tags</h6>
       <br />
 
       <!-- Tab 2 -->

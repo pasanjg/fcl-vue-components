@@ -8,6 +8,7 @@ const CollapseView = {
 	template: `
 		<div>
 			<h3>Collapse</h3>
+      <br />
 			<fv-collapse/>
 		</div>
   `,

@@ -3,6 +3,7 @@ Vue.component('fv-rating', {
   data: function () {
     return {
       count: this.count ?? 5,
+      value: this.value ?? 0,
       starActive: 'rate-star fas fa-star',
       starInactive: 'rate-star far fa-star',
       canUpdate: this.canupdate ?? false,
