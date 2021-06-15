@@ -11,4 +11,9 @@
   height: 50px;
   width: 100%;
 }
+
+.rate-star {
+  color: #ffb703;
+  cursor: pointer;
+}
 /*# sourceMappingURL=styles.css.map */

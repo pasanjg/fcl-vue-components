@@ -1,7 +1,8 @@
  const routes = [
 	{
 		path: "/",
-		component: Index,
+		component: RatingView,
+		// component: Index,
 	},
 	{
 		path: "/tabs",
