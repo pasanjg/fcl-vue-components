@@ -1,7 +1,8 @@
  const routes = [
 	{
 		path: "/",
-		component: Index,
+		component: CollapseView,
+		// component: Index,
 	},
 	{
 		path: "/tabs",
