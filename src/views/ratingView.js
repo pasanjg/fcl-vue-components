@@ -17,7 +17,8 @@ const RatingView = {
       this.updatedRating4 = updatedValue;
     },
   },
-  template: `
+  template:
+    `
   <div>
     <h3>Rating</h3>
     <br />

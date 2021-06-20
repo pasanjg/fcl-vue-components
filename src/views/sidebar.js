@@ -1,5 +1,6 @@
 const Sidebar = {
-	template: `
+  template:
+    `
 	<div class="list-group sidebar bg-light">
 		<router-link to="/tabs" class="list-group-item list-group-item-action rounded-0">Tabs</router-link>
 		<router-link to="/collapse" class="list-group-item list-group-item-action rounded-0">Collapse</router-link>

@@ -57,7 +57,8 @@ Vue.component('fv-rating', {
       }
     }
   },
-  template: `
+  template:
+    `
   <div v-bind:id="rateId" v-bind:class="[contentclass]">
   </div>
   `

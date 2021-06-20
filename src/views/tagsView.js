@@ -1,11 +1,7 @@
 const TagsView = {
-	props: ['content-class'],
-	data() {
-		return {
-			message: "",
-		};
-	},
-	template: `
+  props: ['content-class'],
+  template:
+    `
 		<div>
 			<h3>Tags</h3>
       <br />

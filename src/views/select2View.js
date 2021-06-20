@@ -1,6 +1,7 @@
 const Select2View = {
-	props: ['content-class'],
-	template: `
+  props: ['content-class'],
+  template:
+    `
 		<div>
 			<h3>Select2</h3>
       <br />

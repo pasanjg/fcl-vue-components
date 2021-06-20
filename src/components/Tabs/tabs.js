@@ -36,7 +36,8 @@ Vue.component('fv-tabs', {
       });
     };
   },
-  template: `
+  template:
+    `
   <ul class="nav nav-tabs" v-bind:id="tabId" role="tablist">
     <slot/>
   </ul>   

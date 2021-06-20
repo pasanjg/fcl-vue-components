@@ -1,11 +1,7 @@
 const ProgressView = {
-	props: ['content-class'],
-	data() {
-		return {
-			message: "",
-		};
-	},
-	template: `
+  props: ['content-class'],
+  template:
+    `
 		<div>
 			<h3>Progress</h3>
       <br />

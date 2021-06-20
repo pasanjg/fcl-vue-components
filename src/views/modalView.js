@@ -1,11 +1,7 @@
 const ModalView = {
   props: ['contentclass'],
-  data() {
-    return {
-      message: "",
-    };
-  },
-  template: `
+  template:
+    `
   <div>
     <h3>Modal</h3>
     <br />

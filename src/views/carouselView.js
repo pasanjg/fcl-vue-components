@@ -1,11 +1,7 @@
 const CarouselView = {
-	props: ['content-class'],
-	data() {
-		return {
-			message: "",
-		};
-	},
-	template: `
+  props: ['content-class'],
+  template:
+    `
 		<div>
 			<h3>Carousel</h3>
       <br />

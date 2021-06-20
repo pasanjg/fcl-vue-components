@@ -49,7 +49,8 @@ Vue.component('fv-modal', {
 
     },
   },
-  template: `
+  template:
+    `
   <div>
     <div class="modal fade" role="dialog" v-bind:id="modalId" tabindex="-1">
       <div v-bind:class="['modal-dialog', centerclass]">

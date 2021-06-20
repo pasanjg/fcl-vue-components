@@ -5,7 +5,8 @@ Vue.component('fv-progress', {
       count: 0,
     }
   },
-  template: `
+  template:
+    `
   <div class="progress" v-bind:style="{ height: height}">
     <div v-bind:class="['progress-bar', contentclass]" role="progressbar" v-bind:style="{ width: value + '%', height: height}">
       <span v-if="showvalue === 'true'">{{ value }}%</span>
