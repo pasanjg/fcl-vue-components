@@ -13,8 +13,20 @@
 }
 
 // Rating component
-
 .rate-star {
   color: #ffb703;
   cursor: pointer;
+}
+
+// Collapse component
+.collapse {
+  display: block !important;
+  max-height: 0px !important;
+  overflow: hidden !important;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1) !important;
+
+  &.show {
+    max-height: 100% !important;
+    transition: max-height 0.5s ease-in-out !important;
+  }
 }

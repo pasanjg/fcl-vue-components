@@ -16,4 +16,14 @@
   color: #ffb703;
   cursor: pointer;
 }
-/*# sourceMappingURL=styles.css.map */
+
+.collapse {
+  display: block !important;
+  max-height: 0px !important;
+  overflow: hidden !important;
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1) !important;
+}
+.collapse.show {
+  max-height: 100% !important;
+  transition: max-height 0.5s ease-in-out !important;
+}/*# sourceMappingURL=styles.css.map */
