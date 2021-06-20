@@ -35,6 +35,10 @@ const routes = [
     path: "/rating",
     component: RatingView,
   },
+  {
+    path: "/select2",
+    component: Select2View,
+  },
 ];
 
 export default routes;

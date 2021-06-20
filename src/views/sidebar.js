@@ -9,6 +9,7 @@ const Sidebar = {
 		<router-link to="/carousel" class="list-group-item list-group-item-action rounded-0">Carousel</router-link>
 		<router-link to="/progress" class="list-group-item list-group-item-action rounded-0">Progress</router-link>
 		<router-link to="/rating" class="list-group-item list-group-item-action rounded-0">Rating</router-link>
+		<router-link to="/select2" class="list-group-item list-group-item-action rounded-0">Select2</router-link>
 	</div>
 	`,
 };
