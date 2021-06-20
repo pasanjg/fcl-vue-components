@@ -35,6 +35,11 @@ const RatingView = {
     <h6>Custom star count <code>count="3"</code></h6>
     <fv-rating rateId="demoRating5" count="3" contentclass="d-inline" v-bind:value="updatedRating"/> <span>{{ updatedRating }}</span> <br />
     <fv-rating rateId="demoRating6" count="6" contentclass="d-inline" v-bind:value="updatedRating2"/> <span>{{ updatedRating2 }}</span> <br />
+    <br />
+
+    <h6>Custom star size <code>size="20px"</code></h6>
+    <fv-rating rateId="demoRating7" contentclass="d-inline" v-bind:value="updatedRating"/> <span>16px (default)</span> <br />
+    <fv-rating rateId="demoRating8" size="20px" contentclass="d-inline" v-bind:value="updatedRating2"/> <span>20px</span> <br />
   </div>
   `,
 };

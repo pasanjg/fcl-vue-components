@@ -1,5 +1,5 @@
 Vue.component('fv-rating', {
-  props: ['contentclass', 'count', 'rateId', 'value', 'canupdate'],
+  props: ['contentclass', 'count', 'rateId', 'value', 'canupdate', 'size'],
   data: function () {
     return {
       count: this.count ?? 5,
@@ -7,6 +7,7 @@ Vue.component('fv-rating', {
       starActive: 'rate-star fas fa-star',
       starInactive: 'rate-star far fa-star',
       canUpdate: this.canupdate ?? false,
+      size: this.size ?? '16px',
     }
   },
   mounted: function () {
@@ -24,6 +25,7 @@ Vue.component('fv-rating', {
       for (let i = 0; i < vm.$data.count; i++) {
         var star = document.createElement("I");
         star.setAttribute("class", vm.$data.starInactive);
+        star.style.fontSize = vm.$data.size;
         parent.appendChild(star);
       }
     },
