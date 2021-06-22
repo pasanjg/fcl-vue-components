@@ -1,4 +1,4 @@
-const PopoverView = {
+export const PopoverView = {
   props: ['content-class'],
   template:
     `

@@ -1,4 +1,4 @@
-const CollapseView = {
+export const CollapseView = {
   template:
     `
     <div>

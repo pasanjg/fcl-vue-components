@@ -1,4 +1,4 @@
-Vue.component('fv-tabs', {
+export const FvTabs = {
   props: ['contentclass', 'tabId'],
   data: function () {
     return {
@@ -40,6 +40,6 @@ Vue.component('fv-tabs', {
     `
   <ul class="nav nav-tabs" v-bind:id="tabId" role="tablist">
     <slot/>
-  </ul>   
+  </ul>
   `
-});
+};

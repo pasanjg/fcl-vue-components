@@ -1,4 +1,4 @@
-const Select2View = {
+export const Select2View = {
   props: ['content-class'],
   data: function () {
     return {

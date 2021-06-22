@@ -1,4 +1,4 @@
-const ProgressView = {
+export const ProgressView = {
   props: ['content-class'],
   template:
     `

@@ -1,4 +1,4 @@
-const TabsView = {
+export const TabsView = {
   props: ['content-class'],
   template:
     `

@@ -1,4 +1,4 @@
-Vue.component('fv-collapse', {
+export const FvCollapse = {
   props: ['contentclass', 'collapseId'],
   mounted: function () {
     this.initListener();
@@ -39,5 +39,5 @@ Vue.component('fv-collapse', {
     <div v-bind:id="collapseId" v-bind:class="['collapse', contentclass]">
       <slot/>
     </div>
-    `
-});
+  `
+};

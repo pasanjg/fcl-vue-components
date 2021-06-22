@@ -1,4 +1,4 @@
-Vue.component('fv-progress', {
+export const FvProgress =  {
   props: ['contentclass', 'value', 'showvalue', 'height'],
   data: function () {
     return {
@@ -13,4 +13,4 @@ Vue.component('fv-progress', {
     </div>
   </div>
   `
-});
+};

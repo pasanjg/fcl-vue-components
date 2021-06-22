@@ -1,4 +1,4 @@
-Vue.component('fv-popover', {
+export const FvPopover = {
   props: ['content-class'],
   data: function () {
     return {
@@ -6,4 +6,4 @@ Vue.component('fv-popover', {
     }
   },
   template: '<button v-on:click="count++">You clicked Popover {{ count }} times.</button>'
-});
+};

@@ -1,4 +1,4 @@
-const RatingView = {
+export const RatingView = {
   props: ['contentclass'],
   data() {
     return {

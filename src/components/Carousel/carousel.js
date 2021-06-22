@@ -1,4 +1,4 @@
-Vue.component('fv-carousel', {
+export const FvCarousel =  {
   props: ['content-class'],
   data: function () {
     return {
@@ -6,4 +6,4 @@ Vue.component('fv-carousel', {
     }
   },
   template: '<button v-on:click="count++">You clicked Carousel {{ count }} times.</button>'
-});
+};

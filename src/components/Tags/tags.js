@@ -1,4 +1,4 @@
-Vue.component('fv-tags', {
+export const FvTags = {
   props: ['content-class'],
   data: function () {
     return {
@@ -6,4 +6,4 @@ Vue.component('fv-tags', {
     }
   },
   template: '<button v-on:click="count++">You clicked Tags {{ count }} times.</button>'
-});
+};

@@ -1,4 +1,4 @@
-const Sidebar = {
+export const Sidebar = {
   template:
     `
 	<div class="list-group sidebar bg-light">

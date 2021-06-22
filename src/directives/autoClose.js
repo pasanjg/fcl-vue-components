@@ -1,6 +1,6 @@
 var handleOutsideElementClick;
 
-export const autoClose = {
+export const AutoClose = {
   bind: function (el, binding, vnode) {
     // Here's the click/touchstart handler
     // (it is registered below)
@@ -35,7 +35,7 @@ export const autoClose = {
         vnode.context[handler]();
       }
     }
-    
+
     // Register click/touchstart event listeners on the whole page
     document.addEventListener('click', handleOutsideElementClick);
     document.addEventListener('touchstart', handleOutsideElementClick);
@@ -44,7 +44,7 @@ export const autoClose = {
   unbind: function () {
     // If the element that has v-closable is removed, then
     // unbind click/touchstart listeners from the whole page
-    document.removeEventListener('click', handleOutsideElementClick);
-    document.removeEventListener('touchstart', handleOutsideElementClick);
+    window.removeEventListener('click', handleOutsideElementClick);
+    window.removeEventListener('touchstart', handleOutsideElementClick);
   }
 };

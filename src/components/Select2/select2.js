@@ -1,6 +1,7 @@
-import { autoClose } from "../../directives/autoClose.js";
+import { AutoClose } from "../../directives/AutoClose.js";
 
-Vue.component('fv-select2', {
+export const FvSelect2 = {
+  name: 'fv-select',
   props: ['contentclass', 'selectId', 'options', 'selectedValue', 'optionLabel'],
   data: function () {
     return {
@@ -15,7 +16,7 @@ Vue.component('fv-select2', {
     initFunctions: function () {
 
       if (this.selectedValue != null && !this.options.includes(this.selectedValue)) {
-        console.error(`Options list doesnot include value '${this.selectedValue}'`);
+        console.error(`Options list does not include value '${this.selectedValue}'`);
         return;
       }
 
@@ -73,12 +74,12 @@ Vue.component('fv-select2', {
     closeMenu: function () {
       const vm = this;
       const menu = document.querySelector(`[data-menu=${vm.selectId}]`);
-      
+
       menu.classList['remove']('show');
     }
   },
   directives: {
-    autoClose: autoClose,
+    autoClose: AutoClose,
   },
   template:
     `
@@ -92,6 +93,6 @@ Vue.component('fv-select2', {
           <div :id="selectId+'MenuList'" class="w-100"></div>
         </div>
       </div>
-    </div> 
+    </div>
   `,
-});
+};

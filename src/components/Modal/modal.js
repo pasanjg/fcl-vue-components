@@ -1,4 +1,4 @@
-Vue.component('fv-modal', {
+export const FvModal = {
   props: ['title', 'modalId', 'buttonid', 'center'],
   data: function () {
     return {
@@ -72,4 +72,4 @@ Vue.component('fv-modal', {
     </div>
   </div>
   `
-});
+};

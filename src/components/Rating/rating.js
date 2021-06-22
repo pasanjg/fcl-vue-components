@@ -1,4 +1,4 @@
-Vue.component('fv-rating', {
+export const FvRating = {
   props: ['contentclass', 'count', 'rateId', 'value', 'canupdate', 'size'],
   data: function () {
     return {
@@ -62,4 +62,4 @@ Vue.component('fv-rating', {
   <div v-bind:id="rateId" v-bind:class="[contentclass]">
   </div>
   `
-});
+};

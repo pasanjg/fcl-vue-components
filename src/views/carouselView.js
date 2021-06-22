@@ -1,4 +1,4 @@
-const CarouselView = {
+export const CarouselView = {
   props: ['content-class'],
   template:
     `

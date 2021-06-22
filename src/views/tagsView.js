@@ -1,4 +1,4 @@
-const TagsView = {
+export const TagsView = {
   props: ['content-class'],
   template:
     `

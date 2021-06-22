@@ -1,4 +1,4 @@
-Vue.component('fv-tab', {
+export const FvTab = {
   props: ['contentclass', 'contentId'],
   data: function () {
     return {
@@ -16,4 +16,4 @@ Vue.component('fv-tab', {
       </a>
     </li>
   `
-});
+};

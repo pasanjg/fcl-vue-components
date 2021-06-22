@@ -43,59 +43,10 @@
   </div>
 </body>
 
-<script src="./routes.js" type="module"></script>
-
-<script src="./src/components/Tabs/tabs.js" type="module"></script>
-<script src="./src/components/Tabs/tab.js" type="module"></script>
-<script src="./src/components/Tabs/tabContent.js" type="module"></script>
-<script src="./src/components/Collapse/collapse.js" type="module"></script>
-<script src="./src/components/Modal/modal.js" type="module"></script>
-<script src="./src/components/Tags/tags.js" type="module"></script>
-<script src="./src/components/Popover/popover.js" type="module"></script>
-<script src="./src/components/Carousel/carousel.js" type="module"></script>
-<script src="./src/components/Progress/progress.js" type="module"></script>
-<script src="./src/components/Rating/rating.js" type="module"></script>
-<script src="./src/components/Select2/select2.js" type="module"></script>
-
-<script src="./index.js"></script>
-<script src="./src/views/sidebar.js"></script>
-<script src="./src/views/tabsView.js"></script>
-<script src="./src/views/collapseView.js"></script>
-<script src="./src/views/modalView.js"></script>
-<script src="./src/views/tagsView.js"></script>
-<script src="./src/views/popoverView.js"></script>
-<script src="./src/views/carouselView.js"></script>
-<script src="./src/views/progressView.js"></script>
-<script src="./src/views/ratingView.js"></script>
-<script src="./src/views/select2View.js"></script>
+<script src="./index.js" type="module"></script>
 
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>   -->
-
-<script type="module">
-
-  Vue.component("Sidebar", Sidebar);
-
-  import routes from './routes.js';
-
-  const router = new VueRouter({
-    routes: routes,
-    mode: "history",
-    base: "/",
-  });
-
-  var root = new Vue({
-    el: "#root",
-    router: router,
-    data() {
-      return {
-        message: "FCL Vue Components",
-      };
-    },
-    methods: {},
-  });
-
-</script>
 
 </html>
