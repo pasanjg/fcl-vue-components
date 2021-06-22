@@ -1,3 +1,5 @@
+import { autoClose } from "../../directives/autoClose.js";
+
 Vue.component('fv-select2', {
   props: ['contentclass', 'selectId', 'options', 'selectedValue', 'optionLabel'],
   data: function () {
@@ -35,24 +37,10 @@ Vue.component('fv-select2', {
 
       this.filterValues(filterInput, menuList);
 
-      // document.body.addEventListener('focusout', function (ev) {
-      //   if ((ev.target == filterInput)) {
-      //     setTimeout(() => {
-      //       menu.classList['remove']('show');
-      //     }, 100);
-      //   }
-      // });
-
       dropdownTriggers.forEach(trigger => {
         trigger.addEventListener('click', function () {
           menu.classList['toggle']('show');
         });
-
-        // trigger.addEventListener(('focusout'), function (ev) {
-        //   setTimeout(() => {
-        //     menu.classList['remove']('show');
-        //   }, 100);
-        // });
       });
     },
     handleSelect: function (menu, menuItem) {
@@ -81,16 +69,25 @@ Vue.component('fv-select2', {
           }
         }
       });
+    },
+    closeMenu: function () {
+      const vm = this;
+      const menu = document.querySelector(`[data-menu=${vm.selectId}]`);
+      
+      menu.classList['remove']('show');
     }
+  },
+  directives: {
+    autoClose: autoClose,
   },
   template:
     `
     <div class="input-group">
-      <input :id="selectId" class="form-control" :value="$data.selectedValue" :placeholder="optionLabel" :data-input="selectId" readonly="readonly" />
+      <input :id="selectId" ref="selectRef" class="form-control" :value="$data.selectedValue" :placeholder="optionLabel" :data-input="selectId" readonly="readonly" />
       <div class="input-group-append">
-        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="selectId" data-toggle="dropdown">
+        <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="selectId" data-toggle="dropdown">
         </button>
-        <div class="w-100 dropdown-menu" :data-menu="selectId">
+        <div v-auto-close="{ exclude: ['selectRef', 'toggleButtonRef'], handler: 'closeMenu' }" class="w-100 dropdown-menu" :data-menu="selectId">
           <input type="text" class="form-control mx-auto mb-2" :data-filter="selectId" placeholder="Filter" style="width: 95%" />
           <div :id="selectId+'MenuList'" class="w-100"></div>
         </div>
