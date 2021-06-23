@@ -2,11 +2,12 @@ import { AutoClose } from "../../directives/AutoClose.js";
 
 export const FvSelect2 = {
   name: 'fv-select',
-  props: ['contentclass', 'selectId', 'options', 'selectedValue', 'optionLabel'],
+  props: ['contentclass', 'id', 'options', 'selectedValue', 'placeholder', 'inputcustom'],
   data: function () {
     return {
-      optionLabel: this.optionLabel ?? 'Select',
       selectedValue: this.options.includes(this.selectedValue) ? this.selectedValue : null,
+      placeholder: this.placeholder ?? 'Select',
+      inputcustom: this.inputcustom ?? false,
     }
   },
   mounted: function () {
@@ -20,23 +21,16 @@ export const FvSelect2 = {
         return;
       }
 
-      const dropdownTriggers = [...document.querySelectorAll(`[data-target='${this.selectId}'][data-toggle='dropdown'], [data-input='${this.selectId}']`)];
-      const menu = document.querySelector(`[data-menu=${this.selectId}]`);
-      const menuList = menu.querySelector(`#${this.selectId}MenuList`);
-      const filterInput = menu.querySelector(`input[data-filter='${this.selectId}']`);
+      const dropdownTriggers = [...document.querySelectorAll(`[data-target='${this.id}'][data-toggle='dropdown'], [data-input='${this.id}']`)];
+      const menu = document.querySelector(`[data-menu=${this.id}]`);
+      const menuList = menu.querySelector(`#${this.id}MenuList`);
+      const filterInput = menu.querySelector(`input[data-filter='${this.id}']`);
+      const customField = document.getElementById(`${this.id}CustomField`);
 
-      for (let i = 0; i < this.options.length; i++) {
-        const menuItem = document.createElement("span");
-        menuItem.setAttribute("class", 'dropdown-item');
-        menuItem.innerHTML = this.options[i];
-        menuList.appendChild(menuItem);
-        menuList.style.maxHeight = "12rem";
-        menuList.style.overflowY = "scroll";
+      customField.style.display = "none";
 
-        this.handleSelect(menu, menuItem);
-      }
-
-      this.filterValues(filterInput, menuList);
+      this.renderList(menuList, this.options);
+      this.filterList(filterInput, menuList);
 
       dropdownTriggers.forEach(trigger => {
         trigger.addEventListener('click', function () {
@@ -44,37 +38,84 @@ export const FvSelect2 = {
         });
       });
     },
-    handleSelect: function (menu, menuItem) {
+    renderList: function (menuList, optionsList) {
+      menuList.innerHTML = "";
+      for (let index in optionsList) {
+        const menuItem = document.createElement("span");
+        menuItem.setAttribute("class", 'dropdown-item');
+        menuItem.innerHTML = optionsList[index];
+        menuList.appendChild(menuItem);
+        menuList.style.maxHeight = "12rem";
+        menuList.style.overflowY = "scroll";
+
+        this.handleSelect(menuItem);
+      }
+    },
+    handleSelect: function (menuItem) {
       let vm = this;
-      const selectInput = document.getElementById(vm.selectId);
+      const selectInput = document.getElementById(vm.id);
 
       menuItem.addEventListener(('click'), function () {
         selectInput.value = menuItem.innerHTML;
         setTimeout(() => {
-          menu.classList['remove']('show');
+          vm.closeMenu();
         }, 100);
       });
     },
-    filterValues: function (filterInput, menuList) {
-      const menuItems = menuList.querySelectorAll('span');
+    filterList: function (filterInput, menuList) {
+      const vm = this;
+      const customField = document.getElementById(`${vm.id}CustomField`);
 
       filterInput.addEventListener('input', function () {
-        for (let i = 0; i < menuItems.length; i++) {
-          let menuItem = menuItems[i];
-          let menuItemValue = menuItem.innerHTML || menuItem.textContent;
 
-          if (menuItemValue.toUpperCase().indexOf(filterInput.value.toUpperCase()) > -1) {
-            menuItem.style.display = "block";
+        let filteredOptions = vm.options.filter(function (option) {
+          option = option.toLowerCase();
+          return option.indexOf(filterInput.value.toLowerCase()) > -1;
+        });
+
+        vm.renderList(menuList, filteredOptions)
+
+        if (vm.inputcustom || vm.inputcustom == "true") {
+          if (filterInput.value != null && filterInput.value != "") {
+            customField.style.display = "block";
           } else {
-            menuItem.style.display = "none";
+            customField.style.display = "none";
           }
+
+          if (filteredOptions.length >= 1) {
+            if (filteredOptions[0].toLowerCase() == filterInput.value.toLowerCase()) {
+              customField.style.display = "none";
+            }
+          }
+
+          vm.addCustomInput(filterInput);
+
+        } else {
+          customField.style.display = "none";
         }
+      });
+    },
+    addCustomInput: function (filterInput) {
+      const vm = this;
+      const customField = document.getElementById(`${vm.id}CustomField`);
+      const customItem = customField.querySelector('span');
+      const selectInput = document.getElementById(vm.id);
+
+      customItem.innerHTML = `Select <strong>${filterInput.value}</strong> as option`;
+      customField.appendChild(customItem);
+
+      customField.addEventListener('click', function () {
+        selectInput.value = filterInput.value;
+        setTimeout(() => {
+          customField.style.display = "none";
+          customField.querySelector('span').innerHTML = "";
+          vm.closeMenu();
+        }, 100);
       });
     },
     closeMenu: function () {
       const vm = this;
-      const menu = document.querySelector(`[data-menu=${vm.selectId}]`);
-
+      const menu = document.querySelector(`[data-menu=${vm.id}]`);
       menu.classList['remove']('show');
     }
   },
@@ -84,13 +125,17 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="selectId" ref="selectRef" class="form-control" :value="$data.selectedValue" :placeholder="optionLabel" :data-input="selectId" readonly="readonly" />
+      <input :id="id" ref="selectRef" class="form-control" :value="$data.selectedValue" :placeholder="placeholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
-        <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="selectId" data-toggle="dropdown">
+        <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="id" data-toggle="dropdown">
         </button>
-        <div v-auto-close="{ exclude: ['selectRef', 'toggleButtonRef'], handler: 'closeMenu' }" class="w-100 dropdown-menu" :data-menu="selectId">
-          <input type="text" class="form-control mx-auto mb-2" :data-filter="selectId" placeholder="Filter" style="width: 95%" />
-          <div :id="selectId+'MenuList'" class="w-100"></div>
+        <div v-auto-close="{ exclude: ['selectRef', 'toggleButtonRef'], handler: 'closeMenu' }" class="w-100 dropdown-menu" :data-menu="id">
+          <input type="search" class="form-control mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
+          <span :id="id+'CustomField'" class="dropdown-item">
+            <i class="fa fa-plus text-muted"></i>
+            <span></span>
+          </span>
+          <div :id="id+'MenuList'" class="w-100"></div>
         </div>
       </div>
     </div>
