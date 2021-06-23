@@ -1,0 +1,22 @@
+{
+  "name": "fcl-vue-components",
+  "version": "1.0.0",
+  "description": "Bootstrap-Vue components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack",
+    "start": "browser-sync start . -s --files '*.html, *.css'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pasanjg/fcl-vue-components.git"
+  },
+  "keywords": [],
+  "author": "Pasan Godamune",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pasanjg/fcl-vue-components/issues"
+  },
+  "homepage": "https://github.com/pasanjg/fcl-vue-components#readme"
+}
