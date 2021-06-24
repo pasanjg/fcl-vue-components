@@ -1,6 +1,7 @@
 # FCL-Vue Components
 Bootstrap-Vue components for FCL
 
+[![CI](https://github.com/pasanjg/fcl-vue-components/actions/workflows/main.yml/badge.svg)](https://github.com/pasanjg/fcl-vue-components/actions/workflows/main.yml)
 ## Bundling
 
 Use `webpack.config.js` to create a production ready bundle
