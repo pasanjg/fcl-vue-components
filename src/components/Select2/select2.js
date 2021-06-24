@@ -1,4 +1,4 @@
-import { AutoClose } from "../../directives/AutoClose.js";
+import { AutoClose } from "../../directives/autoClose.js";
 
 export const FvSelect2 = {
   name: 'fv-select',
