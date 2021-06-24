@@ -39,18 +39,14 @@ jobs:
           name: fv_bundle
           path: "dist"
 
-      - name: Download all artifacts
-        uses: actions/download-artifact@v2
-
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: fv_bundle
+      - name: Create ZIP file with version
+        run: zip -r fv_bundle_${{ steps.version-string.outputs.VERSION_STR }}.zip dist
 
       - name: Release Bundle
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: "fv_bundle/*.js"
+          artifacts: "fv_bundle_${{ steps.version-string.outputs.VERSION_STR }}.zip"
           name: Release ${{ steps.version-string.outputs.VERSION_STR }}
           prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') }}
           tag: ${{ steps.version-string.outputs.VERSION_STR }}
