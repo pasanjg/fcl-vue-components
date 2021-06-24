@@ -6,7 +6,7 @@ Bootstrap-Vue components for FCL
 Use `webpack.config.js` to create a production ready bundle
 
 ### Setup Webpack
-Install `webpack` and `webpack-cli` as devDependencies
+Install `webpack` and `webpack-cli` dependencies locally or globally
 
 - Install locally (using `package.json`)
 ```bash
@@ -14,11 +14,11 @@ npm install
 ```
 - Install globally
 ```bash
-npm install -D webpack webpack-cli
+npm install -g webpack webpack-cli
 ```
 
 ### Build
-Create a production ready bundle in `./dist/` folder
+Create a production ready bundle in `./dist` folder
 ```bash
 npm run build
 ```
