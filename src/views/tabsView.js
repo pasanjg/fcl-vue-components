@@ -1,34 +1,34 @@
 export const TabsView = {
-  props: ['content-class'],
+  props: ['contentclass'],
   template:
     `
 		<div>
 			<h3>Tabs</h3>
       <br />
-      
+
       <!-- Tab 1 -->
-			<fv-tabs tabId="demoTab">
-				<fv-tab contentId="home" contentclass="active">
+			<fv-tabs tabid="demoTab">
+				<fv-tab contentid="home" contentclass="active">
           Home
         </fv-tab>
-				<fv-tab contentId="profile">
+				<fv-tab contentid="profile">
           Profile
         </fv-tab>
-				<fv-tab contentId="contact">
+				<fv-tab contentid="contact">
           Contact
         </fv-tab>
 			</fv-tabs>
 
       <!-- Content for Tab 1 -->
-      <fv-tab-content tabId="demoTab" contentId="home" contentclass="active">
+      <fv-tab-content tabid="demoTab" contentid="home" contentclass="active">
         This is Home content
       </fv-tab-content>
 
-      <fv-tab-content tabId="demoTab" contentId="profile">
+      <fv-tab-content tabid="demoTab" contentid="profile">
         This is Profile content
       </fv-tab-content>
 
-      <fv-tab-content tabId="demoTab" contentId="contact">
+      <fv-tab-content tabid="demoTab" contentid="contact">
         This is Contact content
       </fv-tab-content>
 
@@ -40,47 +40,47 @@ export const TabsView = {
       <br />
 
       <!-- Tab 2 -->
-      <fv-tabs tabId="techTab">
-				<fv-tab contentId="facebook">
+      <fv-tabs tabid="techTab">
+				<fv-tab contentid="facebook">
           Facebook
         </fv-tab>
-				<fv-tab contentId="apple" contentclass="active">
+				<fv-tab contentid="apple" contentclass="active">
           Apple
         </fv-tab>
-				<fv-tab contentId="amazon">
+				<fv-tab contentid="amazon">
           Amazon
         </fv-tab>
-        <fv-tab contentId="netflix">
+        <fv-tab contentid="netflix">
           Netflix
         </fv-tab>
 
-        <fv-tab contentId="google">
+        <fv-tab contentid="google">
           Google
         </fv-tab>
 			</fv-tabs>
 
       <!-- Content for Tab 2 -->
-      <fv-tab-content tabId="techTab" contentId="facebook">
+      <fv-tab-content tabid="techTab" contentid="facebook">
         <img height="180" src="https://www.datocms-assets.com/14946/1620837800-facebook-logo.jpg?auto=format&dpr=0.2&w=3840" alt="" /> <br />
         <a href="https://facebook.com" target="blank">Facebook</a>
       </fv-tab-content>
 
-      <fv-tab-content tabId="techTab" contentId="apple" contentclass="active">
+      <fv-tab-content tabid="techTab" contentid="apple" contentclass="active">
         <img height="180" src="https://coseacasotech.files.wordpress.com/2019/05/apple-logo-1.png" alt="" /> <br />
         <a href="https://apple.com" target="blank">Apple</a>
       </fv-tab-content>
 
-      <fv-tab-content tabId="techTab" contentId="amazon">
+      <fv-tab-content tabid="techTab" contentid="amazon">
         <img height="180" src="https://beechholdings.co.uk/wp-content/uploads/2020/01/amazon-logo-png-transparent-5.png" alt="" /> <br />
         <a href="https://amazon.com" target="blank">Amazon</a>
       </fv-tab-content>
 
-      <fv-tab-content tabId="techTab" contentId="netflix">
+      <fv-tab-content tabid="techTab" contentid="netflix">
         <img height="180" src="https://www.abacustechnologies.com/wp-content/uploads/2020/05/580b57fcd9996e24bc43c529.png" alt="" /> <br />
         <a href="https://netflix.com" target="blank">Netflix</a>
       </fv-tab-content>
 
-      <fv-tab-content tabId="techTab" contentId="google">
+      <fv-tab-content tabid="techTab" contentid="google">
         <img height="180" src="https://www.semic.es/sites/default/files/google-logo.png" alt="" /> <br />
         <a href="https://google.com" target="blank">Google</a>
       </fv-tab-content>

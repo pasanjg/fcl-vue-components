@@ -1,5 +1,5 @@
 export const FvTab = {
-  props: ['contentclass', 'contentId'],
+  props: ['contentclass', 'contentid'],
   data: function () {
     return {
       count: 0,
@@ -11,7 +11,7 @@ export const FvTab = {
   template:
     `
     <li class="nav-item" role="presentation">
-      <a v-bind:id="contentId" v-bind:class="['nav-link', contentclass]" data-toggle="tab" role="tab">
+      <a v-bind:id="contentid" v-bind:class="['nav-link', contentclass]" data-toggle="tab" role="tab">
         <slot/>
       </a>
     </li>

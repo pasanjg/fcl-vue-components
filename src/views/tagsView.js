@@ -1,5 +1,5 @@
 export const TagsView = {
-  props: ['content-class'],
+  props: ['contentclass'],
   template:
     `
 		<div>

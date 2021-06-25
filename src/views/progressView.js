@@ -1,5 +1,5 @@
 export const ProgressView = {
-  props: ['content-class'],
+  props: ['contentclass'],
   template:
     `
 		<div>
