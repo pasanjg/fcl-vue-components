@@ -32,21 +32,20 @@ jobs:
         id: version-string
         run: echo "::set-output name=VERSION_STR::${GITHUB_REF##*/}"
 
-      - name: Upload Bundle artifacts
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: actions/upload-artifact@v2
-        with:
-          name: fv_bundle
-          path: "dist"
+      - name: Get version number
+        id: version-number
+        run: echo "::set-output name=VERSION_NUM::${GITHUB_REF:11}"
 
       - name: Create ZIP file with version
-        run: zip -r fv_bundle_${{ steps.version-string.outputs.VERSION_STR }}.zip dist
+        run: |
+          zip -r fv_bundle_${{ steps.version-number.outputs.VERSION_NUM }}.zip dist
+          ls -l | grep .zip
 
       - name: Release Bundle
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: "fv_bundle_${{ steps.version-string.outputs.VERSION_STR }}.zip"
+          artifacts: fv_bundle_${{ steps.version-number.outputs.VERSION_NUM }}.zip
           name: Release ${{ steps.version-string.outputs.VERSION_STR }}
           prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') }}
           tag: ${{ steps.version-string.outputs.VERSION_STR }}
