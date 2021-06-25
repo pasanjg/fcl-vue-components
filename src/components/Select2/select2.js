@@ -2,10 +2,10 @@ import { AutoClose } from "../../directives/autoClose.js";
 
 export const FvSelect2 = {
   name: 'fv-select',
-  props: ['contentclass', 'id', 'options', 'selectedValue', 'placeholder', 'inputcustom'],
+  props: ['contentclass', 'id', 'options', 'selectedvalue', 'placeholder', 'inputcustom'],
   data: function () {
     return {
-      selectedValue: this.options.includes(this.selectedValue) ? this.selectedValue : null,
+      selectedvalue: this.options.includes(this.selectedvalue) ? this.selectedvalue : null,
       placeholder: this.placeholder ?? 'Select',
       inputcustom: this.inputcustom ?? false,
     }
@@ -16,8 +16,8 @@ export const FvSelect2 = {
   methods: {
     initFunctions: function () {
 
-      if (this.selectedValue != null && !this.options.includes(this.selectedValue)) {
-        console.error(`Options list does not include value '${this.selectedValue}'`);
+      if (this.selectedvalue != null && !this.options.includes(this.selectedvalue)) {
+        console.error(`Options list does not include value '${this.selectedvalue}'`);
         return;
       }
 
@@ -125,7 +125,7 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" ref="selectRef" class="form-control" :value="$data.selectedValue" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" ref="selectRef" class="form-control" :value="$data.selectedvalue" :placeholder="placeholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
         <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="id" data-toggle="dropdown">
         </button>

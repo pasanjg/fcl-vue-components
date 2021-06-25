@@ -1,5 +1,5 @@
 export const FvRating = {
-  props: ['contentclass', 'count', 'rateId', 'value', 'canupdate', 'size'],
+  props: ['contentclass', 'count', 'rateid', 'value', 'canupdate', 'size'],
   data: function () {
     return {
       count: this.count ?? 5,
@@ -12,7 +12,7 @@ export const FvRating = {
   },
   mounted: function () {
     this.createStars();
-    const stars = [...document.querySelectorAll(`#${this.rateId}>.rate-star`)];
+    const stars = [...document.querySelectorAll(`#${this.rateid}>.rate-star`)];
 
     if (stars.length !== parseInt(this.$data.count)) { alert('Count out of bound'); return; }
     if (this.value > 0) this.initialRating(stars);
@@ -21,7 +21,7 @@ export const FvRating = {
   methods: {
     createStars: function () {
       let vm = this;
-      let parent = document.getElementById(this.rateId);
+      let parent = document.getElementById(this.rateid);
       for (let i = 0; i < vm.$data.count; i++) {
         var star = document.createElement("I");
         star.setAttribute("class", vm.$data.starInactive);
@@ -52,14 +52,14 @@ export const FvRating = {
             rating--;
           }
 
-          vm.$emit(vm.rateId, rating + 1);
+          vm.$emit(vm.rateid, rating + 1);
         });
       }
     }
   },
   template:
     `
-  <div v-bind:id="rateId" v-bind:class="[contentclass]">
+  <div v-bind:id="rateid" v-bind:class="[contentclass]">
   </div>
   `
 };

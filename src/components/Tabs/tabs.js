@@ -1,23 +1,23 @@
 export const FvTabs = {
-  props: ['contentclass', 'tabId'],
+  props: ['contentclass', 'tabid'],
   data: function () {
     return {
-      tabId: "this.tabId,",
+      tabid: "this.tabid,",
       currentTab: 0,
       registeredTabs: this.$slot,
     }
   },
   mounted: function () {
     const vm = this;
-    const tabId = vm.tabId;
+    const tabid = vm.tabid;
 
-    var tabItems = document.querySelectorAll('#' + tabId + '>li');
-    var tabLinks = document.querySelectorAll('#' + tabId + '>li>a');
+    var tabItems = document.querySelectorAll('#' + tabid + '>li');
+    var tabLinks = document.querySelectorAll('#' + tabid + '>li>a');
 
     for (var i = 0; i < tabItems.length; i++) {
       tabItems[i].addEventListener("click", function () {
 
-        var tabs = document.querySelectorAll('#' + tabId + '+.tab-content>.tab-pane');
+        var tabs = document.querySelectorAll('#' + tabid + '+.tab-content>.tab-pane');
         for (var k = 0; k < tabs.length; k++) {
           tabs[k].classList.remove("active");
         }
@@ -38,7 +38,7 @@ export const FvTabs = {
   },
   template:
     `
-  <ul class="nav nav-tabs" v-bind:id="tabId" role="tablist">
+  <ul class="nav nav-tabs" v-bind:id="tabid" role="tablist">
     <slot/>
   </ul>
   `

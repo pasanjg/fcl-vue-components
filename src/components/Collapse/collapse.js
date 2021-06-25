@@ -1,12 +1,12 @@
 export const FvCollapse = {
-  props: ['contentclass', 'collapseId'],
+  props: ['contentclass', 'collapseid'],
   mounted: function () {
     this.initListener();
   },
   methods: {
     initListener: function () {
       const vm = this;
-      const triggers = [...document.querySelectorAll(`[data-target="#${vm.collapseId}"][data-toggle="collapse"], [data-target=".collapse"][data-toggle="collapse"]`)];
+      const triggers = [...document.querySelectorAll(`[data-target="#${vm.collapseid}"][data-toggle="collapse"], [data-target=".collapse"][data-toggle="collapse"]`)];
 
       triggers.forEach(trigger => {
         trigger.addEventListener('click', (ev) => {
@@ -36,7 +36,7 @@ export const FvCollapse = {
   },
   template:
     `
-    <div v-bind:id="collapseId" v-bind:class="['collapse', contentclass]">
+    <div v-bind:id="collapseid" v-bind:class="['collapse', contentclass]">
       <slot/>
     </div>
   `

@@ -1,5 +1,5 @@
 export const CarouselView = {
-  props: ['content-class'],
+  props: ['contentclass'],
   template:
     `
 		<div>

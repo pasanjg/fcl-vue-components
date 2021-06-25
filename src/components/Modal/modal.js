@@ -1,5 +1,5 @@
 export const FvModal = {
-  props: ['title', 'modalId', 'buttonid', 'center'],
+  props: ['title', 'modalid', 'buttonid', 'center'],
   data: function () {
     return {
       id: undefined,
@@ -7,18 +7,18 @@ export const FvModal = {
     }
   },
   mounted() {
-    this.id = this.modalId;
+    this.id = this.modalid;
     this.centerclass = this.center ? 'modal-dialog-centered' : '';
-    this.openModal(this.modalId, this.buttonid);
-    this.closeModal(this.modalId);
+    this.openModal(this.modalid, this.buttonid);
+    this.closeModal(this.modalid);
   },
   methods: {
     hasSlot(name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name];
     },
-    openModal: function (modalId, buttonid) {
+    openModal: function (modalid, buttonid) {
       const body = document.body;
-      const modal = document.getElementById(modalId);
+      const modal = document.getElementById(modalid);
       const modalContent = modal.getElementsByClassName("modal-content")[0];
       modal.style.backgroundColor = "rgba(0,0,0,0.5)"
 
@@ -35,9 +35,9 @@ export const FvModal = {
         });
       });
     },
-    closeModal: function (modalId) {
+    closeModal: function (modalid) {
       const body = document.body;
-      const modal = document.getElementById(modalId);
+      const modal = document.getElementById(modalid);
       const close = document.querySelectorAll('[data-dismiss="modal"]');
       close.forEach((element) => {
         element.addEventListener('click', (e) => {
@@ -52,7 +52,7 @@ export const FvModal = {
   template:
     `
   <div>
-    <div class="modal fade" role="dialog" v-bind:id="modalId" tabindex="-1">
+    <div class="modal fade" role="dialog" v-bind:id="modalid" tabindex="-1">
       <div v-bind:class="['modal-dialog', centerclass]">
         <div class="modal-content">
           <div class="modal-header">

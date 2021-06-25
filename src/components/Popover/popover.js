@@ -1,5 +1,5 @@
 export const FvPopover = {
-  props: ['content-class'],
+  props: ['contentclass'],
   data: function () {
     return {
       count: 0
