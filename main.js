@@ -1,4 +1,4 @@
-import { routes } from './routes.js';
+import { routes } from './src/routes.js';
 import { Sidebar } from './src/views/sidebar.js';
 
 Vue.component("Sidebar", Sidebar);
