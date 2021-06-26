@@ -12,7 +12,8 @@ import { Select2View } from "./views/select2View.js";
 export const routes = [
   {
     path: "/",
-    component: HomeView,
+    component: TagsView,
+    // component: HomeView,
   },
   {
     path: "/tabs",

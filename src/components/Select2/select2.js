@@ -130,7 +130,7 @@ export const FvSelect2 = {
         <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="id" data-toggle="dropdown">
         </button>
         <div v-auto-close="{ exclude: ['selectRef', 'toggleButtonRef'], handler: 'closeMenu' }" class="w-100 dropdown-menu" :data-menu="id">
-          <input type="search" class="form-control mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
+          <input type="search" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
           <span :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
             <span></span>

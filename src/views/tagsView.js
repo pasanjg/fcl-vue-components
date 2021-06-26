@@ -2,9 +2,9 @@ export const TagsView = {
   template:
     `
 		<div>
-			<h3>Tags</h3>
+			<h3>Tag Input</h3>
       <br />
-			<fv-tags/>
+			<fv-tag tagid="demoTag" :values="['BMW', 'Audi', 'Tesla', 'Volvo', 'Lexus']" chipclass="bg-primary" />
 		</div>
   `,
 };
