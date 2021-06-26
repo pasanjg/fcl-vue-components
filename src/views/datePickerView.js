@@ -9,7 +9,9 @@ export const DatePickerView = {
   template:
     `
 		<div>
-			<h3>vue2-datepicker</h3>
+			<h3>
+        <code class="bg-light text-dark rounded px-2">vue2-datepicker</code>
+      </h3>
       <br />
 
       <a href="https://www.npmjs.com/package/vue2-datepicker">NPM Package</a>

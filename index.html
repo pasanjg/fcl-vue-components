@@ -26,34 +26,36 @@
 </head>
 
 <body>
-  <div id="root" class="container-fluid">
-    <div class="row">
-      <div class="col-md-2 p-0">
-        <Sidebar />
-      </div>
-      <div class="col p-0">
-        <div class="header bg-light d-flex justify-content-between">
-          <router-link class="btn btn-link" to="/">
-            Home
-          </router-link>
-          <div>
-            <a class="btn btn-link" href="https://github.com/pasanjg/fcl-vue-components" target="blank">
-              Source
-            </a>
-            <a class="btn btn-link" href="https://github.com/pasanjg/fcl-vue-components/releases" target="blank">
-              Releases
-            </a>
-          </div>
+  <div id="root" class="container-fluid p-0">
+    <div>
+      <Sidebar />
+    </div>
+    <div class="nav header bg-light d-flex flex-direction-column">
+      <div class="d-flex flex-row justify-content-between w-100">
+        <router-link class="btn btn-link" to="/">
+          Home
+        </router-link>
+        <div>
+          <a class="btn btn-link" href="https://github.com/pasanjg/fcl-vue-components" target="blank">
+            Source
+          </a>
+          <a class="btn btn-link" href="https://github.com/pasanjg/fcl-vue-components/releases" target="blank">
+            Releases
+          </a>
         </div>
-        <div class="small bg-warning p-1 text-center">
+      </div>
+      <!-- <div class="w-100">
+        <div class="small bg-warning p-1 text-center w-100">
           <code class="text-dark">Edit styles on </code>
           <code class="bg-secondary rounded px-1">
             <a class="text-white text-decoration-none" href="./assets/scss/styles.scss" target="blank">./assets/scss/styles.scss</a>
           </code>
         </div>
-        <div class="p-4">
-          <router-view></router-view>
-        </div>
+      </div> -->
+    </div>
+    <div class="main-content">
+      <div class="p-4">
+        <router-view></router-view>
       </div>
     </div>
   </div>

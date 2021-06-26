@@ -1,15 +1,24 @@
 /* Application specific styles */
 
 .sidebar {
-  z-index: 1;
-  position: fixed;
-  width: 16.666667%;
   height: 100%;
-  border-radius: 0 !important;
+  width: 15%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
   overflow-x: hidden;
 }
 
 .header {
   height: 50px;
-  width: 100%;
+  width: 85%;
+  left: 15%;
+  position: fixed;
+}
+
+.main-content {
+  margin-left: 15%;
+  padding-top: 50px;
 }
