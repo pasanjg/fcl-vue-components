@@ -38,15 +38,15 @@ jobs:
 
       - name: Create ZIP file with version
         run: |
-          zip -r fv_bundle_${{ steps.version-number.outputs.VERSION_NUM }}.zip dist
+          zip -r fv-bundle-${{ steps.version-number.outputs.VERSION_NUM }}.zip dist
           ls -l | grep .zip
 
       - name: Release Bundle
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: fv_bundle_${{ steps.version-number.outputs.VERSION_NUM }}.zip
-          name: Release ${{ steps.version-string.outputs.VERSION_STR }}
+          artifacts: fv-bundle-${{ steps.version-number.outputs.VERSION_NUM }}.zip
+          name: ${{ steps.version-string.outputs.VERSION_STR }}
           prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') }}
           tag: ${{ steps.version-string.outputs.VERSION_STR }}
           token: ${{ secrets.GITHUB_TOKEN }}
