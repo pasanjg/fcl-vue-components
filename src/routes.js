@@ -8,12 +8,12 @@ import { CarouselView } from "./views/carouselView.js";
 import { ProgressView } from "./views/progressView.js";
 import { RatingView } from "./views/ratingView.js";
 import { Select2View } from "./views/select2View.js";
+import { DatePickerView } from "./views/datePickerView.js";
 
 export const routes = [
   {
     path: "/",
-    component: TagsView,
-    // component: HomeView,
+    component: HomeView,
   },
   {
     path: "/tabs",
@@ -50,5 +50,9 @@ export const routes = [
   {
     path: "/select2",
     component: Select2View,
+  },
+  {
+    path: "/datepicker",
+    component: DatePickerView,
   },
 ];
