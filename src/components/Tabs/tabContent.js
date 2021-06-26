@@ -1,14 +1,9 @@
 export const FvTabContent = {
-  props: ['contentclass', 'tabid', 'contentid'],
-  data: function () {
-    return {
-      messge: ""
-    }
-  },
+  props: ['contentclass', 'tabid', 'id'],
   template:
     `
-  <div v-bind:id="tabid" class="tab-content">
-    <div v-bind:class="['tab-pane fade show', contentclass]" v-bind:id="contentid" role="tabpanel">
+  <div :id="tabid" class="tab-content">
+    <div :class="['tab-pane fade show', contentclass]" :id="id" role="tabpanel">
       <slot/>
     </div>
   </div>

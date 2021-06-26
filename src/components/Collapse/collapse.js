@@ -36,7 +36,7 @@ export const FvCollapse = {
   },
   template:
     `
-    <div v-bind:id="collapseid" v-bind:class="['collapse', contentclass]">
+    <div :id="collapseid" :class="['collapse', contentclass]">
       <slot/>
     </div>
   `

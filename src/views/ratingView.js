@@ -1,8 +1,6 @@
 export const RatingView = {
-  props: ['contentclass'],
   data() {
     return {
-      message: "",
       updatedRating: 3,
       updatedRating2: 2,
       updatedRating3: 0,
@@ -24,8 +22,8 @@ export const RatingView = {
     <br />
 
     <h6>Fixed value <code>value="3"</code></h6>
-    <fv-rating rateid="demoRating" contentclass="d-inline" v-bind:value="updatedRating"/> <span>{{ updatedRating }}</span> <br />
-    <fv-rating rateid="demoRating2" contentclass="d-inline" v-bind:value="updatedRating2"/> <span>{{ updatedRating2 }}</span> <br />
+    <fv-rating rateid="demoRating" contentclass="d-inline" :value="updatedRating"/> <span>{{ updatedRating }}</span> <br />
+    <fv-rating rateid="demoRating2" contentclass="d-inline" :value="updatedRating2"/> <span>{{ updatedRating2 }}</span> <br />
     <br />
 
     <h6>Editable <code>canupdate="true"</code></h6>
@@ -34,13 +32,13 @@ export const RatingView = {
     <br />
 
     <h6>Custom star count <code>count="3"</code></h6>
-    <fv-rating rateid="demoRating5" count="3" contentclass="d-inline" v-bind:value="updatedRating"/> <span>{{ updatedRating }}</span> <br />
-    <fv-rating rateid="demoRating6" count="6" contentclass="d-inline" v-bind:value="updatedRating2"/> <span>{{ updatedRating2 }}</span> <br />
+    <fv-rating rateid="demoRating5" count="3" contentclass="d-inline" :value="updatedRating"/> <span>{{ updatedRating }}</span> <br />
+    <fv-rating rateid="demoRating6" count="6" contentclass="d-inline" :value="updatedRating2"/> <span>{{ updatedRating2 }}</span> <br />
     <br />
 
     <h6>Custom star size <code>size="20px"</code></h6>
-    <fv-rating rateid="demoRating7" contentclass="d-inline" v-bind:value="updatedRating"/> <span>16px (default)</span> <br />
-    <fv-rating rateid="demoRating8" size="20px" contentclass="d-inline" v-bind:value="updatedRating2"/> <span>20px</span> <br />
+    <fv-rating rateid="demoRating7" contentclass="d-inline" :value="updatedRating"/> <span>16px (default)</span> <br />
+    <fv-rating rateid="demoRating8" size="20px" contentclass="d-inline" :value="updatedRating2"/> <span>20px</span> <br />
   </div>
   `,
 };

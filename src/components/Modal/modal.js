@@ -2,13 +2,10 @@ export const FvModal = {
   props: ['title', 'modalid', 'buttonid', 'center'],
   data: function () {
     return {
-      id: undefined,
-      centerclass: '',
+      centerclass: this.center ? 'modal-dialog-centered' : '',
     }
   },
   mounted() {
-    this.id = this.modalid;
-    this.centerclass = this.center ? 'modal-dialog-centered' : '';
     this.openModal(this.modalid, this.buttonid);
     this.closeModal(this.modalid);
   },
@@ -52,8 +49,8 @@ export const FvModal = {
   template:
     `
   <div>
-    <div class="modal fade" role="dialog" v-bind:id="modalid" tabindex="-1">
-      <div v-bind:class="['modal-dialog', centerclass]">
+    <div class="modal fade" role="dialog" :id="modalid" tabindex="-1">
+      <div :class="['modal-dialog', centerclass]">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">{{ title }}</h5>

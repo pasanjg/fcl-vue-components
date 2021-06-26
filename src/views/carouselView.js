@@ -1,5 +1,4 @@
 export const CarouselView = {
-  props: ['contentclass'],
   template:
     `
 		<div>

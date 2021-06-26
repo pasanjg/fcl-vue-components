@@ -1,5 +1,4 @@
 export const ModalView = {
-  props: ['contentclass'],
   template:
     `
     <div>

@@ -1,44 +1,41 @@
 export const FvTabs = {
-  props: ['contentclass', 'tabid'],
+  props: ['contentclass', 'tabid', 'pills'],
   data: function () {
     return {
-      tabid: "this.tabid,",
-      currentTab: 0,
-      registeredTabs: this.$slot,
+      tabsPills: this.pills === 'true' ? "nav-pills" : "nav-tabs",
     }
   },
   mounted: function () {
     const vm = this;
     const tabid = vm.tabid;
 
-    var tabItems = document.querySelectorAll('#' + tabid + '>li');
-    var tabLinks = document.querySelectorAll('#' + tabid + '>li>a');
+    let tabItems = document.querySelectorAll('#' + tabid + '>li');
+    let tabLinks = document.querySelectorAll('#' + tabid + '>li>a');
 
-    for (var i = 0; i < tabItems.length; i++) {
+    for (let i = 0; i < tabItems.length; i++) {
       tabItems[i].addEventListener("click", function () {
 
-        var tabs = document.querySelectorAll('#' + tabid + '+.tab-content>.tab-pane');
-        for (var k = 0; k < tabs.length; k++) {
+        const tabs = document.querySelectorAll('#' + tabid + '.tab-content>.tab-pane');
+        for (let k = 0; k < tabs.length; k++) {
           tabs[k].classList.remove("active");
         }
 
-        for (var j = 0; j < tabItems.length; j++) {
-          tabItems[j].className = "";
+        for (let j = 0; j < tabItems.length; j++) {
           tabLinks[j].classList.remove("active");
         }
 
-        var tabItem = this.getElementsByTagName("a")[0];
+        const tabItem = this.getElementsByTagName("a")[0];
         tabItem.classList.add("active");
 
-        var tabLink = tabItem.id;
-        var tab = document.querySelectorAll('.tab-content>#' + tabLink)[0];
+        const tabLink = tabItem.id;
+        const tab = document.querySelectorAll('.tab-content>#' + tabLink)[0];
         tab.classList.add("active");
       });
     };
   },
   template:
     `
-  <ul class="nav nav-tabs" v-bind:id="tabid" role="tablist">
+  <ul :id="tabid" :class="['nav', tabsPills, contentclass]" role="tablist">
     <slot/>
   </ul>
   `

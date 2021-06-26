@@ -59,7 +59,7 @@ export const FvRating = {
   },
   template:
     `
-  <div v-bind:id="rateid" v-bind:class="[contentclass]">
+  <div :id="rateid" :class="[contentclass]">
   </div>
   `
 };
