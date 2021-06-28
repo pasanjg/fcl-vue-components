@@ -13,7 +13,8 @@ import { DatePickerView } from "./views/datePickerView.js";
 export const routes = [
   {
     path: "/",
-    component: HomeView,
+    component: TagsView,
+    // component: HomeView,
   },
   {
     path: "/tabs",
