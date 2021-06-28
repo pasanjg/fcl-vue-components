@@ -1,4 +1,4 @@
-import { EventBus } from "../../components/Tags/tag.js";
+import { EventBus } from "../../components/Tag/tag.js";
 
 export const FvChip = {
   props: ['chipid', 'tagid', 'contentclass', 'value'],

@@ -1,35 +1,69 @@
 export const EventBus = new Vue();
 
 export const FvTag = {
-  props: ['tagid', 'contentclass', 'placeholder', 'values', 'themeclass', 'chipclass', 'btnclass'],
+  props: ['tagid', 'contentclass', 'placeholder', 'values', 'themeclass', 'chipclass', 'btnclass', 'allowspaces', 'limit'],
   data: function () {
     return {
-      placeholder: this.placeholder ?? 'Type and hit enter',
-      values: this.values ?? [''],
+      placeholder: this.placeholder,
+      values: this.values ?? [],
+      limit: this.limit,
     }
   },
   mounted() {
+    this.initPlaceholder();
     this.inputTrigger();
     EventBus.$on(`${this.tagid}RemoveChip`, this.removeChip);
   },
   methods: {
+    initPlaceholder() {
+      const vm = this;
+      if (vm.allowspaces != 'true' && vm.placeholder == null) {
+        vm.$data.placeholder = 'Type and hit enter/space';
+      } else if (vm.allowspaces === 'true' && vm.placeholder == null) {
+        vm.$data.placeholder = 'Type and hit enter';
+      }
+
+      if (vm.limit > 0 && vm.placeholder == null) {
+        vm.$data.placeholder += ` (max. ${vm.$data.limit})`;
+      }
+    },
     inputTrigger() {
       const vm = this;
       const input = document.getElementById(`${vm.tagid}Input`);
 
       input.addEventListener("keyup", function (event) {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          vm.addInput();
+
+        if (vm.allowspaces === 'true') {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            vm.addInput();
+          }
+        } else {
+          // Trigger by Enter or Space
+          if (event.key === 'Enter' || event.keyCode === 32) {
+            event.preventDefault();
+            vm.addInput();
+          }
         }
       });
     },
     addInput() {
       const vm = this;
       const input = document.getElementById(`${vm.tagid}Input`);
+      const inputValue = input.value;
+      const limit = vm.limit;
+      const values = vm.$data.values;
 
-      if (input.value != "" && vm.$data.values.indexOf(input.value) == -1) {
-        vm.$data.values.push(input.value);
+      if (limit > 0 && values.length >= limit) {
+        return;
+      }
+
+      if (vm.allowspaces != 'true' && inputValue.trim().includes(' ')) {
+        return;
+      }
+
+      if (inputValue != "" && vm.$data.values.indexOf(inputValue.trim()) == -1) {
+        vm.$data.values.push(inputValue.trim());
         input.value = "";
       } else {
         input.value = "";
