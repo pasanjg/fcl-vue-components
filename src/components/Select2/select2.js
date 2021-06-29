@@ -17,8 +17,7 @@ export const FvSelect2 = {
     initFunctions: function () {
 
       if (this.selectedvalue != null && !this.options.includes(this.selectedvalue)) {
-        console.error(`Options list does not include value '${this.selectedvalue}'`);
-        return;
+        throw new Error(`Options list does not include value '${this.selectedvalue}'`);
       }
 
       const dropdownTriggers = [...document.querySelectorAll(`[data-target='${this.id}'][data-toggle='dropdown'], [data-input='${this.id}']`)];
