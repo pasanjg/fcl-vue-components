@@ -9,6 +9,7 @@ import { ProgressView } from "./views/progressView.js";
 import { RatingView } from "./views/ratingView.js";
 import { Select2View } from "./views/select2View.js";
 import { DatePickerView } from "./views/datePickerView.js";
+import { VueChartJSView } from "./views/vueChartjsView.js";
 
 export const routes = [
   {
@@ -54,5 +55,9 @@ export const routes = [
   {
     path: "/datepicker",
     component: DatePickerView,
+  },
+  {
+    path: "/vue-chartjs",
+    component: VueChartJSView,
   },
 ];
