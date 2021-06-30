@@ -12,9 +12,11 @@ export const Sidebar = {
 		<router-link to="/progress" class="list-group-item list-group-item-action rounded-0">Progress</router-link>
 		<router-link to="/rating" class="list-group-item list-group-item-action rounded-0">Rating</router-link>
 		<router-link to="/select2" class="list-group-item list-group-item-action rounded-0">Select2</router-link>
-		<div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">NPM Packages</div>
+		<div class="list-group-item list-group-item-action rounded-0 bg-dark text-white">NPM Packages</div>
 		<router-link to="/datepicker" class="list-group-item list-group-item-action rounded-0">DatePicker</router-link>
 		<router-link to="/vue-chartjs" class="list-group-item list-group-item-action rounded-0">Vue-ChartJS</router-link>
+    <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">Draft</div>
+		<router-link to="/data-table" class="list-group-item list-group-item-action rounded-0">DataTable</router-link>
 	</div>
 	`,
 };

@@ -1,12 +1,12 @@
 {
   "name": "fcl-vue-components",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "Bootstrap-Vue components",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
-    "start": "browser-sync start . -s --files '*.html, *.css *.js'"
+    "start": "browser-sync start . -s --files '*.html, *.css *.js' --no-notify"
   },
   "repository": {
     "type": "git",
