@@ -1,6 +1,5 @@
 const path = require('path');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
-// const WebpackObfuscator = require('webpack-obfuscator');
 
 module.exports = {
   mode: 'production',
@@ -23,16 +22,6 @@ module.exports = {
         },
         use: ['sass-loader'],
       },
-      // {
-      //   test: /\.js$/,
-      //   enforce: 'post',
-      //   use: {
-      //     loader: WebpackObfuscator.loader,
-      //     options: {
-      //       rotateStringArray: true
-      //     }
-      //   }
-      // }
     ],
   },
   plugins: [
