@@ -10,8 +10,7 @@ import { FvCarousel } from "./components/Carousel/carousel.js";
 import { FvProgress } from "./components/Progress/progress.js";
 import { FvRating } from "./components/Rating/rating.js";
 import { FvSelect2 } from './components/Select2/select2.js';
-
-import { ChartJS, chartTypes } from "./components/ChartJS/chartjs.js";
+import { ChartJS, chartTypes } from "./components/VueChartJS/vueChartjs.js";
 
 // Fv components
 Vue.component('fv-tabs', FvTabs);
@@ -26,7 +25,7 @@ Vue.component('fv-carousel', FvCarousel);
 Vue.component('fv-progress', FvProgress);
 Vue.component('fv-rating', FvRating);
 Vue.component('fv-select2', FvSelect2);
-
+// ChartJS components
 chartTypes.forEach(type => {
   Vue.component(type, ChartJS(type))
 });
