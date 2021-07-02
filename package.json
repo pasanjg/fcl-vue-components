@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js --env=mode=production",
+    "build:dev": "webpack --config webpack.config.js --env=mode=development",
     "start": "browser-sync start . -s --files '*.html, *.css *.js' --no-notify"
   },
   "repository": {
