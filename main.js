@@ -4,10 +4,13 @@ import { DataTableDraft } from "./src/components/DataTable/datatable.js";
 
 import { providers } from './src/providers/providers.js';
 
+// Register global components
 Vue.component("Sidebar", Sidebar);
 
 // Draft components
 Vue.component('datatable', DataTableDraft);
+
+Vue.use(window.vuelidate.default)
 
 const router = new VueRouter({
   routes: routes,

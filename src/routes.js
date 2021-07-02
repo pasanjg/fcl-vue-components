@@ -11,6 +11,7 @@ import { Select2View } from "./views/select2View.js";
 import { DatePickerView } from "./views/datePickerView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
 import { DataTableView } from "./views/datatableView.js";
+import { VuelidateView } from "./views/vuelidateView.js";
 
 export const routes = [
   {
@@ -64,5 +65,9 @@ export const routes = [
   {
     path: "/data-table",
     component: DataTableView,
+  },
+  {
+    path: "/vuelidate",
+    component: VuelidateView,
   },
 ];

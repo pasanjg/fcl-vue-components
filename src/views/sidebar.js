@@ -15,8 +15,9 @@ export const Sidebar = {
 		<div class="list-group-item list-group-item-action rounded-0 bg-dark text-white">NPM Packages</div>
 		<router-link to="/datepicker" class="list-group-item list-group-item-action rounded-0">DatePicker</router-link>
 		<router-link to="/vue-chartjs" class="list-group-item list-group-item-action rounded-0">Vue-ChartJS</router-link>
-    <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">Draft</div>
+    <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">External / Draft</div>
 		<router-link to="/data-table" class="list-group-item list-group-item-action rounded-0">DataTable</router-link>
+		<router-link to="/vuelidate" class="list-group-item list-group-item-action rounded-0">Vuelidate </router-link>
 	</div>
 	`,
 };
