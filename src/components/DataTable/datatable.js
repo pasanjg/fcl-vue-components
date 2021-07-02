@@ -1,20 +1,18 @@
-
 ////Data table wrapper Vue component
-export const DataTable = {
+export const DataTableDraft = {
   props: {
     id: '',
     footer: { default: false },
     columns: { type: Array },
     url: { default: '' },
     options: {},
-    griddata: { type: Array }
+    griddata: { type: Array },
   },
   data: function () {
     return {
 
     }
   },
-  // inject: ['fetcher'],
   computed: {
     getGridData: {
       get: function () {
@@ -27,31 +25,21 @@ export const DataTable = {
       }
     }
   },
-  created: function () {
-  },
-  mounted: async function () {
-    console.log(this.id)
-    var data = await this.fetchData();
-    console.log(data)
-
-    this.dataTable = window.$(this.$el).DataTable({
-      data: data,
-      columns: this.getColumns
-    });
+  mounted: function () {
+    this.createDatatable();
   },
   methods: {
     title: function (column) {
       return column.title || column.data;
     },
-    fetchData: async function () {
-      let result;
-      await fetch(this.url)
-        .then(response => response.json())
-        .then(data => {
-          result = data
-        });
-      return result;
-    }
+    createDatatable: function () {
+      const vm = this;
+
+      vm.dataTable = window.$(vm.$el).DataTable({
+        data: vm.griddata,
+        columns: vm.getColumns,
+      });
+    },
   },
   destroyed: function () {
     this.dataTable.destroy();
@@ -59,7 +47,6 @@ export const DataTable = {
   template:
     `
   <table :id="id">
-
   </table>
   `,
 };
