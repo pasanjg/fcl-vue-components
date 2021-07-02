@@ -1,4 +1,3 @@
-
 name: CI
 
 on:
@@ -14,6 +13,18 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
 
+      - name: Set build mode
+        id: build-mode
+        run: |
+          BUILD_MODE='production'
+          if [[ "${GITHUB_REF}" =~ "alpha" ]]; then
+              BUILD_MODE='development'
+          elif [[ "${GITHUB_REF}" =~ "beta" ]]; then
+              BUILD_MODE='development'
+          fi
+          echo "Build mode: ${BUILD_MODE}"
+          echo "::set-output  name=BUILD_MODE::${BUILD_MODE}"
+
       - name: Clone repo
         uses: actions/checkout@v2
 
@@ -25,8 +36,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Bundle with Webpack
+      - name: Production Bundle with Webpack
+        if: ${{ steps.build-mode.outputs.BUILD_MODE == 'production' }}
         run: npm run build
+
+      - name: Development Bundle with Webpack
+        if: ${{ steps.build-mode.outputs.BUILD_MODE == 'development' }}
+        run: npm run build:dev
 
       - name: Generate version string
         id: version-string
@@ -36,9 +52,16 @@ jobs:
         id: version-number
         run: echo "::set-output name=VERSION_NUM::${GITHUB_REF:11}"
 
-      - name: Create ZIP file with version
+      - name: Create Production ZIP file with version
+        if: ${{ steps.build-mode.outputs.BUILD_MODE == 'production' }}
         run: |
           zip -r fv-bundle-${{ steps.version-number.outputs.VERSION_NUM }}.zip dist
+          ls -l | grep .zip
+
+      - name: Create Development ZIP file with version
+        if: ${{ steps.build-mode.outputs.BUILD_MODE == 'development' }}
+        run: |
+          zip -r fv-bundle-${{ steps.version-number.outputs.VERSION_NUM }}.zip build
           ls -l | grep .zip
 
       - name: Release Bundle
