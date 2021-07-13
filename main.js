@@ -9,6 +9,7 @@ Vue.component("Sidebar", Sidebar);
 
 // Draft components
 Vue.component('datatable', DataTableDraft);
+Vue.component('vdtnet-table', window.VdtnetTable.default);
 
 Vue.use(window.vuelidate.default)
 
