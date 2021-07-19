@@ -17,7 +17,7 @@ import { VuelidateView } from "./views/vuelidateView.js";
 export const routes = [
   {
     path: "/",
-    component: VueDatatablesView,
+    component: Select2View,
     // component: HomeView,
   },
   {

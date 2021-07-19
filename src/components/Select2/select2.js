@@ -2,12 +2,11 @@ import { AutoClose } from "../../directives/autoClose.js";
 
 export const FvSelect2 = {
   name: 'fv-select',
-  props: ['contentclass', 'id', 'options', 'selectedvalue', 'placeholder', 'inputcustom'],
+  props: ['className', 'id', 'dataList', 'dataSelected', 'placeholder', 'allowNew', 'allowRemove'],
   data: function () {
     return {
-      selectedvalue: this.options.includes(this.selectedvalue) ? this.selectedvalue : null,
-      placeholder: this.placeholder ?? 'Select',
-      inputcustom: this.inputcustom ?? false,
+      dDataSelected: this.dataList.includes(this.dataSelected) ? this.dataSelected : null,
+      dPlaceholder: this.placeholder ?? 'Select',
     }
   },
   mounted: function () {
@@ -15,9 +14,8 @@ export const FvSelect2 = {
   },
   methods: {
     initFunctions: function () {
-
-      if (this.selectedvalue != null && !this.options.includes(this.selectedvalue)) {
-        throw new Error(`Options list does not include value '${this.selectedvalue}'`);
+      if (this.dataSelected != null && !this.dataList.includes(this.dataSelected)) {
+        // throw new Error(`Data list does not include value '${this.dataSelected}'`);
       }
 
       const dropdownTriggers = [...document.querySelectorAll(`[data-target='${this.id}'][data-toggle='dropdown'], [data-input='${this.id}']`)];
@@ -28,7 +26,7 @@ export const FvSelect2 = {
 
       customField.style.display = "none";
 
-      this.renderList(menuList, this.options);
+      this.renderList(menuList, this.dataList);
       this.filterList(filterInput, menuList);
 
       dropdownTriggers.forEach(trigger => {
@@ -37,25 +35,38 @@ export const FvSelect2 = {
         });
       });
     },
-    renderList: function (menuList, optionsList) {
+    renderList: function (menuList, dataList) {
+      const vm = this;
       menuList.innerHTML = "";
-      for (let index in optionsList) {
-        const menuItem = document.createElement("span");
+
+      for (let index in dataList) {
+        const menuItem = document.createElement("div");
         menuItem.setAttribute("class", 'dropdown-item');
-        menuItem.innerHTML = optionsList[index];
+        menuItem.classList.add("d-flex", "justify-content-between", "align-items-center");
+        menuItem.innerHTML = `<span>${dataList[index].displayName}</span>`;
         menuList.appendChild(menuItem);
         menuList.style.maxHeight = "12rem";
         menuList.style.overflowY = "scroll";
 
-        this.handleSelect(menuItem);
+        if (vm.allowRemove || vm.allowRemove == "true") {
+          const removeBtn = document.createElement("i");
+          removeBtn.classList.add("float-right", "fa", "fa-times", "text-muted");
+          removeBtn.style.cursor = "pointer";
+          removeBtn.addEventListener("click", function (e) {
+            console.log(index, 'removed');
+          });
+          menuItem.appendChild(removeBtn);
+        }
+
+        this.handleSelect(menuItem, dataList[index].displayName);
       }
     },
-    handleSelect: function (menuItem) {
-      let vm = this;
+    handleSelect: function (menuItem, value) {
+      const vm = this;
       const selectInput = document.getElementById(vm.id);
 
       menuItem.addEventListener(('click'), function () {
-        selectInput.value = menuItem.innerHTML;
+        selectInput.value = value;
         setTimeout(() => {
           vm.closeMenu();
         }, 100);
@@ -67,14 +78,14 @@ export const FvSelect2 = {
 
       filterInput.addEventListener('input', function () {
 
-        let filteredOptions = vm.options.filter(function (option) {
-          option = option.toLowerCase();
+        let filteredOptions = vm.dataList.filter(function (option) {
+          option = option.displayName.toLowerCase();
           return option.indexOf(filterInput.value.toLowerCase()) > -1;
         });
 
         vm.renderList(menuList, filteredOptions)
 
-        if (vm.inputcustom || vm.inputcustom == "true") {
+        if (vm.allowNew || vm.allowNew == "true") {
           if (filterInput.value != null && filterInput.value != "") {
             customField.style.display = "block";
           } else {
@@ -82,7 +93,7 @@ export const FvSelect2 = {
           }
 
           if (filteredOptions.length >= 1) {
-            if (filteredOptions[0].toLowerCase() == filterInput.value.toLowerCase()) {
+            if (filteredOptions[0].displayName.toLowerCase() == filterInput.value.toLowerCase()) {
               customField.style.display = "none";
             }
           }
@@ -124,7 +135,7 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" ref="selectRef" class="form-control" :value="$data.selectedvalue" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" ref="selectRef" class="form-control" :value="$data.dDataSelected" :placeholder="dPlaceholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
         <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="id" data-toggle="dropdown">
         </button>
