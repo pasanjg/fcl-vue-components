@@ -29,3 +29,5 @@ Vue.component('fv-select2', FvSelect2);
 chartTypes.forEach(type => {
   Vue.component(type, ChartJS(type))
 });
+
+window.EventBus = new Vue();

@@ -34,6 +34,18 @@ export const Select2View = {
       ],
     }
   },
+  mounted: function () {
+    EventBus.$on('get-new-item', this.getNewItem);
+    EventBus.$on('get-removed-item', this.getRemovedItem);
+  },
+  methods: {
+    getNewItem(item) {
+     console.log('Added',item);
+    },
+    getRemovedItem(item) {
+      console.log('Removed',item);
+    },
+  },
   template:
     `
 		<div>
@@ -41,23 +53,20 @@ export const Select2View = {
       <br />
 
       <h6><code>id="demoSelect" :data-list=['val1', 'val2', ...] placeholder="Select country"</code></h6>
-			<fv-select2 id="demoSelect" :data-list="colors" placeholder="Select country"/>
+			<fv-select2 id="demoSelect" :data-list="colors" display="displayName" value="value" placeholder="Select country"/>
       <br /> <br />
 
       <h6><code>id="demoSelect2" data-selected="Red" placeholder="Select color"</code></h6>
-			<fv-select2 id="demoSelect2" :data-list="colors" data-selected="Red" placeholder="Select color"/>
-      <br /> <br />
-
-      <h6><code>allow-remove="true"</code> User can remove a value from the list</h6>
-			<fv-select2 id="demoSelect4" :data-list="colors" allow-remove="true" placeholder="Select color"/>
+			<fv-select2 id="demoSelect2" :data-list="colors" display="displayName" value="value" data-selected="colors[0]" placeholder="Select color"/>
       <br /> <br />
 
       <h6><code>allow-new="true"</code> User can add a new value which is not included in the list</h6>
-			<fv-select2 id="demoSelect3" :data-list="colors" allow-new="true" allow-remove="true" placeholder="Select color"/>
+			<fv-select2 id="demoSelect3" :data-list="colors" display="displayName" value="value" allow-new="true" add-event-name="get-new-item" placeholder="Select color"/>
       <br /> <br />
 
-      <h6>Dropdown won't load because <code>data-selected="Yellow"</code> is invalid. See Dev Tools for error</h6>
-			<fv-select2 id="demoSelect5" :data-list="colors" data-selected="Yellow"/>
+      <h6><code>allow-remove="true"</code> User can remove a value from the list</h6>
+			<fv-select2 id="demoSelect4" :data-list="colors" display="displayName" value="value" allow-remove="true" remove-event-name="get-removed-item" placeholder="Select color"/>
+      <br /> <br />
 		</div>
   `,
 };

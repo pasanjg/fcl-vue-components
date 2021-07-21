@@ -1,5 +1,3 @@
-export const EventBus = new Vue();
-
 export const FvTag = {
   props: ['tagid', 'contentclass', 'placeholder', 'values', 'themeclass', 'chipclass', 'btnclass', 'allowspaces', 'limit'],
   data: function () {
