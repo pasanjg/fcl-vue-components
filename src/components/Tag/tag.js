@@ -1,5 +1,5 @@
 export const FvTag = {
-  props: ['tagid', 'contentclass', 'placeholder', 'values', 'themeclass', 'chipclass', 'btnclass', 'allowspaces', 'limit'],
+  props: ['id', 'className', 'placeholder', 'values', 'themeClass', 'chipClass', 'btnClass', 'allowSpaces', 'limit'],
   data: function () {
     return {
       placeholder: this.placeholder,
@@ -10,14 +10,14 @@ export const FvTag = {
   mounted() {
     this.initPlaceholder();
     this.inputTrigger();
-    EventBus.$on(`${this.tagid}RemoveChip`, this.removeChip);
+    EventBus.$on(`${this.id}RemoveChip`, this.removeChip);
   },
   methods: {
     initPlaceholder() {
       const vm = this;
-      if (vm.allowspaces != 'true' && vm.placeholder == null) {
+      if (vm.allowSpaces != 'true' && vm.placeholder == null) {
         vm.$data.placeholder = 'Type and hit enter/space';
-      } else if (vm.allowspaces === 'true' && vm.placeholder == null) {
+      } else if (vm.allowSpaces === 'true' && vm.placeholder == null) {
         vm.$data.placeholder = 'Type and hit enter';
       }
 
@@ -27,11 +27,11 @@ export const FvTag = {
     },
     inputTrigger() {
       const vm = this;
-      const input = document.getElementById(`${vm.tagid}Input`);
+      const input = document.getElementById(`${vm.id}Input`);
 
       input.addEventListener("keyup", function (event) {
 
-        if (vm.allowspaces === 'true') {
+        if (vm.allowSpaces === 'true') {
           if (event.key === 'Enter') {
             event.preventDefault();
             vm.addInput();
@@ -47,7 +47,7 @@ export const FvTag = {
     },
     addInput() {
       const vm = this;
-      const input = document.getElementById(`${vm.tagid}Input`);
+      const input = document.getElementById(`${vm.id}Input`);
       const inputValue = input.value;
       const limit = vm.limit;
       const values = vm.$data.values;
@@ -56,7 +56,7 @@ export const FvTag = {
         return;
       }
 
-      if (vm.allowspaces != 'true' && inputValue.trim().includes(' ')) {
+      if (vm.allowSpaces != 'true' && inputValue.trim().includes(' ')) {
         return;
       }
 
@@ -81,12 +81,12 @@ export const FvTag = {
   },
   template:
     `
-    <div :id="tagid" :class="['border rounded d-flex-inline flex-wrap align-items-center p-2', contentclass]">
-      <fv-chip v-for="(value, i) in $data.values" :key="i" :chipid="tagid+value" :tagid="tagid" :contentclass="[themeclass, chipclass]" :value="value" />
+    <div :id="id" :class="['border rounded d-flex-inline flex-wrap align-items-center p-2', className]">
+      <fv-chip v-for="(value, i) in $data.values" :key="i" :id="id+value" :tag-id="id" :className="[themeClass, chipClass]" :value="value" />
       <div class="input-group mt-1">
-        <input :id="tagid+'Input'" type="search" class="form-control shadow-none rounded px-2" :placeholder="$data.placeholder">
+        <input :id="id+'Input'" type="search" class="form-control shadow-none rounded px-2" :placeholder="$data.placeholder">
         <div class="input-group-append">
-          <button :class="['btn btn-primary shadow-none', themeclass, btnclass]" @click="addInput()" type="button">Add</button>
+          <button :class="['btn btn-primary shadow-none', themeClass, btnClass]" @click="addInput()" type="button">Add</button>
         </div>
       </div>
     </div>

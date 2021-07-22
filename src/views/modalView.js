@@ -9,7 +9,7 @@ export const ModalView = {
         Launch default demo modal
       </button>
 
-      <fv-modal modalid="demoModal" buttonid="modalTrigger" title="Default Demo Modal">
+      <fv-modal id="demoModal" trigger="modalTrigger" title="Default Demo Modal">
         <template v-slot:modalBody>
           <p>Modal content goes here</p>
         </template>
@@ -27,7 +27,7 @@ export const ModalView = {
         Launch demo modal center
       </button>
 
-      <fv-modal modalid="demoModal2" buttonid="modalTrigger2" title="Demo Modal Center" center="true">
+      <fv-modal id="demoModal2" trigger="modalTrigger2" title="Demo Modal Center" center="true">
         <template v-slot:modalBody>
           <div className="text-center">
             <img align="center" src="https://enlivenhq.com/wp-content/uploads/2014/08/github-banner-770x425.png" width="100%" alt="" />

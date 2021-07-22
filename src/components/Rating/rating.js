@@ -1,27 +1,27 @@
 export const FvRating = {
-  props: ['contentclass', 'count', 'rateid', 'value', 'canupdate', 'size'],
+  props: ['className', 'count', 'id', 'value', 'editable', 'size', 'updateEventName'],
   data: function () {
     return {
       count: this.count ?? 5,
       value: this.value ?? 0,
       starActive: 'rate-star fas fa-star',
       starInactive: 'rate-star far fa-star',
-      canUpdate: this.canupdate ?? false,
+      editable: this.editable ?? false,
       size: this.size ?? '16px',
     }
   },
   mounted: function () {
     this.createStars();
-    const stars = [...document.querySelectorAll(`#${this.rateid}>.rate-star`)];
+    const stars = [...document.querySelectorAll(`#${this.id}>.rate-star`)];
 
     if (stars.length !== parseInt(this.$data.count)) { alert('Count out of bound'); return; }
     if (this.value > 0) this.initialRating(stars);
-    if (this.canUpdate === "true") this.updateRating(stars);
+    if (this.editable === "true") this.updateRating(stars);
   },
   methods: {
     createStars: function () {
       let vm = this;
-      let parent = document.getElementById(this.rateid);
+      let parent = document.getElementById(this.id);
       for (let i = 0; i < vm.$data.count; i++) {
         var star = document.createElement("I");
         star.setAttribute("class", vm.$data.starInactive);
@@ -52,14 +52,14 @@ export const FvRating = {
             rating--;
           }
 
-          vm.$emit(vm.rateid, rating + 1);
+          EventBus.$emit(vm.updateEventName, rating + 1);
         });
       }
     }
   },
   template:
     `
-  <div :id="rateid" :class="[contentclass]">
+  <div :id="id" :class="[className]">
   </div>
   `
 };

@@ -1,25 +1,25 @@
 export const FvModal = {
-  props: ['title', 'modalid', 'buttonid', 'center'],
+  props: ['id', 'title', 'trigger', 'center'],
   data: function () {
     return {
       centerclass: this.center ? 'modal-dialog-centered' : '',
     }
   },
   mounted() {
-    this.openModal(this.modalid, this.buttonid);
-    this.closeModal(this.modalid);
+    this.openModal(this.id, this.trigger);
+    this.closeModal(this.id);
   },
   methods: {
     hasSlot(name = 'default') {
       return !!this.$slots[name] || !!this.$scopedSlots[name];
     },
-    openModal: function (modalid, buttonid) {
+    openModal: function (id, trigger) {
       const body = document.body;
-      const modal = document.getElementById(modalid);
+      const modal = document.getElementById(id);
       const modalContent = modal.getElementsByClassName("modal-content")[0];
       modal.style.backgroundColor = "rgba(0,0,0,0.5)"
 
-      document.getElementById(buttonid).addEventListener("click", (e) => {
+      document.getElementById(trigger).addEventListener("click", (e) => {
         modal.style.display = "block";
         modal.classList.add('modal', 'fade', 'show');
         body.classList.add('modal-open');
@@ -32,9 +32,9 @@ export const FvModal = {
         });
       });
     },
-    closeModal: function (modalid) {
+    closeModal: function (id) {
       const body = document.body;
-      const modal = document.getElementById(modalid);
+      const modal = document.getElementById(id);
       const close = document.querySelectorAll('[data-dismiss="modal"]');
       close.forEach((element) => {
         element.addEventListener('click', (e) => {
@@ -49,7 +49,7 @@ export const FvModal = {
   template:
     `
   <div>
-    <div class="modal fade" role="dialog" :id="modalid" tabindex="-1">
+    <div class="modal fade" role="dialog" :id="id" tabindex="-1">
       <div :class="['modal-dialog', centerclass]">
         <div class="modal-content">
           <div class="modal-header">

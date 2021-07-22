@@ -1,9 +1,9 @@
 export const FvTabContent = {
-  props: ['contentclass', 'tabid', 'id'],
+  props: ['className', 'tabid', 'id'],
   template:
     `
   <div :id="tabid" class="tab-content">
-    <div :class="['tab-pane fade show', contentclass]" :id="id" role="tabpanel">
+    <div :class="['tab-pane fade show', className]" :id="id" role="tabpanel">
       <slot/>
     </div>
   </div>

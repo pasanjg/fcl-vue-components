@@ -1,5 +1,5 @@
 export const FvTabs = {
-  props: ['contentclass', 'tabid', 'pills'],
+  props: ['className', 'tabid', 'pills'],
   data: function () {
     return {
       tabsPills: this.pills === 'true' ? "nav-pills" : "nav-tabs",
@@ -35,7 +35,7 @@ export const FvTabs = {
   },
   template:
     `
-  <ul :id="tabid" :class="['nav', tabsPills, contentclass]" role="tablist">
+  <ul :id="tabid" :class="['nav', tabsPills, className]" role="tablist">
     <slot/>
   </ul>
   `

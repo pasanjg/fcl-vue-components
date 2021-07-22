@@ -80,32 +80,39 @@ export const FvSelect2 = {
 
       for (let index in dataList) {
         const menuItem = document.createElement("div");
+        const selectItem = document.createElement("div");
+
         menuItem.setAttribute("class", 'dropdown-item');
         menuItem.classList.add("d-flex", "justify-content-between", "align-items-center");
-        menuItem.innerHTML = `<span>${dataList[index][this.display]}</span>`;
+        selectItem.setAttribute("class", 'w-100');
+        selectItem.innerHTML = dataList[index][this.display];
+
+        menuItem.appendChild(selectItem);
         menuList.appendChild(menuItem);
+
         menuList.style.maxHeight = "12rem";
         menuList.style.overflowY = "scroll";
 
         if (vm.allowRemove || vm.allowRemove == "true") {
           const removeBtn = document.createElement("i");
-          removeBtn.classList.add("float-right", "fa", "fa-times", "text-muted");
+          removeBtn.classList.add("float-right", "fa", "fa-times", "text-muted", "btn", "btn-light", "px-2");
           removeBtn.style.cursor = "pointer";
           menuItem.appendChild(removeBtn);
 
           removeBtn.addEventListener("click", function (e) {
             EventBus.$emit(vm.removeEventName, vm.dataList[index]);
+            vm.closeMenu();
           });
         }
 
-        this.handleSelect(menuItem, dataList[index]);
+        this.handleSelect(selectItem, dataList[index]);
       }
     },
-    handleSelect: function (menuItem, selected) {
+    handleSelect: function (selectItem, selected) {
       const vm = this;
       const selectInput = document.getElementById(vm.id);
 
-      menuItem.addEventListener(('click'), function () {
+      selectItem.addEventListener(('click'), function () {
         selectInput.value = selected[vm.display];
         EventBus.$emit(vm.selectedEventName, selected);
         setTimeout(() => {

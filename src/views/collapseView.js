@@ -6,7 +6,7 @@ export const CollapseView = {
       <br />
 
       <div>
-        <span>Add <code>collapseid</code> to <code>data-target</code> attribute </span><code>data-target="#demoCollapse"</code>
+        <span>Add <code>id</code> to <code>data-target</code> attribute </span><code>data-target="#demoCollapse"</code>
       </div> <br />
 
       <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#demoCollapse">
@@ -20,9 +20,9 @@ export const CollapseView = {
       <br /> <br />
 
       <span>Default active: </span>
-      <code>contentclass="show"</code> <br /> <br />
+      <code>class-name="show"</code> <br /> <br />
 
-      <fv-collapse collapseid="demoCollapse" contentclass="show">
+      <fv-collapse id="demoCollapse" class-name="show">
         <div class="card card-body">
           1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa non assumenda totam cupiditate fuga unde
           dicta quia quod porro culpa quidem nulla, explicabo voluptatem eum labore dolorum impedit voluptas obcaecati!
@@ -30,7 +30,7 @@ export const CollapseView = {
         <br />
       </fv-collapse>
 
-      <fv-collapse collapseid="demoCollapse2">
+      <fv-collapse id="demoCollapse2">
         <div class="card card-body">
           2. Anim pariatur cliche reprehenderit, enim eiusmod high life
           accusamus terry richardson ad squid. Nihil anim keffiyeh

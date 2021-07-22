@@ -7,7 +7,7 @@ export const TabsView = {
 
       <!-- Tab 1 -->
 			<fv-tabs tabid="demoTab">
-				<fv-tab id="home" contentclass="active">
+				<fv-tab id="home" class-name="active">
           Home
         </fv-tab>
 				<fv-tab id="profile">
@@ -19,7 +19,7 @@ export const TabsView = {
 			</fv-tabs>
 
       <!-- Content for Tab 1 -->
-      <fv-tab-content tabid="demoTab" id="home" contentclass="active">
+      <fv-tab-content tabid="demoTab" id="home" class-name="active">
         This is Home content
       </fv-tab-content>
 
@@ -40,7 +40,7 @@ export const TabsView = {
 
       <!-- Tab 2 -->
 			<fv-tabs tabid="demoTabPills" pills="true">
-				<fv-tab id="homePill" contentclass="active">
+				<fv-tab id="homePill" class-name="active">
           Home
         </fv-tab>
 				<fv-tab id="profilePill">
@@ -52,7 +52,7 @@ export const TabsView = {
 			</fv-tabs>
 
       <!-- Content for Tab 2 -->
-      <fv-tab-content tabid="demoTabPills" id="homePill" contentclass="active">
+      <fv-tab-content tabid="demoTabPills" id="homePill" class-name="active">
         This is Home content
       </fv-tab-content>
 
@@ -68,7 +68,7 @@ export const TabsView = {
       <br />
       <br />
 
-      <h6>To set default active, add <code>contentclass="active"</code> for both <code>fv-tab</code> and <code>fv-tab-content</code> tags</h6>
+      <h6>To set default active, add <code>class-name="active"</code> for both <code>fv-tab</code> and <code>fv-tab-content</code> tags</h6>
       <br />
 
       <!-- Tab 3 -->
@@ -76,7 +76,7 @@ export const TabsView = {
 				<fv-tab id="facebook">
           Facebook
         </fv-tab>
-				<fv-tab id="apple" contentclass="active">
+				<fv-tab id="apple" class-name="active">
           Apple
         </fv-tab>
 				<fv-tab id="amazon">
@@ -97,7 +97,7 @@ export const TabsView = {
         <a href="https://facebook.com" target="blank">Facebook</a>
       </fv-tab-content>
 
-      <fv-tab-content tabid="techTab" id="apple" contentclass="active">
+      <fv-tab-content tabid="techTab" id="apple" class-name="active">
         <img height="180" src="https://coseacasotech.files.wordpress.com/2019/05/apple-logo-1.png" alt="" /> <br />
         <a href="https://apple.com" target="blank">Apple</a>
       </fv-tab-content>
