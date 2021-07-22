@@ -6,32 +6,38 @@ export const FvSelect2 = {
     className: String,
     id: {
       type: String,
-      required: true
+      required: true,
     },
     dataList: {
       type: Array,
-      required: true
+      required: true,
+    },
+    dataSelected: {
+      type: Object,
     },
     dataSelected: Array,
     display: {
       type: String,
-      required: true
+      required: true,
     },
     value: {
       type: String,
-      required: true
+      required: true,
     },
     placeholder: {
       type: String,
-      default: 'Select'
+      default: 'Select',
     },
     allowNew: {
       type: Boolean,
-      default: false
+      default: false,
     },
     allowRemove: {
       type: Boolean,
-      default: false
+      default: false,
+    },
+    selectedEventName: {
+      type: String,
     },
     addEventName: {
       type: String,
@@ -50,10 +56,6 @@ export const FvSelect2 = {
   },
   methods: {
     initFunctions: function () {
-      if (this.dataSelected != null && !this.dataList.includes(this.dataSelected)) {
-        // throw new Error(`Data list does not include value '${this.dataSelected}'`);
-      }
-
       const dropdownTriggers = [...document.querySelectorAll(`[data-target='${this.id}'][data-toggle='dropdown'], [data-input='${this.id}']`)];
       const menu = document.querySelector(`[data-menu=${this.id}]`);
 
@@ -96,7 +98,7 @@ export const FvSelect2 = {
           });
         }
 
-        this.handleSelect(menuItem, dataList[index][vm.display]);
+        this.handleSelect(menuItem, dataList[index]);
       }
     },
     handleSelect: function (menuItem, selected) {
@@ -104,7 +106,8 @@ export const FvSelect2 = {
       const selectInput = document.getElementById(vm.id);
 
       menuItem.addEventListener(('click'), function () {
-        selectInput.value = selected;
+        selectInput.value = selected[vm.display];
+        EventBus.$emit(vm.selectedEventName, selected);
         setTimeout(() => {
           vm.renderList(vm.dataList);
           vm.closeMenu();
@@ -179,9 +182,9 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" ref="selectRef" class="form-control" :value="$data.dDataSelected" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" ref="selectRef" class="form-control shadow-none" :value="dataSelected ? dataSelected[display] : null" :placeholder="placeholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
-        <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" :data-target="id" data-toggle="dropdown">
+        <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
         </button>
         <div v-auto-close="{ exclude: ['selectRef', 'toggleButtonRef'], handler: 'closeMenu' }" class="w-100 dropdown-menu" :data-menu="id">
           <input type="search" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />

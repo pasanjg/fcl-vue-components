@@ -179,10 +179,10 @@ export const VueDatatablesView = {
       window.alert('data reloaded')
     },
     doCreating(comp, el) {
-      console.log('creating')
+      console.debug('creating')
     },
     doCreated(comp) {
-      console.log('created')
+      console.debug('created')
     },
     doSearch() {
       this.$refs.table.search(this.quickSearch)

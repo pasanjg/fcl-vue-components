@@ -35,15 +35,19 @@ export const Select2View = {
     }
   },
   mounted: function () {
+    EventBus.$on('get-data-selected', this.getSeletcedItem);
     EventBus.$on('get-new-item', this.getNewItem);
     EventBus.$on('get-removed-item', this.getRemovedItem);
   },
   methods: {
+    getSeletcedItem(item) {
+      console.debug('Selected',item);
+     },
     getNewItem(item) {
-     console.log('Added',item);
+     console.debug('Added',item);
     },
     getRemovedItem(item) {
-      console.log('Removed',item);
+      console.debug('Removed',item);
     },
   },
   template:
@@ -52,12 +56,12 @@ export const Select2View = {
 			<h3>Select2</h3>
       <br />
 
-      <h6><code>id="demoSelect" :data-list=['val1', 'val2', ...] placeholder="Select country"</code></h6>
-			<fv-select2 id="demoSelect" :data-list="colors" display="displayName" value="value" placeholder="Select country"/>
+      <h6><code>id="demoSelect" :data-list="[{value: 'red',displayName: 'Red'},{value: 'blue',displayName: 'Blue'}]" display="displayName" value="value"</code></h6>
+			<fv-select2 id="demoSelect" :data-list="[{value: 'red',displayName: 'Red'},{value: 'blue',displayName: 'Blue'}]" display="displayName" value="value" placeholder="Select color"/>
       <br /> <br />
 
-      <h6><code>id="demoSelect2" data-selected="Red" placeholder="Select color"</code></h6>
-			<fv-select2 id="demoSelect2" :data-list="colors" display="displayName" value="value" data-selected="colors[0]" placeholder="Select color"/>
+      <h6><code>id="demoSelect2" :data-selected=colors[0] selected-event-name="get-data-selected" placeholder="Select color"</code></h6>
+			<fv-select2 id="demoSelect2" :data-list="colors" display="displayName" value="value" :data-selected=colors[0] selected-event-name="get-data-selected" placeholder="Select color"/>
       <br /> <br />
 
       <h6><code>allow-new="true"</code> User can add a new value which is not included in the list</h6>
