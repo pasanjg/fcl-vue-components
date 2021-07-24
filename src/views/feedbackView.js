@@ -5,17 +5,17 @@ export const FeedbackView = {
     };
   },
   mounted: function () {
-    EventBus.$on('get-updated-rating', this.getUpdatedRating);
+    EventBus.$on('get-updated-rating', this.getUpdatedFeedback);
   },
   methods: {
-    getUpdatedRating(rating) {
+    getUpdatedFeedback(rating) {
       console.debug(rating);
     }
   },
   template:
     `
   <div>
-    <h3>Rating</h3>
+    <h3>Feedback</h3>
     <br />
 
     <h6>Fixed value <code>value="3"</code></h6>

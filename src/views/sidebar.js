@@ -10,7 +10,7 @@ export const Sidebar = {
 		<router-link to="/popover" class="list-group-item list-group-item-action rounded-0">Popover</router-link>
 		<router-link to="/carousel" class="list-group-item list-group-item-action rounded-0">Carousel</router-link>
 		<router-link to="/progress" class="list-group-item list-group-item-action rounded-0">Progress</router-link>
-		<router-link to="/feedback" class="list-group-item list-group-item-action rounded-0">Rating</router-link>
+		<router-link to="/feedback" class="list-group-item list-group-item-action rounded-0">Feedback</router-link>
 		<router-link to="/select2" class="list-group-item list-group-item-action rounded-0">Select2</router-link>
 		<router-link to="/vue-chartjs" class="list-group-item list-group-item-action rounded-0">Vue-ChartJS</router-link>
     <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">External / Draft</div>  <!-- External / Draft -->
