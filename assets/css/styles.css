@@ -1,7 +1,9 @@
 /* Component specific styles */
 /*Rating component */
-.rate-star {
-  color: #ffb703;
+.feedback-container {
+  width: 60px;
+}
+.feedback-container .fv-feedback-item {
   cursor: pointer;
 }
 

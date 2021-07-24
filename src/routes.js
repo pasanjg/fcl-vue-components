@@ -6,7 +6,7 @@ import { TagsView } from "./views/tagsView.js";
 import { PopoverView } from "./views/popoverView.js";
 import { CarouselView } from "./views/carouselView.js";
 import { ProgressView } from "./views/progressView.js";
-import { RatingView } from "./views/ratingView.js";
+import { FeedbackView } from "./views/feedbackView.js";
 import { Select2View } from "./views/select2View.js";
 import { DatePickerView } from "./views/datePickerView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
@@ -48,8 +48,8 @@ export const routes = [
     component: ProgressView,
   },
   {
-    path: "/rating",
-    component: RatingView,
+    path: "/feedback",
+    component: FeedbackView,
   },
   {
     path: "/select2",

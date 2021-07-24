@@ -1,7 +1,6 @@
 import { AutoClose } from "../../directives/autoClose.js";
 
 export const FvSelect2 = {
-  name: 'fv-select',
   props: {
     className: String,
     id: {

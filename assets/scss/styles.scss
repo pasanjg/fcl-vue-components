@@ -1,9 +1,12 @@
 /* Component specific styles */
 
 /*Rating component */
-.rate-star {
-  color: #ffb703;
-  cursor: pointer;
+.feedback-container {
+  width: 60px;
+
+  .fv-feedback-item {
+    cursor: pointer;
+  }
 }
 
 /* Collapse component */
