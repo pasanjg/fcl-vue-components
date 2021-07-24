@@ -27,7 +27,7 @@ Vue.component('fv-rating', FvRating);
 Vue.component('fv-select2', FvSelect2);
 // ChartJS components
 chartTypes.forEach(type => {
-  Vue.component(type, ChartJS(type))
+  Vue.component(type, ChartJS(type));
 });
 
 window.EventBus = new Vue();

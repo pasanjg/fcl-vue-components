@@ -26,9 +26,9 @@ function getChart(type) {
 export const ChartJS = (type) => {
   return {
     extends: getChart(type),
-    props: ['chartdata', 'chartoptions'],
+    props: ['chartData', 'chartOptions'],
     mounted() {
-      this.renderChart(this.chartdata, this.chartoptions)
+      this.renderChart(this.chartData, this.chartOptions)
     },
   }
 }
