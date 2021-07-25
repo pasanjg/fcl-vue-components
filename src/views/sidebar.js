@@ -13,6 +13,7 @@ export const Sidebar = {
 		<router-link to="/feedback" class="list-group-item list-group-item-action rounded-0">Feedback</router-link>
 		<router-link to="/select2" class="list-group-item list-group-item-action rounded-0">Select2</router-link>
 		<router-link to="/vue-chartjs" class="list-group-item list-group-item-action rounded-0">Vue-ChartJS</router-link>
+		<router-link to="/busy" class="list-group-item list-group-item-action rounded-0">Busy</router-link>
     <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">External / Draft</div>  <!-- External / Draft -->
 		<router-link to="/data-table" class="list-group-item list-group-item-action rounded-0">DataTable</router-link>
 		<router-link to="/datepicker" class="list-group-item list-group-item-action rounded-0">DatePicker</router-link>

@@ -11,6 +11,7 @@ import { FvProgress } from "./components/Progress/progress.js";
 import { FvFeedback } from "./components/Feedback/feedback.js";
 import { FvSelect2 } from './components/Select2/select2.js';
 import { ChartJS, chartTypes } from "./components/VueChartJS/vueChartjs.js";
+import { FvBusy } from "./components/Busy/busy.js";
 
 window.EventBus = new Vue();
 
@@ -31,3 +32,4 @@ Vue.component('fv-select2', FvSelect2);
 chartTypes.forEach(type => {
   Vue.component(type, ChartJS(type));
 });
+Vue.component('fv-busy', FvBusy);

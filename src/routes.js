@@ -8,8 +8,9 @@ import { CarouselView } from "./views/carouselView.js";
 import { ProgressView } from "./views/progressView.js";
 import { FeedbackView } from "./views/feedbackView.js";
 import { Select2View } from "./views/select2View.js";
-import { DatePickerView } from "./views/datePickerView.js";
+import { BusyView } from "./views/busyView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
+import { DatePickerView } from "./views/datePickerView.js";
 import { DataTableView } from "./views/datatableView.js";
 import { VuelidateView } from "./views/vuelidateView.js";
 
@@ -55,12 +56,16 @@ export const routes = [
     component: Select2View,
   },
   {
-    path: "/datepicker",
-    component: DatePickerView,
+    path: "/busy",
+    component: BusyView,
   },
   {
     path: "/vue-chartjs",
     component: VueChartJSView,
+  },
+  {
+    path: "/datepicker",
+    component: DatePickerView,
   },
   {
     path: "/data-table",
