@@ -14,12 +14,11 @@ export const FvSelect2 = {
     dataSelected: {
       type: Object,
     },
-    dataSelected: Array,
-    display: {
+    dataDisplay: {
       type: String,
       required: true,
     },
-    value: {
+    dataValue: {
       type: String,
       required: true,
     },
@@ -84,7 +83,7 @@ export const FvSelect2 = {
         menuItem.setAttribute("class", 'dropdown-item');
         menuItem.classList.add("d-flex", "justify-content-between", "align-items-center");
         selectItem.setAttribute("class", 'w-100');
-        selectItem.innerHTML = dataList[index][this.display];
+        selectItem.innerHTML = dataList[index][this.dataDisplay];
 
         menuItem.appendChild(selectItem);
         menuList.appendChild(menuItem);
@@ -112,7 +111,7 @@ export const FvSelect2 = {
       const selectInput = document.getElementById(vm.id);
 
       selectItem.addEventListener(('click'), function () {
-        selectInput.value = selected[vm.display];
+        selectInput.value = selected[vm.dataDisplay];
         EventBus.$emit(vm.selectedEventName, selected);
         setTimeout(() => {
           vm.renderList(vm.dataList);
@@ -126,7 +125,7 @@ export const FvSelect2 = {
 
       filterInput.addEventListener('input', function () {
         let filteredOptions = vm.dataList.filter(function (option) {
-          option = option[vm.display].toLowerCase();
+          option = option[vm.dataDisplay].toLowerCase();
           return option.indexOf(filterInput.value.toLowerCase()) > -1;
         });
 
@@ -141,7 +140,7 @@ export const FvSelect2 = {
           }
 
           if (filteredOptions.length >= 1) {
-            if (filteredOptions[0][vm.display].toLowerCase() == filterInput.value.toLowerCase()) {
+            if (filteredOptions[0][vm.dataDisplay].toLowerCase() == filterInput.value.toLowerCase()) {
               customField.style.display = "none";
             }
           }
@@ -155,7 +154,7 @@ export const FvSelect2 = {
     handleCustomInput: function () {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
-      const selectInput = document.getElementById(vm.id);
+      // const selectInput = document.getElementById(vm.id);
 
       customField.addEventListener('click', function () {
         // Todo: Handle custom input
@@ -188,7 +187,7 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" ref="selectRef" class="form-control shadow-none" :value="dataSelected ? dataSelected[display] : null" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" ref="selectRef" class="form-control shadow-none" :value="dataSelected ? dataSelected[dataDisplay] : null" :placeholder="placeholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
         <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
         </button>

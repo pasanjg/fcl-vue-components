@@ -56,20 +56,20 @@ export const Select2View = {
 			<h3>Select2</h3>
       <br />
 
-      <h6><code>id="demoSelect" :data-list="[{value: 'red',displayName: 'Red'},{value: 'blue',displayName: 'Blue'}]" display="displayName" value="value"</code></h6>
-			<fv-select2 id="demoSelect" :data-list="[{value: 'red',displayName: 'Red'},{value: 'blue',displayName: 'Blue'}]" display="displayName" value="value" selected-event-name="get-data-selected" placeholder="Select color"/>
+      <h6><code>id="demoSelect" :data-list="[{value: 'red', displayName: 'Red'}, {value: 'blue', displayName: 'Blue'}]" data-display="displayName" data-value="value"</code></h6>
+			<fv-select2 id="demoSelect" :data-list="[{value: 'red', displayName: 'Red'}, {value: 'blue', displayName: 'Blue'}]" data-display="displayName" data-value="value" selected-event-name="get-data-selected" placeholder="Select color"/>
       <br /> <br />
 
-      <h6><code>id="demoSelect2" :data-selected=colors[0] selected-event-name="get-data-selected" placeholder="Select color"</code></h6>
-			<fv-select2 id="demoSelect2" :data-list="colors" display="displayName" value="value" :data-selected=colors[0] selected-event-name="get-data-selected" placeholder="Select color"/>
+      <h6><code>id="demoSelect2" :data-selected="{value: 'red', displayName: 'Red'}" selected-event-name="get-data-selected" placeholder="Select color"</code></h6>
+			<fv-select2 id="demoSelect2" :data-list="colors" data-display="displayName" data-value="value" :data-selected="{value: 'red', displayName: 'Red'}" selected-event-name="get-data-selected" placeholder="Select color"/>
       <br /> <br />
 
       <h6><code>allow-new="true"</code> User can add a new value which is not included in the list</h6>
-			<fv-select2 id="demoSelect3" :data-list="colors" display="displayName" value="value" selected-event-name="get-data-selected" allow-new="true" add-event-name="get-new-item" placeholder="Select color"/>
+			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" selected-event-name="get-data-selected" allow-new="true" add-event-name="get-new-item" placeholder="Select color"/>
       <br /> <br />
 
       <h6><code>allow-remove="true"</code> User can remove a value from the list</h6>
-			<fv-select2 id="demoSelect4" :data-list="colors" display="displayName" value="value" selected-event-name="get-data-selected" allow-remove="true" remove-event-name="get-removed-item" placeholder="Select color"/>
+			<fv-select2 id="demoSelect4" :data-list="colors" data-display="displayName" data-value="value" selected-event-name="get-data-selected" allow-remove="true" remove-event-name="get-removed-item" placeholder="Select color"/>
       <br /> <br />
 		</div>
   `,
