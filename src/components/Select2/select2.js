@@ -1,6 +1,10 @@
 import { AutoClose } from "../../directives/autoClose.js";
 
 export const FvSelect2 = {
+  model: {
+    prop: 'value',
+    event: 'selected'
+  },
   props: {
     className: String,
     id: {
@@ -10,6 +14,9 @@ export const FvSelect2 = {
     dataList: {
       type: Array,
       required: true,
+    },
+    value: {
+      type: String,
     },
     dataSelected: {
       type: Object,
@@ -82,7 +89,13 @@ export const FvSelect2 = {
 
         menuItem.setAttribute("class", 'dropdown-item');
         menuItem.classList.add("d-flex", "justify-content-between", "align-items-center");
+        menuItem.style.paddingTop = 0;
+        menuItem.style.paddingBottom = 0;
+
         selectItem.setAttribute("class", 'w-100');
+        menuItem.style.paddingTop = '0.25rem';
+        menuItem.style.paddingBottom = '0.25rem';
+        menuItem.style.cursor = 'pointer';
         selectItem.innerHTML = dataList[index][this.dataDisplay];
 
         menuItem.appendChild(selectItem);
@@ -98,7 +111,7 @@ export const FvSelect2 = {
           menuItem.appendChild(removeBtn);
 
           removeBtn.addEventListener("click", function (e) {
-            EventBus.$emit(vm.removeEventName, vm.dataList[index]);
+            vm.removeSelectedValue(vm.dataList[index]);
             vm.closeMenu();
           });
         }
@@ -112,7 +125,8 @@ export const FvSelect2 = {
 
       selectItem.addEventListener(('click'), function () {
         selectInput.value = selected[vm.dataDisplay];
-        EventBus.$emit(vm.selectedEventName, selected);
+        vm.updateSelectedValue(selected);
+
         setTimeout(() => {
           vm.renderList(vm.dataList);
           vm.closeMenu();
@@ -157,10 +171,8 @@ export const FvSelect2 = {
       // const selectInput = document.getElementById(vm.id);
 
       customField.addEventListener('click', function () {
-        // Todo: Handle custom input
-        // selectInput.value = vm.customInputValue;
 
-        EventBus.$emit(vm.addEventName, vm.customInputValue);
+        vm.addSelectedValue(vm.customInputValue);
 
         setTimeout(() => {
           customField.style.display = "none";
@@ -180,6 +192,27 @@ export const FvSelect2 = {
       customField.style.display = "none";
       vm.renderList(this.dataList);
     },
+    getValue() {
+      return this.value[this.dataDisplay];
+    },
+    updateSelectedValue(selectedValue) {
+      let selected = {
+        [this.dataDisplay]: selectedValue[this.dataDisplay],
+        [this.dataValue]: selectedValue[this.dataValue],
+      }
+      this.$emit('selected', selected);
+    },
+    addSelectedValue(selectedValue) {
+      this.$emit('add-value', selectedValue);
+    },
+    removeSelectedValue(selectedValue) {
+      let selected = {
+        [this.dataDisplay]: selectedValue[this.dataDisplay],
+        [this.dataValue]: selectedValue[this.dataValue],
+      }
+
+      this.$emit('remove-value', selected);
+    },
   },
   directives: {
     autoClose: AutoClose,
@@ -187,7 +220,7 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" ref="selectRef" class="form-control shadow-none" :value="dataSelected ? dataSelected[dataDisplay] : null" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" ref="selectRef" class="form-control shadow-none" :value="getValue()" :placeholder="placeholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
         <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
         </button>
