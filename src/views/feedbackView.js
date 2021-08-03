@@ -4,9 +4,6 @@ export const FeedbackView = {
 
     };
   },
-  mounted: function () {
-    EventBus.$on('get-updated-rating', this.getUpdatedFeedback);
-  },
   methods: {
     getUpdatedFeedback(rating) {
       console.debug(rating);
@@ -22,8 +19,8 @@ export const FeedbackView = {
     <fv-feedback id="demoFeed" class-name="d-inline" value="3" /> <br />
     <br />
 
-    <h6>Editable <code>editable="true" on-change="get-updated-rating"</code></h6>
-    <fv-feedback id="demoFeed2" class-name="d-inline" editable="true" on-change="get-updated-rating" /> <br />
+    <h6>Editable <code>editable="true" @onSelect="getUpdatedFeedback"</code></h6>
+    <fv-feedback id="demoFeed2" class-name="d-inline" editable="true" @onSelect="getUpdatedFeedback" /> <br />
     <br />
 
     <h6>Customize <code>size="36px" color="red"</code> (default <code>size="30px" color="#FFB703"</code>)</h6>

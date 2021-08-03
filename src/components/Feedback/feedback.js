@@ -21,10 +21,6 @@ export const FvFeedback = {
       type: String,
       default: '30px',
     },
-    onChange: {
-      type: String,
-      default: 'onChange',
-    },
   },
   data: function () {
     return {
@@ -97,7 +93,7 @@ export const FvFeedback = {
           }
 
           star.classList.toggle(vm.active);
-          EventBus.$emit(vm.onChange, feedbackVal + 1);
+          vm.$emit('onSelect', feedbackVal + 1);
         });
       }
     }

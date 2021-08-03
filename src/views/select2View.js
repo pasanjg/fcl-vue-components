@@ -62,15 +62,15 @@ export const Select2View = {
       <br /> <br />
 
       <h6>Add a new value which is not included in the list</h6>
-      <h6><code>allow-new="true" @add-value="getNewItem"</code></h6>
+      <h6><code>allow-new="true" @onAdd="getNewItem"</code></h6>
       <small>selected: {{selected2}}</small>
-			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected2" allow-new="true" @add-value="getNewItem" placeholder="Select color"/>
+			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected2" allow-new="true" @onAdd="getNewItem" placeholder="Select color"/>
       <br /> <br />
 
       <h6>Remove a value from the list</h6>
-      <h6><code>allow-remove="true" @remove-value="getRemovedItem"</code></h6>
+      <h6><code>allow-remove="true" @onRemove="getRemovedItem"</code></h6>
       <small>selected: {{selected3}}</small>
-			<fv-select2 id="demoSelect4" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" allow-remove="true" @remove-value="getRemovedItem" placeholder="Select color"/>
+			<fv-select2 id="demoSelect4" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" allow-remove="true" @onRemove="getRemovedItem" placeholder="Select color"/>
       <br /> <br />
 		</div>
   `,

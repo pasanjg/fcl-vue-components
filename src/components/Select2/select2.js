@@ -3,7 +3,7 @@ import { AutoClose } from "../../directives/autoClose.js";
 export const FvSelect2 = {
   model: {
     prop: 'value',
-    event: 'selected'
+    event: 'onSelect'
   },
   props: {
     className: String,
@@ -200,10 +200,10 @@ export const FvSelect2 = {
         [this.dataDisplay]: selectedValue[this.dataDisplay],
         [this.dataValue]: selectedValue[this.dataValue],
       }
-      this.$emit('selected', selected);
+      this.$emit('onSelect', selected);
     },
     addSelectedValue(selectedValue) {
-      this.$emit('add-value', selectedValue);
+      this.$emit('onAdd', selectedValue);
     },
     removeSelectedValue(selectedValue) {
       let selected = {
@@ -211,7 +211,7 @@ export const FvSelect2 = {
         [this.dataValue]: selectedValue[this.dataValue],
       }
 
-      this.$emit('remove-value', selected);
+      this.$emit('onRemove', selected);
     },
   },
   directives: {
