@@ -13,8 +13,6 @@ import { FvSelect2 } from './components/Select2/select2.js';
 import { ChartJS, chartTypes } from "./components/VueChartJS/vueChartjs.js";
 import { FvBusy } from "./components/Busy/busy.js";
 
-window.EventBus = new Vue();
-
 // Fv components
 Vue.component('fv-tabs', FvTabs);
 Vue.component('fv-tab', FvTab);

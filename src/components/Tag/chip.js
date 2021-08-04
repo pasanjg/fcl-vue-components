@@ -12,10 +12,11 @@ export const FvChip = {
     removeValue() {
       const vm = this;
       const removeBtn = document.getElementById(`${vm.id}Close`);
+      removeBtn.style.cursor = 'pointer';
 
       if (removeBtn != null) {
         removeBtn.addEventListener('click', function () {
-          EventBus.$emit(`${vm.tagId}RemoveChip`, vm.value);
+          vm.$emit('onRemove', vm.value);
         });
       }
     },

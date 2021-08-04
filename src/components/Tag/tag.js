@@ -1,16 +1,47 @@
 export const FvTag = {
-  props: ['id', 'className', 'placeholder', 'values', 'themeClass', 'chipClass', 'btnClass', 'allowSpaces', 'limit'],
+  props: {
+    className: String,
+    id: {
+      type: String,
+      required: true,
+    },
+    placeholder: {
+      type: String,
+    },
+    values: {
+      type: Array,
+      default: () => [],
+    },
+    themeClass: {
+      type: String,
+      default: '',
+    },
+    chipClass: {
+      type: String,
+      default: '',
+    },
+    btnClass: {
+      type: String,
+      default: '',
+    },
+    allowSpaces: {
+      type: Boolean,
+      default: false,
+    },
+    limit: {
+      type: Number,
+      default: -1,
+    },
+  },
   data: function () {
     return {
       placeholder: this.placeholder,
-      values: this.values ?? [],
-      limit: this.limit,
+      dataList: this.values,
     }
   },
   mounted() {
     this.initPlaceholder();
     this.inputTrigger();
-    EventBus.$on(`${this.id}RemoveChip`, this.removeChip);
   },
   methods: {
     initPlaceholder() {
@@ -22,7 +53,7 @@ export const FvTag = {
       }
 
       if (vm.limit > 0 && vm.placeholder == null) {
-        vm.$data.placeholder += ` (max. ${vm.$data.limit})`;
+        vm.placeholder += ` (max. ${vm.limit})`;
       }
     },
     inputTrigger() {
@@ -50,7 +81,7 @@ export const FvTag = {
       const input = document.getElementById(`${vm.id}Input`);
       const inputValue = input.value;
       const limit = vm.limit;
-      const values = vm.$data.values;
+      const values = vm.dataList;
 
       if (limit > 0 && values.length >= limit) {
         return;
@@ -60,8 +91,8 @@ export const FvTag = {
         return;
       }
 
-      if (inputValue != "" && vm.$data.values.indexOf(inputValue.trim()) == -1) {
-        vm.$data.values.push(inputValue.trim());
+      if (inputValue != "" && vm.dataList.indexOf(inputValue.trim()) == -1) {
+        vm.dataList.push(inputValue.trim());
         input.value = "";
       } else {
         input.value = "";
@@ -69,20 +100,17 @@ export const FvTag = {
     },
     removeChip(removeElement) {
       const vm = this;
-      const index = vm.$data.values.indexOf(removeElement);
+      const index = vm.dataList.indexOf(removeElement);
 
       if (index > -1) {
-        vm.$data.values.splice(index, 1);
+        vm.dataList.splice(index, 1);
       }
     }
-  },
-  beforeDestroy() {
-    EventBus.$off();
   },
   template:
     `
     <div :id="id" :class="['border rounded d-flex-inline flex-wrap align-items-center p-2', className]">
-      <fv-chip v-for="(value, i) in $data.values" :key="i" :id="id+value" :tag-id="id" :className="[themeClass, chipClass]" :value="value" />
+      <fv-chip v-for="(value, i) in dataList" :key="i" :id="id+value" :tag-id="id" :className="[themeClass, chipClass]" :value="value" @onRemove="removeChip" />
       <div class="input-group mt-1">
         <input :id="id+'Input'" type="search" class="form-control shadow-none rounded px-2" :placeholder="$data.placeholder">
         <div class="input-group-append">
