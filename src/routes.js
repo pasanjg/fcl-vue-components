@@ -9,9 +9,10 @@ import { ProgressView } from "./views/progressView.js";
 import { FeedbackView } from "./views/feedbackView.js";
 import { Select2View } from "./views/select2View.js";
 import { BusyView } from "./views/busyView.js";
+import { DataCardsView } from "./views/dataCardsView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
-import { DatePickerView } from "./views/datePickerView.js";
 import { DataTableView } from "./views/datatableView.js";
+import { DatePickerView } from "./views/datePickerView.js";
 import { VuelidateView } from "./views/vuelidateView.js";
 
 export const routes = [
@@ -56,20 +57,25 @@ export const routes = [
     component: Select2View,
   },
   {
-    path: "/busy",
-    component: BusyView,
-  },
-  {
     path: "/vue-chartjs",
     component: VueChartJSView,
   },
   {
-    path: "/datepicker",
-    component: DatePickerView,
+    path: "/busy",
+    component: BusyView,
   },
+  {
+    path: "/data-cards",
+    component: DataCardsView,
+  },
+  // External/Draft
   {
     path: "/data-table",
     component: DataTableView,
+  },
+  {
+    path: "/datepicker",
+    component: DatePickerView,
   },
   {
     path: "/vuelidate",
