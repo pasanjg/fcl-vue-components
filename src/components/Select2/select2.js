@@ -214,6 +214,11 @@ export const FvSelect2 = {
       this.$emit('onRemove', selected);
     },
   },
+  watch: {
+    dataList: function() {
+      this.renderList(this.dataList);
+    }
+  },
   directives: {
     autoClose: AutoClose,
   },
