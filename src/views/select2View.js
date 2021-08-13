@@ -29,18 +29,20 @@ export const Select2View = {
 
       type: {},
       choice: {},
+      color: {},
     }
   },
   inject: ['fetcher'],
   methods: {
     getNewItem(item) {
+      // Handle the new item
       console.debug('Added', item);
     },
     getRemovedItem(item) {
+      // Hande removed item
       console.debug('Removed', item);
     },
     async setChoiceList(type) {
-      this.choice = {};
       if (type['value'] === 'todos') {
         const url = "https://jsonplaceholder.typicode.com/todos"
         this.choiceDataDisplay = 'title'
@@ -56,9 +58,6 @@ export const Select2View = {
   watch: {
     async type(newValue, oldValue) {
       this.choices = await this.setChoiceList(newValue);
-    },
-    choice(newValue, oldValue) {
-
     },
   },
   template:
@@ -76,6 +75,10 @@ export const Select2View = {
         <div class="col">
           {{choice}}
           <fv-select2 id="demoChoice" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
+        </div>
+        <div class="col">
+          {{color}}
+          <fv-select2 id="demoName" :data-list="colors" data-display="displayName" data-value="value" v-model="color" placeholder="Select Color"/>
         </div>
       </div>
       <br /> <br />

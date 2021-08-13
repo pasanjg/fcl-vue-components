@@ -54,6 +54,9 @@ export const FvSelect2 = {
   data: function () {
     return {
       customInputValue: null,
+      selectRef: `${this.id}SelectRef`,
+      toggleButtonRef: `${this.id}ToggleButtonRef`,
+      filterInputRef: `${this.id}FilterInputRef`,
     }
   },
   mounted: function () {
@@ -61,6 +64,7 @@ export const FvSelect2 = {
   },
   methods: {
     initFunctions: function () {
+      const vm = this;
       const dropdownTriggers = [...document.querySelectorAll(`[data-target='${this.id}'][data-toggle='dropdown'], [data-input='${this.id}']`)];
       const menu = document.querySelector(`[data-menu=${this.id}]`);
 
@@ -74,6 +78,10 @@ export const FvSelect2 = {
 
       dropdownTriggers.forEach(trigger => {
         trigger.addEventListener('click', function () {
+          if (filterInput.value != null && filterInput.value != "") {
+            filterInput.value = null;
+          }
+          vm.renderList(vm.dataList);
           menu.classList['toggle']('show');
         });
       });
@@ -93,8 +101,8 @@ export const FvSelect2 = {
         menuItem.style.paddingBottom = 0;
 
         selectItem.setAttribute("class", 'w-100');
-        menuItem.style.paddingTop = '0.25rem';
-        menuItem.style.paddingBottom = '0.25rem';
+        selectItem.style.paddingTop = '0.25rem';
+        selectItem.style.paddingBottom = '0.25rem';
         menuItem.style.cursor = 'pointer';
         selectItem.innerHTML = dataList[index][this.dataDisplay];
 
@@ -168,7 +176,6 @@ export const FvSelect2 = {
     handleCustomInput: function () {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
-      // const selectInput = document.getElementById(vm.id);
 
       customField.addEventListener('click', function () {
 
@@ -187,10 +194,14 @@ export const FvSelect2 = {
       const filterInput = document.querySelector(`input[data-filter='${vm.id}']`);
       const customField = document.getElementById(`${vm.id}CustomField`);
 
-      filterInput.value = null;
-      menu.classList['remove']('show');
-      customField.style.display = "none";
-      vm.renderList(this.dataList);
+      if (menu.classList.contains('show')) {
+        menu.classList['remove']('show');
+        customField.style.display = "none";
+        if (filterInput.value != null && filterInput.value != "") {
+          filterInput.value = null;
+          vm.renderList(this.dataList);
+        }
+      }
     },
     getValue() {
       return this.value[this.dataDisplay];
@@ -215,7 +226,9 @@ export const FvSelect2 = {
     },
   },
   watch: {
-    dataList: function() {
+    dataList: function () {
+      this.value = {};
+      this.$emit('onSelect', this.value);
       this.renderList(this.dataList);
     }
   },
@@ -225,12 +238,12 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" ref="selectRef" class="form-control shadow-none" :value="getValue()" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" :ref="selectRef" class="form-control shadow-none" :value="getValue()" :placeholder="placeholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
-        <button type="button" ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
+        <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
         </button>
-        <div v-auto-close="{ exclude: ['selectRef', 'toggleButtonRef'], handler: 'closeMenu' }" class="w-100 dropdown-menu" :data-menu="id">
-          <input type="search" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
+        <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
+          <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
           <span :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
             <span>Add <strong>{{ customInputValue }}</strong> to list</span>
