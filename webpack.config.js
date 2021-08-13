@@ -1,5 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
+const packageJson = require('./package.json');
 
 module.exports = (env) => {
   const mode = env && env.mode;
@@ -30,8 +32,37 @@ module.exports = (env) => {
         },
       ],
     },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        (compiler) => {
+          const TerserPlugin = require('terser-webpack-plugin');
+          new TerserPlugin({
+            terserOptions: {
+              compress: {},
+              output: {
+                // Preserve license comments.
+                comments: /^!/
+              },
+            },
+            extractComments: false,
+          }).apply(compiler);
+        },
+      ],
+    },
     plugins: [
       new FixStyleOnlyEntriesPlugin({ extensions: ['scss'] }),
+      new webpack.BannerPlugin({
+        banner: () => {
+          const date = new Date();
+          return (
+            `FV Components v${packageJson.version}
+             Copyright (c) ${date.getFullYear()} ${packageJson.author}
+             License ${packageJson.license}`
+          ).replace(/\ {2,}/g, '');
+        },
+        raw: false
+      }),
     ],
   }
 };
