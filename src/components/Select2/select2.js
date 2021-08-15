@@ -1,4 +1,4 @@
-import { AutoClose } from "../../directives/autoClose.js";
+import { AutoClose } from "../vue-directives/vue-auto-close.js";
 
 export const FvSelect2 = {
   model: {
@@ -37,26 +37,22 @@ export const FvSelect2 = {
       type: Boolean,
       default: false,
     },
+    multiSelect: {
+        type: Boolean,
+        default: false,
+    },
     allowRemove: {
       type: Boolean,
       default: false,
-    },
-    selectedEventName: {
-      type: String,
-    },
-    addEventName: {
-      type: String,
-    },
-    removeEventName: {
-      type: String,
-    },
+    }
   },
   data: function () {
     return {
       customInputValue: null,
       selectRef: `${this.id}SelectRef`,
       toggleButtonRef: `${this.id}ToggleButtonRef`,
-      filterInputRef: `${this.id}FilterInputRef`,
+        filterInputRef: `${this.id}FilterInputRef`,
+        allSelected: false
     }
   },
   mounted: function () {
@@ -86,7 +82,8 @@ export const FvSelect2 = {
         });
       });
     },
-    renderList: function (dataList) {
+      renderList: function (dataList) {
+
       const vm = this;
       const menuList = document.querySelector(`#${this.id}MenuList`);
       menuList.innerHTML = "";
@@ -94,6 +91,11 @@ export const FvSelect2 = {
       for (let index in dataList) {
         const menuItem = document.createElement("div");
         const selectItem = document.createElement("div");
+
+        const checkbox = document.createElement("input");
+        checkbox.setAttribute("class", 'mr-2');
+        checkbox.setAttribute("type", 'checkbox');
+
 
         menuItem.setAttribute("class", 'dropdown-item');
         menuItem.classList.add("d-flex", "justify-content-between", "align-items-center");
@@ -105,6 +107,23 @@ export const FvSelect2 = {
         selectItem.style.paddingBottom = '0.25rem';
         menuItem.style.cursor = 'pointer';
         selectItem.innerHTML = dataList[index][this.dataDisplay];
+
+          if (this.multiSelect) {
+              checkbox.setAttribute("value", dataList[index][this.dataValue]);
+              var itemInOriginalList = vm.dataList.find(e => e.Id == dataList[index][this.dataValue]);
+              if (itemInOriginalList?.isActive) {
+                  checkbox.setAttribute("checked", "checked");
+              }
+              else
+                  checkbox.removeAttribute("checked");
+
+              menuItem.appendChild(checkbox);
+              checkbox.addEventListener("click", function (e) {
+                  vm.setAsSelected(vm.dataList[index],e);
+                  //vm.closeMenu();
+              });
+          }
+
 
         menuItem.appendChild(selectItem);
         menuList.appendChild(menuItem);
@@ -204,7 +223,7 @@ export const FvSelect2 = {
       }
     },
     getValue() {
-      return this.value[this.dataDisplay];
+          return this.value[this.dataDisplay];
     },
     updateSelectedValue(selectedValue) {
       let selected = {
@@ -216,6 +235,19 @@ export const FvSelect2 = {
     addSelectedValue(selectedValue) {
       this.$emit('onAdd', selectedValue);
     },
+    setAsSelected(selectedValue, ele) {
+        const vm = this;
+        //var item = vm.dataList.find(e => e.Id == ele.target.value);
+        //var idx = vm.dataList.findIndex(e => e.Id == ele.target.value);
+        //item.isActive = ele.target.checked;
+        //vm.dataList[idx] = item;
+        _.set(vm.dataList.find(e => e.Id == ele.target.value), 'isActive', ele.target.checked);
+    },
+      selectAll(evt) {
+        var vm = this;
+          vm.dataList.forEach(e => e.isActive = evt.target.checked);
+          this.renderList(vm.dataList);
+    },
     removeSelectedValue(selectedValue) {
       let selected = {
         [this.dataDisplay]: selectedValue[this.dataDisplay],
@@ -226,11 +258,11 @@ export const FvSelect2 = {
     },
   },
   watch: {
-    dataList: function () {
-      this.value = {};
-      this.$emit('onSelect', this.value);
-      this.renderList(this.dataList);
-    }
+    //dataList: function () {
+    //  this.value = {};
+    //  this.$emit('onSelect', this.value);
+    //  this.renderList(this.dataList);
+    //}
   },
   directives: {
     autoClose: AutoClose,
@@ -243,6 +275,8 @@ export const FvSelect2 = {
         <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
+          <label v-if="multiSelect" class="ml-3"><input class="mr-2" type="checkbox" v-on:click="selectAll($event)" >Select all</label>
+          <label v-if="allowRemove" class="float-right mr-3"><input class="mr-2" type="checkbox">Remove all</label>
           <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
           <span :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
