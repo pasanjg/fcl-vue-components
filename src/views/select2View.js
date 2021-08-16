@@ -16,6 +16,15 @@ export const Select2View = {
         { "value": "violet", "displayName": "Violet" },
         { "value": "blue", "displayName": "Blue" },
       ],
+      colorsMulti: [
+        { "value": "red", "displayName": "Red", "isSelected": true },
+        { "value": "green", "displayName": "Green", "isSelected": true },
+        { "value": "purple", "displayName": "Purple", "isSelected": false },
+        { "value": "orange", "displayName": "Orange", "isSelected": false },
+        { "value": "black", "displayName": "Black", "isSelected": true },
+        { "value": "violet", "displayName": "Violet", "isSelected": false },
+        { "value": "blue", "displayName": "Blue", "isSelected": false },
+      ],
       pets: [
         { "value": "cat", "displayName": "Cat" },
         { "value": "dog", "displayName": "Dog" },
@@ -26,6 +35,7 @@ export const Select2View = {
       selected: {},
       selected2: { "value": "cat", "displayName": "Cat" },
       selected3: { "value": "red", "displayName": "Red" },
+      selectedMulti: [],
 
       type: {},
       choice: {},
@@ -35,7 +45,7 @@ export const Select2View = {
   inject: ['fetcher'],
   methods: {
     getNewItem(item) {
-      // Handle the new item
+      // Handle the added item
       console.debug('Added', item);
     },
     getRemovedItem(item) {
@@ -57,6 +67,7 @@ export const Select2View = {
   },
   watch: {
     async type(newValue, oldValue) {
+      this.choice = {};
       this.choices = await this.setChoiceList(newValue);
     },
   },
@@ -68,37 +79,50 @@ export const Select2View = {
 
       <h6>Select a type and choice</h6>
       <div class="row">
+        <div class="col"><small>{{type}}</small></div>
+        <div class="col"><small>{{choice}}</small></div>
+        <div class="col"><small>{{color}}</small></div>
+      </div>
+      <br />
+      <div class="row">
         <div class="col">
-          {{type}}
           <fv-select2 id="demoTypes" :data-list="types" data-display="displayName" data-value="value" v-model="type" placeholder="Select type"/>
         </div>
         <div class="col">
-          {{choice}}
           <fv-select2 id="demoChoice" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
         </div>
         <div class="col">
-          {{color}}
           <fv-select2 id="demoName" :data-list="colors" data-display="displayName" data-value="value" v-model="color" placeholder="Select Color"/>
         </div>
       </div>
       <br /> <br />
 
+      <h6>Basic usage</h6>
       <h6><code>id="demoSelect" :data-list="[{value: 'red', displayName: 'Red'}, {value: 'blue', displayName: 'Blue'}]" data-display="displayName" data-value="value" v-model="selected"</code></h6>
-      <small>selected: {{selected}}</small>
+      <small>selected: {{selected}}</small> <br /> <br />
 			<fv-select2 id="demoSelect" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" placeholder="Select color"/>
+      <br /> <br />
+
+      <h6>Multiselect</h6>
+      <h6><code>multi-select="true" multi-select-key="isSelected"</code></h6>
+      <small>selected: {{selectedMulti}}</small> <br /> <br />
+      <small>{{selectedMulti.length}} items selected</small> <br /> <br />
+			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" allow-new="true" @onAdd="getNewItem" allow-remove="true" @onRemove="getRemovedItem" placeholder="Select color"/>
       <br /> <br />
 
       <h6>Add a new value which is not included in the list</h6>
       <h6><code>allow-new="true" @onAdd="getNewItem"</code></h6>
-      <small>selected: {{selected2}}</small>
+      <small>selected: {{selected2}}</small> <br /> <br />
 			<fv-select2 id="demoSelect2" :data-list="pets" data-display="displayName" data-value="value" v-model="selected2" allow-new="true" @onAdd="getNewItem" placeholder="Select"/>
       <br /> <br />
 
       <h6>Remove a value from the list</h6>
       <h6><code>allow-remove="true" @onRemove="getRemovedItem"</code></h6>
-      <small>selected: {{selected3}}</small>
+      <small>selected: {{selected3}}</small> <br /> <br />
 			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" allow-remove="true" @onRemove="getRemovedItem" placeholder="Select color"/>
       <br /> <br />
+
+
 		</div>
   `,
 };
