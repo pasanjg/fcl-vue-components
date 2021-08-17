@@ -207,18 +207,7 @@ export const FvSelect2 = {
           const checkbox = document.getElementById(`${vm.id + selectedValue[vm.dataValue]}CheckBox`);
           checkbox.checked = !checkbox.checked;
 
-          vm.dataList = vm.dataList.map(item => {
-            if (item[vm.dataValue] == selectedValue[vm.dataValue]) {
-              item[vm.multiSelectKey] = checkbox.checked;
-
-              if (checkbox.checked) {
-                vm.multiSelected.push(item);
-              } else {
-                vm.multiSelected = vm.multiSelected.filter(element => element[vm.dataValue] != selectedValue[vm.dataValue]);
-              }
-            }
-            return item;
-          });
+          vm.setAsSelected(selectedValue, checkbox);
 
         } else {
           selectInput.value = selectedValue[vm.dataDisplay];
@@ -232,6 +221,7 @@ export const FvSelect2 = {
     },
     setAsSelected(selectedValue, checkbox) {
       const vm = this;
+      const selectAllCheckbox = document.getElementById(`${vm.id}SelectAllCheckbox`);
 
       vm.dataList = vm.dataList.map(item => {
         if (item[vm.dataValue] == selectedValue[vm.dataValue]) {
@@ -245,9 +235,15 @@ export const FvSelect2 = {
         }
         return item;
       });
+
+      if (vm.dataList.length === vm.multiSelected.length) {
+        selectAllCheckbox.checked = true;
+      } else {
+        selectAllCheckbox.checked = false;
+      }
     },
     selectAll(event) {
-      var vm = this;
+      const vm = this;
       vm.dataList.forEach(element => element[vm.multiSelectKey] = event.target.checked);
       if (event.target.checked) {
         vm.multiSelected = vm.dataList;
@@ -313,7 +309,7 @@ export const FvSelect2 = {
         <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
-          <span v-if="multiSelect" class="btn btn-sm btn-light px-2 mb-2 ml-3"><input class="mr-2" type="checkbox" v-on:click="selectAll($event)" >Select all</span>
+          <span v-if="multiSelect" class="btn btn-sm btn-light px-2 mb-2 ml-3"><input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" v-on:click="selectAll($event)" >Select all</span>
           <span v-if="allowRemove" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2">Remove all</span>
           <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
           <span :id="id+'CustomField'" class="dropdown-item">

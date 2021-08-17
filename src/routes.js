@@ -18,8 +18,7 @@ import { VuelidateView } from "./views/vuelidateView.js";
 export const routes = [
   {
     path: "/",
-    component: Select2View,
-    // component: HomeView,
+    component: HomeView,
   },
   {
     path: "/tabs",
