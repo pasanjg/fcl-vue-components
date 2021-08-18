@@ -1,5 +1,24 @@
 /* Application specific styles */
 
+// scrollbar styles
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.25rem;
+  background: #c7c7c7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #979797;
+}
+
 .sidebar {
   height: 100%;
   width: 15%;
@@ -22,4 +41,25 @@
 .main-content {
   margin-left: 15%;
   padding-top: 50px;
+
+  code {
+    color: black;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    line-height: 2rem;
+    word-wrap: normal;
+    background-color: #ececec;
+  }
+
+  .code-snippet {
+    width: 100%;
+    padding: 1rem 0;
+    font-family: "Consolas";
+    font-size: 87%;
+    resize: none;
+    outline: none;
+    border-radius: 0.25rem;
+    border-color: #e2e2e2;
+    background-color: #f7f7f7;
+  }
 }
