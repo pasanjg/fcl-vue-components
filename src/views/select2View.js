@@ -52,6 +52,11 @@ export const Select2View = {
       // Hande removed item
       console.debug('Removed', item);
     },
+    getAllRemovedItems(items) {
+      // Hande all removed items
+      this.colorsMulti = [];
+      console.debug('All Removed', items);
+    },
     async setChoiceList(type) {
       if (type['value'] === 'todos') {
         const url = "https://jsonplaceholder.typicode.com/todos"
@@ -107,7 +112,7 @@ export const Select2View = {
       <h6><code>multi-select="true" multi-select-key="isSelected"</code></h6>
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
-			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" allow-new="true" @onAdd="getNewItem" allow-remove="true" @onRemove="getRemovedItem" placeholder="Select color"/>
+			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" allow-new="true" @onAdd="getNewItem" allow-remove="true" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <br />
 
       <h6>Add a new value which is not included in the list</h6>
@@ -117,9 +122,9 @@ export const Select2View = {
       <br /> <br />
 
       <h6>Remove a value from the list</h6>
-      <h6><code>allow-remove="true" @onRemove="getRemovedItem"</code></h6>
+      <h6><code>allow-remove="true" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems"</code></h6>
       <small>selected: {{selected3}}</small> <br /> <br />
-			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" allow-remove="true" @onRemove="getRemovedItem" placeholder="Select color"/>
+			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" allow-remove="true" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <br />
 
 

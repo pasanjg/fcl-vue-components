@@ -129,9 +129,9 @@ export const FvSelect2 = {
           checkbox.setAttribute("type", 'checkbox');
           checkbox.setAttribute("value", dataList[index][vm.dataValue]);
 
-          let itemInOriginalList = vm.dataList.find(element => element[vm.dataValue] == dataList[index][vm.dataValue]);
+          let currentItem = vm.dataList.find(element => element[vm.dataValue] == dataList[index][vm.dataValue]);
 
-          if (itemInOriginalList && itemInOriginalList[vm.multiSelectKey]) {
+          if (currentItem && currentItem[vm.multiSelectKey]) {
             checkbox.checked = true;
           }
           else {
@@ -252,6 +252,15 @@ export const FvSelect2 = {
       }
       this.renderList(vm.dataList);
     },
+    removeAll() {
+      if (this.multiSelect || this.multiSelect == "true") {
+        this.multiSelected = [];
+      }
+      this.emitToVModel([]);
+      this.$emit('onRemoveAll', this.dataList);
+      this.dataList = [];
+      this.closeMenu();
+    },
     handleCustomInput: function () {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
@@ -286,7 +295,7 @@ export const FvSelect2 = {
         customField.style.display = "none";
         if (filterInput.value != null && filterInput.value != "") {
           filterInput.value = null;
-          vm.renderList(this.dataList);
+          vm.renderList(vm.dataList);
         }
       }
     },
@@ -310,12 +319,15 @@ export const FvSelect2 = {
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
           <span v-if="multiSelect" class="btn btn-sm btn-light px-2 mb-2 ml-3"><input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" v-on:click="selectAll($event)" >Select all</span>
-          <span v-if="allowRemove" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2">Remove all</span>
+          <span v-if="allowRemove" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
           <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
           <span :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
             <span>Add <strong>{{ customInputValue }}</strong> to list</span>
           </span>
+          <div v-if="dataList.length === 0" class="dropdown-item">
+            <i>No data</i>
+          </div>
           <div :id="id+'MenuList'" class="w-100"></div>
         </div>
       </div>
