@@ -57,7 +57,6 @@ export const FvSelect2 = {
       selectRef: `${this.id}SelectRef`,
       toggleButtonRef: `${this.id}ToggleButtonRef`,
       filterInputRef: `${this.id}FilterInputRef`,
-      allSelected: false,
       multiSelected: [],
     }
   },
@@ -84,6 +83,9 @@ export const FvSelect2 = {
 
       dropdownTriggers.forEach(trigger => {
         trigger.addEventListener('click', function () {
+
+          customField.style.display = "none";
+
           if (filterInput.value != null && filterInput.value != "") {
             filterInput.value = null;
           }
@@ -124,7 +126,7 @@ export const FvSelect2 = {
         if (vm.multiSelect || vm.multiSelect == "true") {
           const checkbox = document.createElement("input");
 
-          checkbox.setAttribute("id", `${vm.id + vm.dataList[index][vm.dataValue]}CheckBox`);
+          checkbox.setAttribute("id", `${vm.id + dataList[index][vm.dataValue]}CheckBox`);
           checkbox.setAttribute("class", 'mr-2');
           checkbox.setAttribute("type", 'checkbox');
           checkbox.setAttribute("value", dataList[index][vm.dataValue]);
@@ -291,8 +293,8 @@ export const FvSelect2 = {
       const customField = document.getElementById(`${vm.id}CustomField`);
 
       if (menu.classList.contains('show')) {
-        menu.classList['remove']('show');
         customField.style.display = "none";
+        menu.classList['remove']('show');
         if (filterInput.value != null && filterInput.value != "") {
           filterInput.value = null;
           vm.renderList(vm.dataList);

@@ -21,7 +21,7 @@ export const Select2View = {
         { "value": "green", "displayName": "Green", "isSelected": true },
         { "value": "purple", "displayName": "Purple", "isSelected": false },
         { "value": "orange", "displayName": "Orange", "isSelected": false },
-        { "value": "black", "displayName": "Black", "isSelected": true },
+        { "value": "black", "displayName": "Black", "isSelected": false },
         { "value": "violet", "displayName": "Violet", "isSelected": false },
         { "value": "blue", "displayName": "Blue", "isSelected": false },
       ],
