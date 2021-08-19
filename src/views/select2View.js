@@ -106,7 +106,7 @@ export const Select2View = {
       <h6>
         <pre><code>&lt;fv-select2 id="demoSelect" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" /&gt;</code></pre>
       </h6>
-      <textarea class="code-snippet" rows="9">
+      <textarea class="code-snippet" rows="9" readonly>
       colors: [
         { "value": "red", "displayName": "Red" },
         { "value": "green", "displayName": "Green" },
@@ -122,7 +122,7 @@ export const Select2View = {
 
       <h6>Add a new value to the list</h6>
       <h6><code>@onAdd="getNewItem"</code></h6>
-      <textarea class="code-snippet" rows="4">
+      <textarea class="code-snippet" rows="4" readonly>
       getNewItem(item) {
         // Handle the added item
         console.debug('Added', item);
@@ -133,7 +133,7 @@ export const Select2View = {
 
       <h6>Remove a value from the list</h6>
       <h6><code> @onRemove="getRemovedItem"</code></h6>
-      <textarea class="code-snippet" rows="4">
+      <textarea class="code-snippet" rows="4" readonly>
       getRemovedItem(item) {
         // Handle removed item
         console.debug('Removed', item);
@@ -144,7 +144,7 @@ export const Select2View = {
 
       <h6>Remove all values from the list</h6>
       <h6><code>@onRemoveAll="getAllRemovedItems"</code></h6>
-      <textarea class="code-snippet" rows="4">
+      <textarea class="code-snippet" rows="4" readonly>
       getAllRemovedItems(items) {
         // Handle all removed items
         console.debug('All Removed', items);
@@ -155,7 +155,7 @@ export const Select2View = {
 
       <h6>Multiselect</h6>
       <h6><code>:data-list="colorsMulti" multi-select="true" multi-select-key="isSelected"</code></h6>
-      <textarea class="code-snippet" rows="9">
+      <textarea class="code-snippet" rows="9" readonly>
       colorsMulti: [
         { "value": "red", "displayName": "Red", "isSelected": true },
         { "value": "green", "displayName": "Green", "isSelected": true },

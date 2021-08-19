@@ -1,5 +1,3 @@
-import { AutoClose } from "../../directives/autoClose.js";
-
 export const FvSelect2 = {
   model: {
     prop: 'value',
@@ -312,9 +310,6 @@ export const FvSelect2 = {
     //  this.renderList(this.dataList);
     //}
   },
-  directives: {
-    autoClose: AutoClose,
-  },
   template:
     `
     <div class="input-group">
@@ -331,7 +326,7 @@ export const FvSelect2 = {
             <span>Add <strong>{{ customInputValue }}</strong> to list</span>
           </span>
           <div v-if="dataList.length === 0" class="dropdown-item">
-            <i>No data</i>
+            <i class="text-muted">No data</i>
           </div>
           <div :id="id+'MenuList'" class="w-100"></div>
         </div>
