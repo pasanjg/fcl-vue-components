@@ -42,14 +42,6 @@ export const FvSelect2 = {
     multiSelectKey: {
       type: String,
     },
-    allowNew: {
-      type: Boolean,
-      default: false,
-    },
-    allowRemove: {
-      type: Boolean,
-      default: false,
-    }
   },
   data: function () {
     return {
@@ -59,6 +51,17 @@ export const FvSelect2 = {
       filterInputRef: `${this.id}FilterInputRef`,
       multiSelected: [],
     }
+  },
+  computed: {
+    hasOnAddListener() {
+      return this.$listeners && this.$listeners.onAdd
+    },
+    hasOnRemoveListener() {
+      return this.$listeners && this.$listeners.onRemove
+    },
+    hasOnRemoveAllListener() {
+      return this.$listeners && this.$listeners.onRemoveAll
+    },
   },
   mounted: function () {
     this.initFunctions();
@@ -146,7 +149,7 @@ export const FvSelect2 = {
           });
         }
 
-        if (vm.allowRemove || vm.allowRemove == "true") {
+        if (vm.hasOnRemoveListener) {
           const removeBtn = document.createElement("i");
           removeBtn.classList.add("fa", "fa-times", "text-muted", "btn", "btn-light", "px-2", "mr-2");
           removeBtn.style.cursor = "pointer";
@@ -179,7 +182,7 @@ export const FvSelect2 = {
 
         vm.renderList(filteredOptions);
 
-        if (vm.allowNew || vm.allowNew === "true") {
+        if (vm.hasOnAddListener) {
           if (filterInput.value != null && filterInput.value != "") {
             vm.customInputValue = filterInput.value;
             customField.style.display = "block";
@@ -321,7 +324,7 @@ export const FvSelect2 = {
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
           <span v-if="multiSelect" class="btn btn-sm btn-light px-2 mb-2 ml-3"><input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" v-on:click="selectAll($event)" >Select all</span>
-          <span v-if="allowRemove" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
+          <span v-if="hasOnRemoveAllListener" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
           <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
           <span :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>

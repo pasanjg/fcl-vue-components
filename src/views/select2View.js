@@ -120,31 +120,37 @@ export const Select2View = {
 			<fv-select2 id="demoSelect" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" placeholder="Select color"/>
       <br /> <hr /> <br />
 
-      <h6>Add a new value which is not included in the list</h6>
-      <h6><code>allow-new="true" @onAdd="getNewItem"</code></h6>
+      <h6>Add a new value to the list</h6>
+      <h6><code>@onAdd="getNewItem"</code></h6>
       <textarea class="code-snippet" rows="4">
       getNewItem(item) {
         // Handle the added item
         console.debug('Added', item);
       }</textarea> <br /> <br />
       <small>selected: {{selected2}}</small> <br /> <br />
-			<fv-select2 id="demoSelect2" :data-list="pets" data-display="displayName" data-value="value" v-model="selected2" allow-new="true" @onAdd="getNewItem" placeholder="Select"/>
+			<fv-select2 id="demoSelect2" :data-list="pets" data-display="displayName" data-value="value" v-model="selected2" @onAdd="getNewItem" placeholder="Select"/>
       <br /> <hr /> <br />
 
       <h6>Remove a value from the list</h6>
-      <h6><code>allow-remove="true" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems"</code></h6>
-      <textarea class="code-snippet" rows="9">
+      <h6><code> @onRemove="getRemovedItem"</code></h6>
+      <textarea class="code-snippet" rows="4">
       getRemovedItem(item) {
         // Handle removed item
         console.debug('Removed', item);
-      }
+      }</textarea> <br /> <br />
+      <small>selected: {{selected3}}</small> <br /> <br />
+			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
+      <br /> <hr /> <br />
 
+      <h6>Remove all values from the list</h6>
+      <h6><code>@onRemoveAll="getAllRemovedItems"</code></h6>
+      <textarea class="code-snippet" rows="4">
       getAllRemovedItems(items) {
         // Handle all removed items
         console.debug('All Removed', items);
       },</textarea> <br /> <br />
       <small>selected: {{selected3}}</small> <br /> <br />
-			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" allow-remove="true" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
+			<fv-select2 id="demoSelect4" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <hr /> <br />
 
       <h6>Multiselect</h6>
@@ -161,7 +167,7 @@ export const Select2View = {
       ],</textarea> <br /> <br />
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
-			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" allow-new="true" @onAdd="getNewItem" allow-remove="true" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
+			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <br />
 		</div>
   `,
