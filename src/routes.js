@@ -8,7 +8,8 @@ import { CarouselView } from "./views/carouselView.js";
 import { ProgressView } from "./views/progressView.js";
 import { FeedbackView } from "./views/feedbackView.js";
 import { Select2View } from "./views/select2View.js";
-import { BusyView } from "./views/busyView.js";
+import { AutoCloseView } from "./views/autoCloseView.js";
+import { LoadingView } from "./views/loadingView.js";
 import { DataCardsView } from "./views/dataCardsView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
 import { DataTableView } from "./views/datatableView.js";
@@ -60,15 +61,20 @@ export const routes = [
     path: "/vue-chartjs",
     component: VueChartJSView,
   },
+  // Custom Directives
   {
-    path: "/busy",
-    component: BusyView,
+    path: "/auto-close",
+    component: AutoCloseView,
   },
+  {
+    path: "/loading",
+    component: LoadingView,
+  },
+  // External/Draft
   {
     path: "/data-cards",
     component: DataCardsView,
   },
-  // External/Draft
   {
     path: "/data-table",
     component: DataTableView,
