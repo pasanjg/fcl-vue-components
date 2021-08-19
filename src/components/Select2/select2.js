@@ -143,7 +143,7 @@ export const FvSelect2 = {
 
           menuItem.appendChild(checkbox);
           checkbox.addEventListener("click", function (event) {
-            vm.setAsSelected(vm.dataList[index], event.target);
+            vm.setAsSelected(dataList[index], event.target);
           });
         }
 
