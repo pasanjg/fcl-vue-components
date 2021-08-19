@@ -13,10 +13,10 @@ import { FvSelect2 } from './components/Select2/select2.js';
 import { ChartJS, chartTypes } from "./components/VueChartJS/vueChartjs.js";
 import { FvDataCards } from "./components/DataCards/dataCards.js";
 
-import { AutoClose } from './directives/autoClose.js';
+import AutoClose from './directives/autoClose.js';
 
 // Custom directives
-Vue.directive('auto-close', AutoClose);
+Vue.use(AutoClose);
 
 // Fv components
 Vue.component('fv-tabs', FvTabs);
