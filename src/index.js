@@ -14,9 +14,11 @@ import { ChartJS, chartTypes } from "./components/VueChartJS/vueChartjs.js";
 import { FvDataCards } from "./components/DataCards/dataCards.js";
 
 import AutoClose from './directives/autoClose.js';
+import Loading from './directives/loading.js';
 
 // Custom directives
 Vue.use(AutoClose);
+Vue.use(Loading);
 
 // Fv components
 Vue.component('fv-tabs', FvTabs);

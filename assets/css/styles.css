@@ -17,4 +17,28 @@
 .collapse.show {
   max-height: 100% !important;
   transition: max-height 0.5s ease-in-out !important;
+}
+
+/* Loading directive */
+.fv-loading {
+  display: grid !important;
+  place-items: center;
+  position: absolute;
+}
+.fv-loading .fv-loader {
+  border: 0.2rem solid black;
+  border-top: 0.2rem solid gray;
+  border-radius: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+  animation: spin 0.8s linear infinite;
+  opacity: 0.7;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }/*# sourceMappingURL=styles.css.map */
