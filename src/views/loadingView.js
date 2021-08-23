@@ -7,7 +7,9 @@ export const LoadingView = {
   },
   inject: ['fetcher'],
   mounted: function () {
-    this.getData();
+    setTimeout(() => {
+      this.getData();
+    }, 3000);
   },
   methods: {
     async getData() {
