@@ -19,7 +19,6 @@ export const LoadingView = {
       setTimeout(async () => await this.fetcher(urls[rand]).then(data => {
         vm.dataFetched = data;
         vm.isLoading = false;
-        console.log(vm.isLoading);
       }), 3000);
 
     },
@@ -30,7 +29,7 @@ export const LoadingView = {
 			<h3>Loading</h3>
       <br />
 
-      <a href="https://github.com/rihanrahul/vue-tiny-loading-overlay"><h5>Docs</h5></a>
+      <a href="https://github.com/rihanrahul/vue-tiny-loading-overlay"><span class="h5">Docs</span></a> <br /> <br />
 
       Loading: {{isLoading}}
       <br /> <br />

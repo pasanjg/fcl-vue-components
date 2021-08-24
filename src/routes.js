@@ -10,6 +10,8 @@ import { FeedbackView } from "./views/feedbackView.js";
 import { Select2View } from "./views/select2View.js";
 import { AutoCloseView } from "./views/autoCloseView.js";
 import { LoadingView } from "./views/loadingView.js";
+import { VueDraggableView } from "./views/vueDraggableView.js";
+import { FullCalendarView } from "./views/fullcalendarView.js";
 import { DataCardsView } from "./views/dataCardsView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
 import { DataTableView } from "./views/datatableView.js";
@@ -71,6 +73,14 @@ export const routes = [
     component: LoadingView,
   },
   // External/Draft
+  {
+    path: "/vuedraggable",
+    component: VueDraggableView,
+  },
+  {
+    path: "/fullcalendar",
+    component: FullCalendarView,
+  },
   {
     path: "/data-cards",
     component: DataCardsView,

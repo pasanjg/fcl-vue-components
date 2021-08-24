@@ -17,7 +17,9 @@ export const Sidebar = {
 		<router-link to="/auto-close" class="list-group-item list-group-item-action rounded-0">Auto Close</router-link>
 		<router-link to="/loading" class="list-group-item list-group-item-action rounded-0">Loading</router-link>
     <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">External / Draft</div>  <!-- External / Draft -->
-		<router-link to="/data-cards" class="list-group-item list-group-item-action rounded-0">Data Cards</router-link>
+		<router-link to="/fullcalendar" class="list-group-item list-group-item-action rounded-0">FullCalendar</router-link>
+		<router-link to="/vuedraggable" class="list-group-item list-group-item-action rounded-0">VueDraggable</router-link>
+		<router-link to="/data-cards" class="list-group-item list-group-item-action rounded-0">DataCards</router-link>
 		<router-link to="/data-table" class="list-group-item list-group-item-action rounded-0">DataTable</router-link>
 		<router-link to="/datepicker" class="list-group-item list-group-item-action rounded-0">DatePicker</router-link>
 		<router-link to="/vuelidate" class="list-group-item list-group-item-action rounded-0">Vuelidate </router-link>

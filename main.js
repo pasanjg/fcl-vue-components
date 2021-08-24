@@ -9,8 +9,9 @@ Vue.component("Sidebar", Sidebar);
 
 // Draft components
 Vue.component('datatable', DataTableDraft);
+Vue.component(window.vuedraggable.name, window.vuedraggable);
 
-Vue.use(window.vuelidate.default)
+Vue.use(window.vuelidate.default);
 
 const router = new VueRouter({
   routes: routes,
