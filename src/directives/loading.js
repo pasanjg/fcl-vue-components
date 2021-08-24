@@ -2,20 +2,20 @@
 var _defaults = {
   style: {
     backgroundColor: "rgba(255,255,255, 1)",
-    opacity: "0.7"
+    opacity: "0.8"
   },
   text: '',
   html: '',
   active: false,
-  container: ''
-}
+  container: '',
+};
 
 const Loading = {
 
   install(Vue, options) {
 
     if (options) {
-      _defaults = Object.assign(_defaults, options)
+      _defaults = Object.assign(_defaults, options);
     }
 
     // Register a global custom directive called `v-loading`
@@ -23,11 +23,11 @@ const Loading = {
       // When the bound element is inserted into the DOM...
       inserted(el, binding) {
 
-        let id = randomId();
+        let id = randomId()
         el.setAttribute('data-id', id);
 
-        let mask = document.createElement('div');
-        mask.setAttribute('id', id);
+        let mask = document.createElement('div')
+        mask.setAttribute('id', id)
         mask.setAttribute('class', 'fv-loading');
 
         let loader = document.createElement('div');
@@ -37,14 +37,14 @@ const Loading = {
 
         let _defaults_clone = JSON.parse(JSON.stringify(_defaults));
         let b_options = typeof binding.value === "object" ? Object.assign(_defaults_clone, binding.value) : _defaults_clone;
-
         let container;
 
         if (b_options.container) {
           container = document.querySelector(b_options.container);
           if (!container) return;
           container.style.position = "relative";
-        } else {
+        }
+        else {
           container = document.body;
         }
 
@@ -53,9 +53,9 @@ const Loading = {
 
       },
       unbind(el, binding) {
-
         let id = el.getAttribute("data-id");
         let mask = document.getElementById(id);
+
         mask !== null && document.body.removeChild(mask);
       },
       update: process,
@@ -65,7 +65,6 @@ const Loading = {
 }
 
 const process = (el, binding) => {
-
   let id = el.getAttribute("data-id");
   let mask = document.getElementById(id);
 
@@ -76,18 +75,17 @@ const process = (el, binding) => {
   let options = typeof binding.value === "object" ? Object.assign(_defaults_clone, binding.value) : _defaults_clone;
 
   if (options.container) {
-
     let container = document.querySelector(options.container);
 
     if (!container) return;
 
     let container_offset = getRect(container);
-
     offset.left -= container_offset.left;
     offset.top -= container_offset.top;
   }
 
-  let css = "position: absolute; left: " + offset.left + "px; top: " + offset.top + "px; width: " + offset.width + "px; height: " + offset.height + "px; padding: 0; margin: 0; min-height: 0; min-width: 0; max-width:" + offset.width + "px; max-height: " + offset.height + "px;";
+  //let css = "position: absolute; left: " + offset.left + "px; top: " + offset.top + "px; width: " + offset.width + "px; height: " + offset.height + "px; padding: 0; margin: 0; min-height: 0; min-width: 0; max-width:" + offset.width + "px; max-height: " + offset.height + "px; z-index: 9999;";
+  let css = "position: absolute; left: " + offset.left + "px; top: " + offset.top + "px; width: " + offset.width + "px; height: " + offset.height + "px; padding: 0; margin: 0; min-height: 0; min-width: 0; z-index: 9999;";
 
   mask.style.cssText = css;
 
@@ -97,7 +95,8 @@ const process = (el, binding) => {
 
   if (typeof binding.value === "boolean") {
     mask.style.display = binding.value ? 'block' : 'none';
-  } else if (typeof binding.value === "object") {
+  }
+  else if (typeof binding.value === "object") {
     for (var i in options.style) {
       mask.style[i] = options.style[i];
     }

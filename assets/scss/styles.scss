@@ -24,7 +24,6 @@
 
 /* Loading directive */
 .fv-loading {
-  display: grid !important;
   place-items: center;
   position: absolute;
 
@@ -36,6 +35,10 @@
     height: 2.5rem;
     animation: spin 0.8s linear infinite;
     opacity: 0.7;
+    margin: auto;
+    top: 50%;
+    position: relative;
+    margin-top: -1.25rem;
 
     @keyframes spin {
       0% {

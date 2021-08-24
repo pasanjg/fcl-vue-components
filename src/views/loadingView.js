@@ -13,13 +13,13 @@ export const LoadingView = {
     async getData() {
       const vm = this;
       this.isLoading = true;
-      const urls = ["https://jsonplaceholder.typicode.com/users", "https://jsonplaceholder.typicode.com/posts"];
-      const rand = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
+      const urls = ["https://jsonplaceholder.typicode.com/users", "https://jsonplaceholder.typicode.com/posts", "https://jsonplaceholder.typicode.com/todos"];
+      const rand = Math.floor(Math.random() * (2 - 0 + 2)) + 0;
 
       setTimeout(async () => await this.fetcher(urls[rand]).then(data => {
         vm.dataFetched = data;
         vm.isLoading = false;
-      }), 3000);
+      }), 2000);
 
     },
   },
@@ -31,7 +31,7 @@ export const LoadingView = {
 
       <a href="https://github.com/rihanrahul/vue-tiny-loading-overlay"><span class="h5">Docs</span></a> <br /> <br />
 
-      Loading: {{isLoading}}
+      Loading: <code>{{isLoading}}</code>
       <br /> <br />
 
       <div class="card" style="width: 18rem;" v-loading="isLoading">
@@ -44,7 +44,10 @@ export const LoadingView = {
       </div>
       <br />
 
-      Loaded data: {{dataFetched}}
+      Loaded data: <br />
+      <textarea rows="20" class="code-snippet" readonly>
+      <pre>{{dataFetched}}</pre>
+      </textarea>
       <br /> <br />
 		</div>
   `,
