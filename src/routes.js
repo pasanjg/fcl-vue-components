@@ -8,6 +8,7 @@ import { CarouselView } from "./views/carouselView.js";
 import { ProgressView } from "./views/progressView.js";
 import { FeedbackView } from "./views/feedbackView.js";
 import { Select2View } from "./views/select2View.js";
+import { ListboxView } from "./views/listboxView.js";
 import { AutoCloseView } from "./views/autoCloseView.js";
 import { LoadingView } from "./views/loadingView.js";
 import { VueDraggableView } from "./views/vueDraggableView.js";
@@ -58,6 +59,10 @@ export const routes = [
   {
     path: "/select2",
     component: Select2View,
+  },
+  {
+    path: "/listbox",
+    component: ListboxView,
   },
   {
     path: "/vue-chartjs",
