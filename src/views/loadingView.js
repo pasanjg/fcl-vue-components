@@ -46,7 +46,7 @@ export const LoadingView = {
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <textarea rows="19" class="code-snippet" readonly><pre>data: <br />{{dataFetched}}</pre></textarea>
         </div>
       </div>

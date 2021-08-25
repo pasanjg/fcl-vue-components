@@ -172,7 +172,7 @@ export const ListboxView = {
         { "value": "black", "displayName": "Black", "isSelected": true },
         { "value": "violet", "displayName": "Violet", "isSelected": false },
         { "value": "blue", "displayName": "Blue", "isSelected": false },
-      ],</textarea> <br /> <br />
+      ];</textarea> <br /> <br />
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
 			<fv-listbox id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" placeholder="Select color"/>

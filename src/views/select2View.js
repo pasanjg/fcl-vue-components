@@ -115,7 +115,7 @@ export const Select2View = {
         { "value": "black", "displayName": "Black" },
         { "value": "violet", "displayName": "Violet" },
         { "value": "blue", "displayName": "Blue" },
-      ],</textarea> <br /> <br />
+      ];</textarea> <br /> <br />
       <small>selected: {{selected}}</small> <br /> <br />
 			<fv-select2 id="demoSelect" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" placeholder="Select color"/>
       <br /> <hr /> <br />
@@ -164,7 +164,7 @@ export const Select2View = {
         { "value": "black", "displayName": "Black", "isSelected": true },
         { "value": "violet", "displayName": "Violet", "isSelected": false },
         { "value": "blue", "displayName": "Blue", "isSelected": false },
-      ],</textarea> <br /> <br />
+      ];</textarea> <br /> <br />
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
 			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
