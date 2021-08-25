@@ -202,9 +202,6 @@ export const FvListbox = {
 
         } else {
           vm.emitToVModel(selectedValue);
-          setTimeout(() => {
-            vm.renderList(vm.dataList);
-          }, 100);
         }
       });
     },
@@ -244,12 +241,20 @@ export const FvListbox = {
       this.renderList(vm.dataList);
     },
     removeAll() {
+      const filterInput = document.querySelector(`input[data-filter='${this.id}']`);
+
+      if (filterInput.value != null || filterInput.value != "") {
+        filterInput.value = "";
+      }
+
       if (this.multiSelect || this.multiSelect == "true") {
         this.multiSelected = [];
       }
+
       this.emitToVModel([]);
       this.$emit('onRemoveAll', this.dataList);
       this.dataList = [];
+      this.renderList(this.dataList);
     },
     handleCustomInput: function () {
       const vm = this;
@@ -276,14 +281,17 @@ export const FvListbox = {
     },
   },
   watch: {
-    dataList: function (newValue, oldValue) {
-      const selectAllCheckbox = document.getElementById(`${this.id}SelectAllCheckbox`);
+    dataList: function (newList, oldList) {
 
       if ((this.multiSelect || this.multiSelect == "true") && this.multiSelected.length === 0) {
+        const selectAllCheckbox = document.getElementById(`${this.id}SelectAllCheckbox`);
         selectAllCheckbox.checked = false;
       }
 
-      this.renderList(newValue);
+      if (!this.multiSelect || !this.multiSelect == "true") {
+        this.renderList(newList);
+      }
+
     },
   },
   template:
