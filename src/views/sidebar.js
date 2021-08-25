@@ -1,29 +1,30 @@
+import { routes } from "../routes.js";
+
 export const Sidebar = {
+  data: function () {
+    return {
+      components: routes.filter(route => route.type === "component"),
+      directives: routes.filter(route => route.type === "directive"),
+      externals: routes.filter(route => route.type === "external"),
+      drafts: routes.filter(route => route.type === "draft"),
+    };
+  },
   template:
     `
-	<div class="list-group sidebar bg-light">
-		<router-link to="/" class="list-group-item list-group-item-action rounded-0 bg-danger text-white">FV Components</router-link>
-		<router-link to="/tabs" class="list-group-item list-group-item-action rounded-0">Tabs</router-link>
-		<router-link to="/collapse" class="list-group-item list-group-item-action rounded-0">Collapse</router-link>
-		<router-link to="/modal" class="list-group-item list-group-item-action rounded-0">Modal</router-link>
-		<router-link to="/tags" class="list-group-item list-group-item-action rounded-0">Tags</router-link>
-		<router-link to="/popover" class="list-group-item list-group-item-action rounded-0">Popover</router-link>
-		<router-link to="/carousel" class="list-group-item list-group-item-action rounded-0">Carousel</router-link>
-		<router-link to="/progress" class="list-group-item list-group-item-action rounded-0">Progress</router-link>
-		<router-link to="/feedback" class="list-group-item list-group-item-action rounded-0">Feedback</router-link>
-		<router-link to="/select2" class="list-group-item list-group-item-action rounded-0">Select2</router-link>
-		<router-link to="/listbox" class="list-group-item list-group-item-action rounded-0">Listbox</router-link>
-		<router-link to="/vue-chartjs" class="list-group-item list-group-item-action rounded-0">Vue-ChartJS</router-link>
-    <div class="list-group-item list-group-item-action rounded-0 bg-info text-white">Custom Directives</div>  <!-- Custom Directives -->
-		<router-link to="/auto-close" class="list-group-item list-group-item-action rounded-0">Auto Close</router-link>
-		<router-link to="/loading" class="list-group-item list-group-item-action rounded-0">Loading</router-link>
-    <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">External / Draft</div>  <!-- External / Draft -->
-		<router-link to="/fullcalendar" class="list-group-item list-group-item-action rounded-0">FullCalendar</router-link>
-		<router-link to="/vuedraggable" class="list-group-item list-group-item-action rounded-0">VueDraggable</router-link>
-		<router-link to="/data-cards" class="list-group-item list-group-item-action rounded-0">DataCards</router-link>
-		<router-link to="/data-table" class="list-group-item list-group-item-action rounded-0">DataTable</router-link>
-		<router-link to="/datepicker" class="list-group-item list-group-item-action rounded-0">DatePicker</router-link>
-		<router-link to="/vuelidate" class="list-group-item list-group-item-action rounded-0">Vuelidate </router-link>
-	</div>
+  <div class="list-group sidebar bg-light">
+    <router-link v-for="component in components" :to="component.path" :class="['list-group-item list-group-item-action rounded-0', component.name === 'FV Components' ? 'bg-danger text-white' : '']">{{ component.name }}</router-link>
+
+    <!-- Custom Directives -->
+    <div class="list-group-item list-group-item-action rounded-0 bg-success text-white">Custom Directives</div>
+    <router-link v-for="directive in directives" :to="directive.path" class="list-group-item list-group-item-action rounded-0">{{ directive.name }}</router-link>
+
+    <!-- External -->
+    <div class="list-group-item list-group-item-action rounded-0 bg-dark text-white">External</div>
+    <router-link v-for="external in externals" :to="external.path" class="list-group-item list-group-item-action rounded-0">{{ external.name }}</router-link>
+
+    <!-- Draft -->
+    <div class="list-group-item list-group-item-action rounded-0 bg-secondary text-white">Draft</div>
+    <router-link v-for="draft in drafts" :to="draft.path" class="list-group-item list-group-item-action rounded-0">{{ draft.name }}</router-link>
+  </div>
 	`,
 };

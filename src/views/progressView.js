@@ -13,7 +13,7 @@ export const ProgressView = {
 			<fv-progress class-name="bg-secondary" value="67" showvalue="true" height="20px"/>
       <br />
 
-      <h6>Success <code></code></h6>
+      <h6>Success</h6>
 			<fv-progress class-name="bg-success" value="90" height="20px"/>
       <br />
 
@@ -25,7 +25,7 @@ export const ProgressView = {
 			<fv-progress class-name="bg-warning text-dark" value="35" showvalue="true" height="20px"/>
       <br />
 
-      <h6>Info <code></code></h6>
+      <h6>Info</h6>
 			<fv-progress class-name="bg-info" value="73" height="20px"/>
 		</div>
   `,

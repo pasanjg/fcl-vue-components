@@ -66,10 +66,7 @@ export const VueDraggableView = {
         </ul>
         </div>
         <div class="col">
-          <small>
-            <pre>myArray:</pre>
-            <pre>{{myArray}}</pre>
-          </small>
+          <textarea rows="18" class="code-snippet" readonly><small><pre>myArray: <br />{{myArray}}</pre></small></textarea>
         </div>
       </div>
 

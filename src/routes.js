@@ -21,85 +21,125 @@ import { VuelidateView } from "./views/vuelidateView.js";
 
 export const routes = [
   {
+    name: "FV Components",
     path: "/",
+    type: "component",
     component: HomeView,
   },
   {
+    name: "Tabs",
     path: "/tabs",
+    type: "component",
     component: TabsView,
   },
   {
+    name: "Collapse",
     path: "/collapse",
+    type: "component",
     component: CollapseView,
   },
   {
+    name: "Modal",
     path: "/modal",
+    type: "component",
     component: ModalView,
   },
   {
+    name: "Tags",
     path: "/tags",
+    type: "component",
     component: TagsView,
   },
   {
+    name: "Popover",
     path: "/popover",
+    type: "draft",
     component: PopoverView,
   },
   {
+    name: "Carousel",
     path: "/carousel",
+    type: "draft",
     component: CarouselView,
   },
   {
+    name: "Progress",
     path: "/progress",
+    type: "component",
     component: ProgressView,
   },
   {
+    name: "Feedback",
     path: "/feedback",
+    type: "component",
     component: FeedbackView,
   },
   {
+    name: "Select2",
     path: "/select2",
+    type: "component",
     component: Select2View,
   },
   {
+    name: "Listbox",
     path: "/listbox",
+    type: "component",
     component: ListboxView,
   },
   {
+    name: "Vue-ChartJS",
     path: "/vue-chartjs",
+    type: "component",
     component: VueChartJSView,
   },
   // Custom Directives
   {
+    name: "AutoClose",
     path: "/auto-close",
+    type: "directive",
     component: AutoCloseView,
   },
   {
+    name: "Loading",
     path: "/loading",
+    type: "directive",
     component: LoadingView,
   },
   // External/Draft
   {
-    path: "/vuedraggable",
-    component: VueDraggableView,
-  },
-  {
+    name: "FullCalendar",
     path: "/fullcalendar",
+    type: "external",
     component: FullCalendarView,
   },
   {
-    path: "/data-cards",
-    component: DataCardsView,
+    name: "VueDraggable",
+    path: "/vuedraggable",
+    type: "external",
+    component: VueDraggableView,
   },
   {
+    name: "DataTable",
     path: "/data-table",
+    type: "external",
     component: DataTableView,
   },
   {
+    name: "DatePicker",
     path: "/datepicker",
+    type: "external",
     component: DatePickerView,
   },
   {
+    name: "Vuelidate",
     path: "/vuelidate",
+    type: "external",
     component: VuelidateView,
+  },
+  {
+    name: "DataCards",
+    path: "/data-cards",
+    type: "draft",
+    component: DataCardsView,
   },
 ];

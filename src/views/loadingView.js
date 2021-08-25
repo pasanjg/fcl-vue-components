@@ -14,7 +14,8 @@ export const LoadingView = {
       const vm = this;
       this.isLoading = true;
       const urls = ["https://jsonplaceholder.typicode.com/users", "https://jsonplaceholder.typicode.com/posts", "https://jsonplaceholder.typicode.com/todos"];
-      const rand = Math.floor(Math.random() * (2 - 0 + 2)) + 0;
+
+      const rand = Math.floor(Math.random() * 3);
 
       setTimeout(async () => await this.fetcher(urls[rand]).then(data => {
         vm.dataFetched = data;
@@ -34,21 +35,21 @@ export const LoadingView = {
       Loading: <code>{{isLoading}}</code>
       <br /> <br />
 
-      <div class="card" style="width: 18rem;" v-loading="isLoading">
-        <img src="https://ytimg.googleusercontent.com/vi/b85iLY-wQXI/hqdefault.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary" @click="getData">Load data</a>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card" style="width: 18rem;" v-loading="isLoading">
+            <img src="https://ytimg.googleusercontent.com/vi/b85iLY-wQXI/hqdefault.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary" @click="getData">Load data</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <textarea rows="19" class="code-snippet" readonly><pre>data: <br />{{dataFetched}}</pre></textarea>
         </div>
       </div>
-      <br />
-
-      Loaded data: <br />
-      <textarea rows="20" class="code-snippet" readonly>
-      <pre>{{dataFetched}}</pre>
-      </textarea>
-      <br /> <br />
 		</div>
   `,
 };
