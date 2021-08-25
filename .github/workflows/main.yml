@@ -71,6 +71,6 @@ jobs:
           allowUpdates: true
           artifacts: fv-bundle-${{ steps.version-number.outputs.VERSION_NUM }}.zip
           name: ${{ steps.version-string.outputs.VERSION_STR }}
-          prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') }}
+          prerelease: ${{ contains(github.ref, '-alpha') || contains(github.ref, '-beta') || contains(github.ref, '-rc') }}
           tag: ${{ steps.version-string.outputs.VERSION_STR }}
           token: ${{ secrets.GITHUB_TOKEN }}
