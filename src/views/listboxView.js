@@ -92,9 +92,15 @@ export const ListboxView = {
 
       <h6>Demo</h6>
       <div class="row">
-        <div class="col"><small>{{type}}</small></div>
-        <div class="col"><small>{{choice}}</small></div>
-        <div class="col"><small>{{color}}</small></div>
+        <div class="col">
+          <small><textarea class="code-snippet" rows="9" readonly>{{type}}</textarea></small>
+        </div>
+        <div class="col">
+          <small><textarea class="code-snippet" rows="9" readonly>{{choice}}</textarea></small>
+        </div>
+        <div class="col">
+          <small><textarea class="code-snippet" rows="9" readonly>{{color}}</textarea></small>
+        </div>
       </div>
       <br />
       <div class="row">
@@ -102,7 +108,7 @@ export const ListboxView = {
           <fv-listbox id="demoTypes" :data-list="types" data-display="displayName" data-value="value" v-model="type" placeholder="Select type"/>
         </div>
         <div class="col-md-4">
-          <fv-listbox id="demoChoice" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
+          <fv-listbox id="demoChoice" multi-select="true" multi-select-key="isSelected" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
         </div>
         <div class="col-md-4">
           <fv-listbox id="demoName" :data-list="colors" data-display="displayName" data-value="value" v-model="color" placeholder="Select Color"/>
@@ -134,7 +140,7 @@ export const ListboxView = {
       getNewItem(item) {
         // Handle the added item
         console.debug('Added', item);
-      }</textarea> <br /> <br />
+      },</textarea> <br /> <br />
       <small>selected: {{selected2}}</small> <br /> <br />
 			<fv-listbox id="demoList2" :data-list="pets" data-display="displayName" data-value="value" v-model="selected2" @onAdd="getNewItem" placeholder="Select"/>
       <br /> <hr /> <br />
@@ -145,7 +151,7 @@ export const ListboxView = {
       getRemovedItem(item) {
         // Handle removed item
         console.debug('Removed', item);
-      }</textarea> <br /> <br />
+      },</textarea> <br /> <br />
       <small>selected: {{selected3}}</small> <br /> <br />
 			<fv-listbox id="demoList3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" @onRemove="getRemovedItem" placeholder="Select color"/>
       <br /> <hr /> <br />
@@ -172,7 +178,7 @@ export const ListboxView = {
         { "value": "black", "displayName": "Black", "isSelected": true },
         { "value": "violet", "displayName": "Violet", "isSelected": false },
         { "value": "blue", "displayName": "Blue", "isSelected": false },
-      ];</textarea> <br /> <br />
+      ],</textarea> <br /> <br />
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
 			<fv-listbox id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" placeholder="Select color"/>

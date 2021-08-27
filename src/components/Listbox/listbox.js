@@ -77,7 +77,7 @@ export const FvListbox = {
       const filterInput = menu.querySelector(`input[data-filter='${this.id}']`);
       const customField = document.getElementById(`${this.id}CustomField`);
 
-      customField.style.display = "none";
+      if (customField) customField.style.display = "none";
 
       if (vm.multiSelect || vm.multiSelect == "true") {
         vm.multiSelected = this.dataList.filter(item => item[this.multiSelectKey] === true);
@@ -168,22 +168,21 @@ export const FvListbox = {
         });
 
         vm.renderList(filteredOptions);
-
         if (vm.hasOnAddListener) {
           if (filterInput.value != null && filterInput.value != "") {
             vm.customInputValue = filterInput.value;
-            customField.style.display = "block";
+            if (customField) customField.style.display = "block";
           } else {
-            customField.style.display = "none";
+            if (customField) customField.style.display = "none";
           }
 
           if (filteredOptions.length >= 1) {
             if (filteredOptions[0][vm.dataDisplay].toLowerCase() === filterInput.value.toLowerCase()) {
-              customField.style.display = "none";
+              if (customField) customField.style.display = "none";
             }
           }
         } else {
-          customField.style.display = "none";
+          if (customField) customField.style.display = "none";
         }
       });
 
@@ -232,20 +231,22 @@ export const FvListbox = {
     },
     selectAll(event) {
       const vm = this;
+
+      vm.clearFilterInput();
+
       vm.dataList.forEach(element => element[vm.multiSelectKey] = event.target.checked);
       if (event.target.checked) {
         vm.multiSelected = vm.dataList;
+        vm.emitToVModel(vm.multiSelected);
       } else {
         vm.multiSelected = [];
+        vm.emitToVModel(vm.multiSelected);
       }
+
       this.renderList(vm.dataList);
     },
     removeAll() {
-      const filterInput = document.querySelector(`input[data-filter='${this.id}']`);
-
-      if (filterInput.value != null || filterInput.value != "") {
-        filterInput.value = "";
-      }
+      this.clearFilterInput();
 
       if (this.multiSelect || this.multiSelect == "true") {
         this.multiSelected = [];
@@ -260,14 +261,24 @@ export const FvListbox = {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
 
-      customField.addEventListener('click', function () {
-        vm.addNewToList(vm.customInputValue);
+      if (customField) {
+        customField.addEventListener('click', function () {
+          vm.addNewToList(vm.customInputValue);
 
-        setTimeout(() => {
-          customField.style.display = "none";
-          vm.renderList(vm.dataList);
-        }, 100);
-      });
+          setTimeout(() => {
+            customField.style.display = "none";
+            vm.clearFilterInput();
+            vm.renderList(vm.dataList);
+          }, 100);
+        });
+      }
+    },
+    clearFilterInput() {
+      const filterInput = document.querySelector(`input[data-filter='${this.id}']`);
+
+      if (filterInput.value != null || filterInput.value != "") {
+        filterInput.value = "";
+      }
     },
     emitToVModel(value) {
       this.value = value;
@@ -279,29 +290,38 @@ export const FvListbox = {
     removeFromList(selectedValue) {
       this.$emit('onRemove', selectedValue);
     },
+    isSameList(list1, list2) {
+      const vm = this;
+      return list1.length === list2.length && list1.every(function (element, index) {
+        return element[vm.dataValue] === list2[index][vm.dataValue];
+      });
+    },
   },
   watch: {
-    dataList: function (newList, oldList) {
-
-      if ((this.multiSelect || this.multiSelect == "true") && this.multiSelected.length === 0) {
-        const selectAllCheckbox = document.getElementById(`${this.id}SelectAllCheckbox`);
-        selectAllCheckbox.checked = false;
-      }
-
-      if (!this.multiSelect || !this.multiSelect == "true") {
+    dataList(newList, oldList) {
+      if (!this.isSameList(newList, oldList)) {
+        this.multiSelected = [];
+        this.emitToVModel(this.multiSelected);
         this.renderList(newList);
-      }
 
+        if (newList.length > 0) {
+          const selectAllCheckbox = document.getElementById(`${this.id}SelectAllCheckbox`);
+          if (selectAllCheckbox) selectAllCheckbox.checked = false;
+        }
+      }
     },
   },
   template:
     `
     <div class="input-group">
       <div :key="id" class="border rounded py-2 w-100" :data-menu="id">
-        <span v-if="multiSelect" class="btn btn-sm btn-light px-2 mb-2 ml-3"><input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" v-on:click="selectAll($event)" >Select all</span>
+        <span v-if="multiSelect && dataList.length != 0" class="btn btn-sm btn-light px-2 mb-2 ml-2">
+          <input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" @click="selectAll($event)" />
+          Select all
+        </span>
         <span v-if="hasOnRemoveAllListener" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
         <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
-        <span :id="id+'CustomField'" class="dropdown-item">
+        <span v-if="hasOnAddListener" :id="id+'CustomField'" class="dropdown-item">
           <i class="fa fa-plus text-muted"></i>
           <span>Add <strong>{{ customInputValue }}</strong> to list</span>
         </span>

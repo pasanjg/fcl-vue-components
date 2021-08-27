@@ -31,6 +31,12 @@ export const Select2View = {
         { "value": "fish", "displayName": "Fish" },
         { "value": "bird", "displayName": "Bird" },
       ],
+      cars: [
+        { "value": "volvo", "displayName": "Volvo" },
+        { "value": "tesla", "displayName": "Tesla" },
+        { "value": "bmw", "displayName": "BMW" },
+        { "value": "benz", "displayName": "Benz" },
+      ],
 
       selected: {},
       selected2: { "value": "cat", "displayName": "Cat" },
@@ -54,7 +60,7 @@ export const Select2View = {
     },
     getAllRemovedItems(items) {
       // Hande all removed items
-      this.colorsMulti = [];
+      this.cars = [];
       console.debug('All Removed', items);
     },
     async setChoiceList(type) {
@@ -84,9 +90,15 @@ export const Select2View = {
 
       <h6>Demo</h6>
       <div class="row">
-        <div class="col"><small>{{type}}</small></div>
-        <div class="col"><small>{{choice}}</small></div>
-        <div class="col"><small>{{color}}</small></div>
+        <div class="col">
+          <small><textarea class="code-snippet" rows="9" readonly>{{type}}</textarea></small>
+        </div>
+        <div class="col">
+          <small><textarea class="code-snippet" rows="9" readonly>{{choice}}</textarea></small>
+        </div>
+        <div class="col">
+          <small><textarea class="code-snippet" rows="9" readonly>{{color}}</textarea></small>
+        </div>
       </div>
       <br />
       <div class="row">
@@ -94,7 +106,7 @@ export const Select2View = {
           <fv-select2 id="demoTypes" :data-list="types" data-display="displayName" data-value="value" v-model="type" placeholder="Select type"/>
         </div>
         <div class="col">
-          <fv-select2 id="demoChoice" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
+          <fv-select2 id="demoChoice" multi-select="true" multi-select-key="isSelected" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
         </div>
         <div class="col">
           <fv-select2 id="demoName" :data-list="colors" data-display="displayName" data-value="value" v-model="color" placeholder="Select Color"/>
@@ -115,7 +127,7 @@ export const Select2View = {
         { "value": "black", "displayName": "Black" },
         { "value": "violet", "displayName": "Violet" },
         { "value": "blue", "displayName": "Blue" },
-      ];</textarea> <br /> <br />
+      ],</textarea> <br /> <br />
       <small>selected: {{selected}}</small> <br /> <br />
 			<fv-select2 id="demoSelect" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" placeholder="Select color"/>
       <br /> <hr /> <br />
@@ -126,7 +138,7 @@ export const Select2View = {
       getNewItem(item) {
         // Handle the added item
         console.debug('Added', item);
-      }</textarea> <br /> <br />
+      },</textarea> <br /> <br />
       <small>selected: {{selected2}}</small> <br /> <br />
 			<fv-select2 id="demoSelect2" :data-list="pets" data-display="displayName" data-value="value" v-model="selected2" @onAdd="getNewItem" placeholder="Select"/>
       <br /> <hr /> <br />
@@ -137,7 +149,7 @@ export const Select2View = {
       getRemovedItem(item) {
         // Handle removed item
         console.debug('Removed', item);
-      }</textarea> <br /> <br />
+      },</textarea> <br /> <br />
       <small>selected: {{selected3}}</small> <br /> <br />
 			<fv-select2 id="demoSelect3" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <hr /> <br />
@@ -150,7 +162,7 @@ export const Select2View = {
         console.debug('All Removed', items);
       },</textarea> <br /> <br />
       <small>selected: {{selected3}}</small> <br /> <br />
-			<fv-select2 id="demoSelect4" :data-list="colors" data-display="displayName" data-value="value" v-model="selected3" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
+			<fv-select2 id="demoSelect4" :data-list="cars" data-display="displayName" data-value="value" v-model="selected3" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <hr /> <br />
 
       <h6>Multiselect</h6>
@@ -164,7 +176,7 @@ export const Select2View = {
         { "value": "black", "displayName": "Black", "isSelected": true },
         { "value": "violet", "displayName": "Violet", "isSelected": false },
         { "value": "blue", "displayName": "Blue", "isSelected": false },
-      ];</textarea> <br /> <br />
+      ],</textarea> <br /> <br />
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
 			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>

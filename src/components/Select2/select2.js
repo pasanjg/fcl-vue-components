@@ -73,7 +73,7 @@ export const FvSelect2 = {
       const filterInput = menu.querySelector(`input[data-filter='${this.id}']`);
       const customField = document.getElementById(`${this.id}CustomField`);
 
-      customField.style.display = "none";
+      if (customField) customField.style.display = "none";
 
       if (vm.multiSelect || vm.multiSelect == "true") {
         vm.multiSelected = this.dataList.filter(item => item[this.multiSelectKey] === true);
@@ -85,7 +85,7 @@ export const FvSelect2 = {
       dropdownTriggers.forEach(trigger => {
         trigger.addEventListener('click', function () {
 
-          customField.style.display = "none";
+          if (customField) customField.style.display = "none";
 
           if (filterInput.value != null && filterInput.value != "") {
             filterInput.value = null;
@@ -98,8 +98,9 @@ export const FvSelect2 = {
     },
     getValue() {
       if (this.multiSelect || this.multiSelect == "true") {
-        this.emitToVModel(this.multiSelected);
-        return this.value = this.multiSelected.map(item => item[this.dataDisplay]).join(', ');
+        this.value = this.multiSelected;
+        this.emitToVModel(this.value);
+        return this.value.map(item => item[this.dataDisplay]).join(', ');
       } else {
         return this.value[this.dataDisplay];
       }
@@ -183,18 +184,18 @@ export const FvSelect2 = {
         if (vm.hasOnAddListener) {
           if (filterInput.value != null && filterInput.value != "") {
             vm.customInputValue = filterInput.value;
-            customField.style.display = "block";
+            if (customField) customField.style.display = "block";
           } else {
-            customField.style.display = "none";
+            if (customField) customField.style.display = "none";
           }
 
           if (filteredOptions.length >= 1) {
             if (filteredOptions[0][vm.dataDisplay].toLowerCase() === filterInput.value.toLowerCase()) {
-              customField.style.display = "none";
+              if (customField) customField.style.display = "none";
             }
           }
         } else {
-          customField.style.display = "none";
+          if (customField) customField.style.display = "none";
         }
       });
 
@@ -268,15 +269,17 @@ export const FvSelect2 = {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
 
-      customField.addEventListener('click', function () {
-        vm.addNewToList(vm.customInputValue);
+      if (customField) {
+        customField.addEventListener('click', function () {
+          vm.addNewToList(vm.customInputValue);
 
-        setTimeout(() => {
-          customField.style.display = "none";
-          vm.renderList(vm.dataList);
-          vm.closeMenu();
-        }, 100);
-      });
+          setTimeout(() => {
+            customField.style.display = "none";
+            vm.renderList(vm.dataList);
+            vm.closeMenu();
+          }, 100);
+        });
+      }
     },
     emitToVModel(value) {
       this.$emit('onSelect', value);
@@ -287,6 +290,12 @@ export const FvSelect2 = {
     removeFromList(selectedValue) {
       this.$emit('onRemove', selectedValue);
     },
+    isSameList(list1, list2) {
+      const vm = this;
+      return list1.length === list2.length && list1.every(function (element, index) {
+        return element[vm.dataValue] === list2[index][vm.dataValue];
+      });
+    },
     closeMenu: function () {
       const vm = this;
       const menu = document.querySelector(`[data-menu=${vm.id}]`);
@@ -294,7 +303,7 @@ export const FvSelect2 = {
       const customField = document.getElementById(`${vm.id}CustomField`);
 
       if (menu.classList.contains('show')) {
-        customField.style.display = "none";
+        if (customField) customField.style.display = "none";
         menu.classList['remove']('show');
         if (filterInput.value != null && filterInput.value != "") {
           filterInput.value = null;
@@ -304,11 +313,18 @@ export const FvSelect2 = {
     },
   },
   watch: {
-    //dataList: function () {
-    //  this.value = {};
-    //  this.$emit('onSelect', this.value);
-    //  this.renderList(this.dataList);
-    //}
+    dataList(newList, oldList) {
+      if (!this.isSameList(newList, oldList)) {
+        this.multiSelected = [];
+        this.emitToVModel(this.multiSelected);
+        this.renderList(newList);
+
+        if (newList.length > 0) {
+          const selectAllCheckbox = document.getElementById(`${this.id}SelectAllCheckbox`);
+          if (selectAllCheckbox) selectAllCheckbox.checked = false;
+        }
+      }
+    },
   },
   template:
     `
@@ -318,10 +334,13 @@ export const FvSelect2 = {
         <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
-          <span v-if="multiSelect" class="btn btn-sm btn-light px-2 mb-2 ml-3"><input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" v-on:click="selectAll($event)" >Select all</span>
+          <span v-if="multiSelect && dataList.length != 0" class="btn btn-sm btn-light px-2 mb-2 ml-2">
+            <input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" @click="selectAll($event)" />
+            Select all
+          </span>
           <span v-if="hasOnRemoveAllListener" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
           <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
-          <span :id="id+'CustomField'" class="dropdown-item">
+          <span v-if="hasOnAddListener" :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
             <span>Add <strong>{{ customInputValue }}</strong> to list</span>
           </span>
