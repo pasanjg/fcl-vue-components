@@ -5,6 +5,37 @@ export const TabsView = {
 			<h3>Tabs</h3>
       <br />
 
+      <h6>Basic usage</h6> <br />
+
+      <textarea class="code-snippet" rows="27" readonly>
+      &lt;!-- Tabs --&gt;
+      &lt;fv-tabs tabid="demoTab" &gt;
+        &lt;fv-tab id="home" class-name="active"&gt;
+          Home
+        &lt;/fv-tab&gt;
+
+        &lt;fv-tab id="profile"&gt;
+          Profile
+        &lt;/fv-tab&gt;
+
+        &lt;fv-tab id="contact"&gt;
+          Contact
+        &lt;/fv-tab&gt;
+      &lt;/fv-tabs&gt;
+
+      &lt;!-- Tab content --&gt;
+      &lt;fv-tab-content tabid="demoTab" id="home" class-name="active"&gt;
+        This is Home content
+      &lt;/fv-tab-content&gt;
+
+      &lt;fv-tab-content tabid="demoTab" id="profile"&gt;
+        This is Profile content
+      &lt;/fv-tab-content&gt;
+
+      &lt;fv-tab-content tabid="demoTab" id="contact"&gt;
+        This is Contact content
+      &lt;/fv-tab-content&gt;</textarea> <br /> <br />
+
       <!-- Tab 1 -->
 			<fv-tabs tabid="demoTab">
 				<fv-tab id="home" class-name="active">
@@ -32,11 +63,15 @@ export const TabsView = {
       </fv-tab-content>
 
       <br />
-      <br />
+      <hr />
       <br />
 
-      <h6>To use pills, add <code>pills="true"</code> for <code>fv-tabs</code> tags</h6>
-      <br />
+      <h6>To use pills, add <code>pills="true"</code> for <code>fv-tabs</code> tags</h6><br />
+
+      <textarea class="code-snippet" rows="3" readonly>
+      &lt;fv-tabs tabid="demoTabPills" pills="true" &gt;
+        ...
+      &lt;/fv-tabs&gt;</textarea> <br /> <br />
 
       <!-- Tab 2 -->
 			<fv-tabs tabid="demoTabPills" pills="true">
@@ -65,11 +100,24 @@ export const TabsView = {
       </fv-tab-content>
 
       <br />
-      <br />
+      <hr />
       <br />
 
-      <h6>To set default active, add <code>class-name="active"</code> for both <code>fv-tab</code> and <code>fv-tab-content</code> tags</h6>
-      <br />
+      <h6>To set default active, add <code>class-name="active"</code> for both <code>fv-tab</code> and <code>fv-tab-content</code> tags</h6><br />
+
+      <textarea class="code-snippet" rows="12" readonly>
+      &lt;fv-tabs tabid="techTab" &gt;
+        ...
+        &lt;fv-tab id="home" class-name="active"&gt;
+          Apple
+        &lt;/fv-tab&gt;
+        ...
+      &lt;/fv-tabs&gt;
+
+      &lt;fv-tab-content tabid="techTab" id="apple" class-name="active"&gt;
+        ...
+      &lt;/fv-tab-content&gt;
+      ...</textarea> <br /> <br />
 
       <!-- Tab 3 -->
       <fv-tabs tabid="techTab">
