@@ -24,7 +24,7 @@ export const routes = [
     name: "FV Components",
     path: "/",
     type: "component",
-    component: FullCalendarView,
+    component: HomeView,
   },
   {
     name: "Tabs",
