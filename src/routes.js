@@ -18,6 +18,7 @@ import { VueChartJSView } from "./views/vueChartjsView.js";
 import { DataTableView } from "./views/datatableView.js";
 import { DatePickerView } from "./views/datePickerView.js";
 import { VuelidateView } from "./views/vuelidateView.js";
+import { DynamicComponentsView } from "./views/dynamicComponentsView.js";
 
 export const routes = [
   {
@@ -49,18 +50,6 @@ export const routes = [
     path: "/tags",
     type: "component",
     component: TagsView,
-  },
-  {
-    name: "Popover",
-    path: "/popover",
-    type: "draft",
-    component: PopoverView,
-  },
-  {
-    name: "Carousel",
-    path: "/carousel",
-    type: "draft",
-    component: CarouselView,
   },
   {
     name: "Progress",
@@ -105,7 +94,7 @@ export const routes = [
     type: "directive",
     component: LoadingView,
   },
-  // External/Draft
+  // External
   {
     name: "FullCalendar",
     path: "/fullcalendar",
@@ -136,10 +125,29 @@ export const routes = [
     type: "external",
     component: VuelidateView,
   },
+  // Draft
+  {
+    name: "Popover",
+    path: "/popover",
+    type: "draft",
+    component: PopoverView,
+  },
+  {
+    name: "Carousel",
+    path: "/carousel",
+    type: "draft",
+    component: CarouselView,
+  },
   {
     name: "DataCards",
     path: "/data-cards",
     type: "draft",
     component: DataCardsView,
+  },
+  {
+    name: "Dynamic Components",
+    path: "/dynamic-components",
+    type: "draft",
+    component: DynamicComponentsView,
   },
 ];
