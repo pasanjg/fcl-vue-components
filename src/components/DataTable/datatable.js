@@ -4,6 +4,7 @@ export const DataTableDraft = {
     id: '',
     footer: { default: false },
     columns: { type: Array },
+    columnDefs: { type: Array },
     url: { default: '' },
     options: {},
     griddata: { type: Array },
@@ -38,6 +39,7 @@ export const DataTableDraft = {
       vm.dataTable = window.$(vm.$el).DataTable({
         data: vm.griddata,
         columns: vm.getColumns,
+        columnDefs: vm.columnDefs,
       });
     },
   },

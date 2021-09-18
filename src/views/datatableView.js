@@ -2,17 +2,24 @@ export const DataTableView = {
   data: function () {
     return {
       columns: [
-        { "data": "userId", "title": "User ID" },
         { "data": "id", "title": "ID" },
-        { "data": "title", "title": "Title" },
-        { "data": "completed", "title": "Completed" },
+        { "data": "name", "title": "Repo name" },
+        { "data": "fork", "title": "Forked" },
+        { "data": "created_at", "title": "Created Date" },
+      ],
+      columnDefs: [
+        {
+          targets: 3, render: function (data) {
+            return moment(data).format('MMMM Do YYYY');
+          }
+        },
       ],
       griddata: null,
     }
   },
   inject: ['fetcher'],
   mounted: async function () {
-    const url = "https://jsonplaceholder.typicode.com/todos"
+    const url = "https://api.github.com/users/pasanjg/repos"
     this.griddata = await this.fetcher(url);
   },
   template:
@@ -21,8 +28,8 @@ export const DataTableView = {
     <h3>Data Table</h3>
     <br /> <br />
 
-    <h5>Table 1</h5>
-    <datatable v-if="griddata != null" :columns='columns' :griddata="griddata"/>
+    <h5>pasanjg's repos</h5> <br />
+    <datatable v-if="griddata != null" :columns='columns' :columnDefs="columnDefs" :griddata="griddata"/>
   </div>
 `,
 };
