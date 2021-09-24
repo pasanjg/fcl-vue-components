@@ -7,11 +7,13 @@ import { providers } from './src/providers/providers.js';
 // Register global components
 Vue.component("Sidebar", Sidebar);
 
+// Vue.use(window.vuelidate.default);
+Vue.component('v-runtime-template', window.VRuntimeTemplate);
+
 // Draft components
 Vue.component('datatable', DataTableDraft);
 Vue.component(window.vuedraggable.name, window.vuedraggable);
 
-Vue.use(window.vuelidate.default);
 
 const router = new VueRouter({
   routes: routes,
