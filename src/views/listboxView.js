@@ -184,6 +184,11 @@ export const ListboxView = {
 			<fv-listbox id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" placeholder="Select color"/>
       <br /> <hr /> <br />
 
+      <h6>Placeholders</h6>
+      <h6><code>filter-placeholder="Filter your color"</code></h6>
+      <fv-listbox id="demoSelect6" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" filter-placeholder="Filter your color"/>
+      <br /> <hr /> <br />
+
       <h6>Adjust list height</h6>
       <h6><code> max-height="20rem"</code> Default <code>12rem</code></h6>
       <small>selected: {{selected5}}</small> <br /> <br />

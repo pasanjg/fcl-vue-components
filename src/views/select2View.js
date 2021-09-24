@@ -84,7 +84,7 @@ export const Select2View = {
   },
   template:
     `
-		<div>
+		<div class="mb-5">
 			<h3>Select2</h3>
       <br />
 
@@ -180,7 +180,21 @@ export const Select2View = {
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
 			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
-      <br /> <br />
+      <br /> <hr /> <br />
+
+      <h6>Placeholders</h6> <br />
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Select placeholder</h6>
+          <h6><code>placeholder="Select your favourite color"</code></h6>
+          <fv-select2 id="demoSelect5" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" placeholder="Select your favourite color"/>
+        </div>
+        <div class="col-md-6">
+          <h6>Filter placeholder</h6>
+          <h6><code>filter-placeholder="Filter your color"</code></h6>
+          <fv-select2 id="demoSelect6" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" filter-placeholder="Filter your color"/>
+        </div>
+      </div>
 		</div>
   `,
 };

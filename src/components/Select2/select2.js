@@ -33,6 +33,10 @@ export const FvSelect2 = {
       type: String,
       default: 'Select',
     },
+    filterPlaceholder: {
+      type: String,
+      default: 'Filter',
+    },
     multiSelect: {
       type: Boolean,
       default: false,
@@ -339,7 +343,7 @@ export const FvSelect2 = {
             Select all
           </span>
           <span v-if="hasOnRemoveAllListener" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
-          <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" placeholder="Filter" style="width: 95%" />
+          <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" :placeholder="filterPlaceholder" style="width: 95%" />
           <span v-if="hasOnAddListener" :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
             <span>Add <strong>{{ customInputValue }}</strong> to list</span>
