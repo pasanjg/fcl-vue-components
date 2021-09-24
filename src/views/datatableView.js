@@ -19,7 +19,7 @@ export const DataTableView = {
   },
   inject: ['fetcher'],
   mounted: async function () {
-    const url = "https://api.github.com/users/pasanjg/repos"
+    const url = "https://api.github.com/orgs/github/repos"
     this.griddata = await this.fetcher(url);
   },
   template:
@@ -28,7 +28,7 @@ export const DataTableView = {
     <h3>Data Table</h3>
     <br /> <br />
 
-    <h5>pasanjg's repos</h5> <br />
+    <h5>github's repos</h5> <br />
     <datatable v-if="griddata != null" :columns='columns' :columnDefs="columnDefs" :griddata="griddata"/>
   </div>
 `,
