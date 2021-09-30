@@ -4,20 +4,24 @@ export const DataCardsView = {
     return {
       dataTemplate: `
       <div class="row">
-        <div class="col-md-3 mb-3" v-for="data in dataList" v-bind:key="data.name">
+        <div class="col-md-3 mb-3" v-for="(data, index) in dataList" v-bind:key="data.name">
           <div class="card">
             <div class="card-header">
-              <i :class="data.icon"></i> &nbsp;
+              <i :class="data.icon"></i> {{index}} &nbsp;
               <span>{{data.name}}</span>
             </div>
             <div class="card-body">
-              {{data.description}}
+              {{data.body}}
+            </div>
+            <div class="card-footer">
+              {{data.email}}
             </div>
           </div>
         </div>
       </div>
       `,
-      dataList: [
+      dataList:[],
+      dataList2: [
         {
           name: 'Vue.js',
           description: 'Vue.js is a progressive framework for building user interfaces.',
@@ -61,8 +65,15 @@ export const DataCardsView = {
       ],
     }
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-
+    async getData() {
+      const url = "https://jsonplaceholder.typicode.com/comments";
+        this.dataList = await this.fetcher(url);
+        console.log(this.dataList);
+    },
   },
   template:
     `

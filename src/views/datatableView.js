@@ -28,7 +28,7 @@ export const DataTableView = {
     <h3>Data Table</h3>
     <br /> <br />
 
-    <h5>github's repos</h5> <br />
+    <h5>github repos</h5> <br />
     <datatable v-if="griddata != null" :columns='columns' :columnDefs="columnDefs" :griddata="griddata"/>
   </div>
 `,

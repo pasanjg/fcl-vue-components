@@ -1,4 +1,9 @@
+import { FvDataCardRender } from "./dataCardRender.js";
+
 export const FvDataCards = {
+  components: {
+    FvDataCardRender,
+  },
   props: {
     dataList: {
       type: Array,
@@ -9,8 +14,13 @@ export const FvDataCards = {
       default: '<p>This is your template</p>',
     },
   },
+  data() {
+    return {
+      index: 0,
+    };
+  },
   template:
     `
-    <v-runtime-template :template="dataTemplate" />
+    <fv-data-card-render :dataList="dataList" :data-template="dataTemplate" />
   `
 };
