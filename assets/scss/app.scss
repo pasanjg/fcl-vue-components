@@ -63,3 +63,20 @@
     background-color: #f7f7f7;
   }
 }
+
+.fv-card-carousel {
+  .carousel-container {
+    .card {
+      margin: 0 10px;
+      min-width: 310px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

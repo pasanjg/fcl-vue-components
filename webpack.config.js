@@ -13,7 +13,7 @@ module.exports = (env) => {
     mode: mode || 'development',
     entry: {
       fv: './src/index.js',
-      styles: './assets/scss/styles.scss',
+      styles: './assets/scss/fv.styles.scss',
     },
     output: {
       path: outputPath,

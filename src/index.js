@@ -12,6 +12,7 @@ import { FvFeedback } from "./components/Feedback/feedback.js";
 import { FvSelect2 } from './components/Select2/select2.js';
 import { FvListbox } from "./components/Listbox/listbox.js";
 import { ChartJS, chartTypes } from "./components/VueChartJS/vueChartjs.js";
+import { FvCardCarousel } from "./components/CardCarousel/cardCarousel.js";
 import { FvDataCards } from "./components/DataCards/dataCards.js";
 
 import AutoClose from './directives/autoClose.js';
@@ -39,4 +40,5 @@ Vue.component('fv-listbox', FvListbox);
 chartTypes.forEach(type => {
   Vue.component(type, ChartJS(type));
 });
+Vue.component('fv-card-carousel', FvCardCarousel);
 Vue.component('fv-datacards', FvDataCards);

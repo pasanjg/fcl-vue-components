@@ -15,6 +15,7 @@ import { VueDraggableView } from "./views/vueDraggableView.js";
 import { FullCalendarView } from "./views/fullcalendarView.js";
 import { DataCardsView } from "./views/dataCardsView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
+import { CardCarouselView } from "./views/cardCarouselView.js";
 import { DataTableView } from "./views/datatableView.js";
 import { DatePickerView } from "./views/datePickerView.js";
 import { VuelidateView } from "./views/vuelidateView.js";
@@ -80,6 +81,12 @@ export const routes = [
     path: "/vue-chartjs",
     type: "component",
     component: VueChartJSView,
+  },
+  {
+    name: "Card Carousel",
+    path: "/card-carousel",
+    type: "component",
+    component: CardCarouselView,
   },
   // Custom Directives
   {

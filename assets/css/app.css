@@ -58,4 +58,15 @@
   border-radius: 0.25rem;
   border-color: #e2e2e2;
   background-color: #f7f7f7;
+}
+
+.fv-card-carousel .carousel-container .card {
+  margin: 0 10px;
+  min-width: 310px;
+}
+.fv-card-carousel .carousel-container .card:first-child {
+  margin-left: 0;
+}
+.fv-card-carousel .carousel-container .card:last-child {
+  margin-right: 0;
 }/*# sourceMappingURL=app.css.map */
