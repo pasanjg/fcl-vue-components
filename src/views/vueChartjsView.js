@@ -81,35 +81,35 @@ export const VueChartJSView = {
       <div class="row">
         <div class="col-md-6 mb-5">
           <h5>Line chart</h5>
-          <line-chart :chart-data="$data.chartData" :chart-options="$data.chartOptions" />
+          <line-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
           <h5>Bar chart</h5>
-          <bar-chart :chart-data="$data.chartData" :chart-options="$data.chartOptions" />
+          <bar-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
           <h5>Pie chart</h5>
-          <pie-chart :chart-data="$data.chartData" :chart-options="$data.chartOptions" />
+          <pie-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
           <h5>Doughnut chart</h5>
-          <doughnut-chart :chart-data="$data.chartData" :chart-options="$data.chartOptions" />
+          <doughnut-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
           <h5>Radar chart</h5>
-          <radar-chart :chart-data="$data.chartData" :chart-options="$data.chartOptions" />
+          <radar-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
           <h5>Polar Area chart</h5>
-          <polararea-chart :chart-data="$data.chartData" :chart-options="$data.chartOptions" />
+          <polararea-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
           <h5>Bubble chart</h5>
-          <bubble-chart :chart-data="$data.chartDataBubble" :chartOptions="$data.chartOptions" />
+          <bubble-chart :chart-data="chartDataBubble" :chartOptions="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
           <h5>Scatter chart</h5>
-          <bubble-chart :chart-data="$data.chartDataScatter" :chartOptions="$data.chartOptions" />
+          <bubble-chart :chart-data="chartDataScatter" :chartOptions="chartOptions" />
         </div>
       </div>
 		</div>

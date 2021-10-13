@@ -28,7 +28,19 @@ export const ChartJS = (type) => {
     extends: getChart(type),
     props: ['chartData', 'chartOptions'],
     mounted() {
-      this.renderChart(this.chartData, this.chartOptions)
+      this.displayChart();
+    },
+    methods: {
+      displayChart() {
+        this.renderChart(this.chartData, this.chartOptions)
+      }
+    },
+    watch: {
+      chartData() {
+        this.$nextTick(() => {
+          this.displayChart();
+        })
+      }
     },
   }
 }
