@@ -20,6 +20,7 @@ import { DataTableView } from "./views/datatableView.js";
 import { DatePickerView } from "./views/datePickerView.js";
 import { VuelidateView } from "./views/vuelidateView.js";
 import { DynamicComponentsView } from "./views/dynamicComponentsView.js";
+import { AddToCalendarView } from "./views/addToCalendarView.js";
 
 export const routes = [
   {
@@ -131,6 +132,12 @@ export const routes = [
     path: "/vuelidate",
     type: "external",
     component: VuelidateView,
+  },
+  {
+    name: "Add To Calendar",
+    path: "/add-to-calendar",
+    type: "external",
+    component: AddToCalendarView,
   },
   // Draft
   {

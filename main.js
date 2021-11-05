@@ -13,7 +13,7 @@ Vue.component('v-runtime-template', window.VRuntimeTemplate);
 // Draft components
 Vue.component('datatable', DataTableDraft);
 Vue.component(window.vuedraggable.name, window.vuedraggable);
-
+Vue.component('add-to-calendar', window.AddToCalendar);
 
 const router = new VueRouter({
   routes: routes,
