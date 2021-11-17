@@ -21,6 +21,7 @@ import { DatePickerView } from "./views/datePickerView.js";
 import { VuelidateView } from "./views/vuelidateView.js";
 import { DynamicComponentsView } from "./views/dynamicComponentsView.js";
 import { AddToCalendarView } from "./views/addToCalendarView.js";
+import { CustomWrapperView } from "./views/customWrapperView.js";
 
 export const routes = [
   {
@@ -163,5 +164,11 @@ export const routes = [
     path: "/dynamic-components",
     type: "draft",
     component: DynamicComponentsView,
+  },
+  {
+    name: "Custom Wrapper",
+    path: "/custom-wrapper",
+    type: "draft",
+    component: CustomWrapperView,
   },
 ];

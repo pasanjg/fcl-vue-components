@@ -1,6 +1,7 @@
 import { routes } from './src/routes.js';
 import { Sidebar } from './src/views/sidebar.js';
 import { DataTableDraft } from "./src/components/DataTable/datatable.js";
+import { FvCustomWrapper } from "./src/components/CustomWrapper/customWrapper.js";
 
 import { providers } from './src/providers/providers.js';
 
@@ -14,6 +15,7 @@ Vue.component('v-runtime-template', window.VRuntimeTemplate);
 Vue.component('datatable', DataTableDraft);
 Vue.component(window.vuedraggable.name, window.vuedraggable);
 Vue.component('add-to-calendar', window.AddToCalendar);
+Vue.component('fv-custom-wrapper', FvCustomWrapper);
 
 const router = new VueRouter({
   routes: routes,
