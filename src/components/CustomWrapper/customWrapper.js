@@ -1,8 +1,8 @@
 export const FvCustomWrapper = {
-  model: {
-    prop: 'value',
-    event: 'onSave'
-  },
+  // model: {
+  //   prop: 'value',
+  //   event: 'onSave'
+  // },
   props: {
     value: {
       type: String,
@@ -24,17 +24,20 @@ export const FvCustomWrapper = {
       selected: {},
     }
   },
-  methods: {
-    handleSubmit(e) {
-      this.$emit('onSave', this.selected);
-    }
+  computed: {
+    hasonSaveListener() {
+      return this.$listeners && this.$listeners.onSave
+    },
+  },
+  watch: {
+    selected(newValue) {
+      const vm = this;
+      // console.log("NEW", newValue);
+      vm.$emit('onSave', newValue);
+    },
   },
   template:
     `
-    <div>
-      <fv-select2 id="demoSelect" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" placeholder="Select color"/>
-      <br /> <br />
-      <button @click="handleSubmit">Submit</button>
-    </div>
+    <fv-select2 id="demoSelect" :data-list="colors" data-display="displayName" data-value="value" v-model="selected" placeholder="Select color"/>
   `
 };

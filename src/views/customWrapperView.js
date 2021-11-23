@@ -4,6 +4,11 @@ export const CustomWrapperView = {
       selectedValue: null,
     };
   },
+  methods: {
+    getSavedItem(item) {
+      console.debug('Saved', item);
+    },
+  },
   template:
     `
 		<div>
@@ -12,7 +17,9 @@ export const CustomWrapperView = {
       {{ selectedValue }}
       <br /> <br />
 
-			<fv-custom-wrapper v-model="selectedValue"/>
+			<fv-custom-wrapper v-model="selectedValue" @onSave="getSavedItem"/>
+      <br /> <br />
+      <button>Submit</button>
 		</div>
   `,
 };
