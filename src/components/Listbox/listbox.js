@@ -304,8 +304,14 @@ export const FvListbox = {
   watch: {
     dataList(newList, oldList) {
       if (!this.isSameList(newList, oldList)) {
-        this.multiSelected = [];
-        this.emitToVModel(this.multiSelected);
+        if (this.multiSelect || this.multiSelect == "true") {
+          this.multiSelected = [];
+          this.emitToVModel(this.multiSelected);
+        } else {
+          this.value = {};
+          this.emitToVModel(this.value);
+        }
+
         this.renderList(newList);
 
         if (newList.length > 0) {

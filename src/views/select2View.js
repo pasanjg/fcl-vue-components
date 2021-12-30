@@ -106,7 +106,7 @@ export const Select2View = {
           <fv-select2 id="demoTypes" :data-list="types" data-display="displayName" data-value="value" v-model="type" placeholder="Select type"/>
         </div>
         <div class="col">
-          <fv-select2 id="demoChoice" multi-select="true" multi-select-key="isSelected" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
+          <fv-select2 id="demoChoice" :data-list="choices" :data-display="choiceDataDisplay" data-value="id" v-model="choice" placeholder="Select Choice"/>
         </div>
         <div class="col">
           <fv-select2 id="demoName" :data-list="colors" data-display="displayName" data-value="value" v-model="color" placeholder="Select Color"/>
