@@ -97,6 +97,10 @@ export const FvSelect2 = {
 
           vm.renderList(vm.dataList);
           menu.classList['toggle']('show');
+
+          if (filterInput) {
+            filterInput.focus();
+          }
         });
       });
     },
@@ -339,9 +343,9 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" :ref="selectRef" class="form-control shadow-none" :value="getValue()" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" :ref="selectRef" class="form-control shadow-none" style="background-color: transparent !important;" :value="getValue()" :placeholder="placeholder" :data-input="id" readonly="readonly" />
       <div class="input-group-append">
-        <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" :data-target="id" data-toggle="dropdown">
+        <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" style="border-color: #ced4da !important" :data-target="id" data-toggle="dropdown">
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
           <span v-if="multiSelect && dataList.length != 0" class="btn btn-sm btn-light px-2 mb-2 ml-2">
@@ -349,7 +353,7 @@ export const FvSelect2 = {
             Select all
           </span>
           <span v-if="hasOnRemoveAllListener" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
-          <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" :placeholder="filterPlaceholder" style="width: 95%" />
+          <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" :placeholder="filterPlaceholder" style="width: 95%;" />
           <span v-if="hasOnAddListener" :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
             <span>Add <strong>{{ customInputValue }}</strong> to list</span>
