@@ -25,6 +25,15 @@ export const Select2View = {
         { "value": "violet", "displayName": "Violet", "isSelected": false },
         { "value": "blue", "displayName": "Blue", "isSelected": false },
       ],
+      colorsLocked: [
+        { "value": "red", "displayName": "Red", "isLocked": true },
+        { "value": "green", "displayName": "Green", "isLocked": true },
+        { "value": "purple", "displayName": "Purple", "isLocked": false },
+        { "value": "orange", "displayName": "Orange", "isLocked": false },
+        { "value": "black", "displayName": "Black", "isLocked": false },
+        { "value": "violet", "displayName": "Violet", "isLocked": false },
+        { "value": "blue", "displayName": "Blue", "isLocked": false },
+      ],
       pets: [
         { "value": "cat", "displayName": "Cat" },
         { "value": "dog", "displayName": "Dog" },
@@ -32,7 +41,7 @@ export const Select2View = {
         { "value": "bird", "displayName": "Bird" },
       ],
       cars: [
-        { "value": "volvo", "displayName": "Volvo" },
+        { "value": "volvo", "displayName": "Volvo", "isLocked": true },
         { "value": "tesla", "displayName": "Tesla" },
         { "value": "bmw", "displayName": "BMW" },
         { "value": "benz", "displayName": "Benz" },
@@ -41,7 +50,9 @@ export const Select2View = {
       selected: {},
       selected2: { "value": "cat", "displayName": "Cat" },
       selected3: { "value": "red", "displayName": "Red" },
+      selected4: { "value": "tesla", "displayName": "Tesla" },
       selectedMulti: [],
+      selectedMultiLocked: [],
 
       type: {},
       choice: {},
@@ -161,8 +172,8 @@ export const Select2View = {
         // Handle all removed items
         console.debug('All Removed', items);
       },</textarea> <br /> <br />
-      <small>selected: {{selected3}}</small> <br /> <br />
-			<fv-select2 id="demoSelect4" :data-list="cars" data-display="displayName" data-value="value" v-model="selected3" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
+      <small>selected: {{selected4}}</small> <br /> <br />
+			<fv-select2 id="demoSelect4" :data-list="cars" data-display="displayName" data-value="value" locked-key="isLocked" v-model="selected4" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <hr /> <br />
 
       <h6>Multiselect</h6>
@@ -180,6 +191,23 @@ export const Select2View = {
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
 			<fv-select2 id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
+      <br /> <hr /> <br />
+
+      <h6>Locked Fields</h6>
+      <h6><code>:data-list="colorsLocked" locked-key="isLocked"</code></h6>
+      <textarea class="code-snippet" rows="9" readonly>
+      colorsLocked: [
+        { "value": "red", "displayName": "Red", "isSelected": true, "isLocked": true },
+        { "value": "green", "displayName": "Green", "isSelected": true, "isLocked": true },
+        { "value": "purple", "displayName": "Purple", "isSelected": false, "isLocked": false },
+        { "value": "orange", "displayName": "Orange", "isSelected": false, "isLocked": false },
+        { "value": "black", "displayName": "Black", "isSelected": false, "isLocked": true },
+        { "value": "violet", "displayName": "Violet", "isSelected": false, "isLocked": false },
+        { "value": "blue", "displayName": "Blue", "isSelected": false, "isLocked": false },
+      ],</textarea> <br /> <br />
+      <small>selected: {{selectedMultiLocked}}</small> <br /> <br />
+      <small>{{selectedMultiLocked.length}} items selected</small> <br /> <br />
+			<fv-select2 id="demoLocked" :data-list="colorsLocked" multi-select="true" multi-select-key="isSelected" locked-key="isLocked" data-display="displayName" data-value="value" v-model="selectedMultiLocked" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <hr /> <br />
 
       <h6>Placeholders</h6> <br />

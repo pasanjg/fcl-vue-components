@@ -44,6 +44,9 @@ export const FvListbox = {
     multiSelectKey: {
       type: String,
     },
+    lockedKey: {
+      type: String,
+    },
     maxHeight: {
       type: String,
       default: "12rem",
@@ -69,12 +72,12 @@ export const FvListbox = {
       return this.$listeners && this.$listeners.onRemoveAll
     },
   },
-  mounted: function () {
+  mounted() {
     this.initFunctions();
     this.getValue();
   },
   methods: {
-    initFunctions: function () {
+    initFunctions() {
       const vm = this;
       const menu = document.querySelector(`[data-menu=${this.id}]`);
 
@@ -98,7 +101,7 @@ export const FvListbox = {
         return this.value[this.dataDisplay];
       }
     },
-    renderList: function (dataList) {
+    renderList(dataList) {
       const vm = this;
       const menuList = document.querySelector(`#${vm.id}MenuList`);
       menuList.innerHTML = "";
@@ -135,10 +138,15 @@ export const FvListbox = {
             checkbox.checked = false;
           }
 
-          menuItem.appendChild(checkbox);
-          checkbox.addEventListener("click", function (event) {
-            vm.setAsSelected(dataList[index], event.target);
-          });
+          if (dataList[index][vm.lockedKey]) {
+            checkbox.setAttribute("disabled", true);
+            menuItem.appendChild(checkbox);
+          } else {
+            menuItem.appendChild(checkbox);
+            checkbox.addEventListener("click", function (event) {
+              vm.setAsSelected(dataList[index], event.target);
+            });
+          }
         }
 
         if (vm.hasOnRemoveListener) {
@@ -147,9 +155,15 @@ export const FvListbox = {
           removeBtn.style.cursor = "pointer";
           menuItem.appendChild(removeBtn);
 
-          removeBtn.addEventListener("click", function (e) {
-            vm.removeFromList(vm.dataList[index]);
-          });
+          if (!dataList[index][vm.lockedKey]) {
+            removeBtn.addEventListener("click", function (e) {
+              vm.removeFromList(vm.dataList[index]);
+            });
+          }
+        }
+
+        if (dataList[index][vm.lockedKey]) {
+          menuItem.style.opacity = 0.5;
         }
 
         menuItem.appendChild(selectItem);
@@ -158,10 +172,12 @@ export const FvListbox = {
         menuList.style.maxHeight = vm.maxHeight;
         menuList.style.overflowY = "auto";
 
-        this.handleSelect(selectItem, dataList[index]);
+        if (!dataList[index][vm.lockedKey]) {
+          this.handleSelect(selectItem, dataList[index]);
+        }
       }
     },
-    filterList: function (filterInput) {
+    filterList(filterInput) {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
 
@@ -192,7 +208,7 @@ export const FvListbox = {
 
       vm.handleCustomInput();
     },
-    handleSelect: function (selectItem, selectedValue) {
+    handleSelect(selectItem, selectedValue) {
       const vm = this;
 
       selectItem.addEventListener(('click'), function () {
@@ -229,6 +245,8 @@ export const FvListbox = {
 
       if (vm.dataList.length === vm.multiSelected.length) {
         selectAllCheckbox.checked = true;
+      } else if (vm.multiSelected.length === vm.dataList.filter(item => item[vm.lockedKey] === false).length && vm.multiSelected.length > 0) {
+        selectAllCheckbox.checked = true;
       } else {
         selectAllCheckbox.checked = false;
       }
@@ -238,9 +256,15 @@ export const FvListbox = {
 
       vm.clearFilterInput();
 
-      vm.dataList.forEach(element => element[vm.multiSelectKey] = event.target.checked);
+      vm.dataList = vm.dataList.map(element => {
+        if (!element[vm.lockedKey]) {
+          element[vm.multiSelectKey] = event.target.checked;
+        }
+        return element;
+      });
+
       if (event.target.checked) {
-        vm.multiSelected = vm.dataList;
+        vm.multiSelected = vm.dataList.filter(element => !element[vm.lockedKey]);
         vm.emitToVModel(vm.multiSelected);
       } else {
         vm.multiSelected = [];
@@ -253,7 +277,7 @@ export const FvListbox = {
       this.clearFilterInput();
 
       if (this.multiSelect || this.multiSelect == "true") {
-        this.multiSelected = [];
+        this.multiSelected = this.multiSelected.filter(element => element[this.lockedKey] === true);
       }
 
       this.emitToVModel([]);
@@ -261,7 +285,7 @@ export const FvListbox = {
       this.dataList = [];
       this.renderList(this.dataList);
     },
-    handleCustomInput: function () {
+    handleCustomInput() {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
 

@@ -25,6 +25,15 @@ export const ListboxView = {
         { "value": "violet", "displayName": "Violet", "isSelected": false },
         { "value": "blue", "displayName": "Blue", "isSelected": false },
       ],
+      colorsLocked: [
+        { "value": "red", "displayName": "Red", "isLocked": true },
+        { "value": "green", "displayName": "Green", "isLocked": true },
+        { "value": "purple", "displayName": "Purple", "isLocked": false },
+        { "value": "orange", "displayName": "Orange", "isLocked": false },
+        { "value": "black", "displayName": "Black", "isLocked": false },
+        { "value": "violet", "displayName": "Violet", "isLocked": false },
+        { "value": "blue", "displayName": "Blue", "isLocked": false },
+      ],
       pets: [
         { "value": "cat", "displayName": "Cat" },
         { "value": "dog", "displayName": "Dog" },
@@ -32,7 +41,7 @@ export const ListboxView = {
         { "value": "bird", "displayName": "Bird" },
       ],
       cars: [
-        { "value": "volvo", "displayName": "Volvo" },
+        { "value": "volvo", "displayName": "Volvo", "isLocked": true },
         { "value": "tesla", "displayName": "Tesla" },
         { "value": "bmw", "displayName": "BMW" },
         { "value": "benz", "displayName": "Benz" },
@@ -44,6 +53,7 @@ export const ListboxView = {
       selected4: { "value": "volvo", "displayName": "Volvo" },
       selected5: { "value": "green", "displayName": "Green" },
       selectedMulti: [],
+      selectedMultiLocked: [],
 
       type: {},
       choice: {},
@@ -182,6 +192,23 @@ export const ListboxView = {
       <small>selected: {{selectedMulti}}</small> <br /> <br />
       <small>{{selectedMulti.length}} items selected</small> <br /> <br />
 			<fv-listbox id="demoMulti" multi-select="true" multi-select-key="isSelected" :data-list="colorsMulti" data-display="displayName" data-value="value" v-model="selectedMulti" @onAdd="getNewItem" @onRemove="getRemovedItem" placeholder="Select color"/>
+      <br /> <hr /> <br />
+
+      <h6>Locked Fields</h6>
+      <h6><code>:data-list="colorsMulti" multi-select="true" multi-select-key="isSelected"</code></h6>
+      <textarea class="code-snippet" rows="9" readonly>
+      colorsLocked: [
+        { "value": "red", "displayName": "Red", "isSelected": true, "isLocked": true },
+        { "value": "green", "displayName": "Green", "isSelected": true, "isLocked": true },
+        { "value": "purple", "displayName": "Purple", "isSelected": false, "isLocked": false },
+        { "value": "orange", "displayName": "Orange", "isSelected": false, "isLocked": false },
+        { "value": "black", "displayName": "Black", "isSelected": false, "isLocked": true },
+        { "value": "violet", "displayName": "Violet", "isSelected": false, "isLocked": false },
+        { "value": "blue", "displayName": "Blue", "isSelected": false, "isLocked": false },
+      ],</textarea> <br /> <br />
+      <small>selected: {{selectedMultiLocked}}</small> <br /> <br />
+      <small>{{selectedMultiLocked.length}} items selected</small> <br /> <br />
+			<fv-listbox id="demoLocked" multi-select="true" multi-select-key="isSelected" :data-list="colorsLocked" multi-select-key="isSelected" locked-key="isLocked" data-display="displayName" data-value="value" v-model="selectedMultiLocked" @onAdd="getNewItem" @onRemove="getRemovedItem" placeholder="Select color"/>
       <br /> <hr /> <br />
 
       <h6>Placeholders</h6>

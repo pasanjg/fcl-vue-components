@@ -44,8 +44,11 @@ export const FvSelect2 = {
     multiSelectKey: {
       type: String,
     },
+    lockedKey: {
+      type: String,
+    },
   },
-  data: function () {
+  data() {
     return {
       customInputValue: null,
       selectRef: `${this.id}SelectRef`,
@@ -65,11 +68,11 @@ export const FvSelect2 = {
       return this.$listeners && this.$listeners.onRemoveAll
     },
   },
-  mounted: function () {
+  mounted() {
     this.initFunctions();
   },
   methods: {
-    initFunctions: function () {
+    initFunctions() {
       const vm = this;
       const dropdownTriggers = [...document.querySelectorAll(`[data-target='${this.id}'][data-toggle='dropdown'], [data-input='${this.id}']`)];
       const menu = document.querySelector(`[data-menu=${this.id}]`);
@@ -113,7 +116,7 @@ export const FvSelect2 = {
         return this.value[this.dataDisplay];
       }
     },
-    renderList: function (dataList) {
+    renderList(dataList) {
       const vm = this;
       const menuList = document.querySelector(`#${vm.id}MenuList`);
       menuList.innerHTML = "";
@@ -150,10 +153,15 @@ export const FvSelect2 = {
             checkbox.checked = false;
           }
 
-          menuItem.appendChild(checkbox);
-          checkbox.addEventListener("click", function (event) {
-            vm.setAsSelected(dataList[index], event.target);
-          });
+          if (dataList[index][vm.lockedKey]) {
+            checkbox.setAttribute("disabled", true);
+            menuItem.appendChild(checkbox);
+          } else {
+            menuItem.appendChild(checkbox);
+            checkbox.addEventListener("click", function (event) {
+              vm.setAsSelected(dataList[index], event.target);
+            });
+          }
         }
 
         if (vm.hasOnRemoveListener) {
@@ -162,10 +170,16 @@ export const FvSelect2 = {
           removeBtn.style.cursor = "pointer";
           menuItem.appendChild(removeBtn);
 
-          removeBtn.addEventListener("click", function (e) {
-            vm.removeFromList(vm.dataList[index]);
-            vm.closeMenu();
-          });
+          if (!dataList[index][vm.lockedKey]) {
+            removeBtn.addEventListener("click", function (e) {
+              vm.removeFromList(vm.dataList[index]);
+              vm.closeMenu();
+            });
+          }
+        }
+
+        if (dataList[index][vm.lockedKey]) {
+          menuItem.style.opacity = 0.5;
         }
 
         menuItem.appendChild(selectItem);
@@ -174,10 +188,12 @@ export const FvSelect2 = {
         menuList.style.maxHeight = "12rem";
         menuList.style.overflowY = "scroll";
 
-        this.handleSelect(selectItem, dataList[index]);
+        if (!dataList[index][vm.lockedKey]) {
+          this.handleSelect(selectItem, dataList[index]);
+        }
       }
     },
-    filterList: function (filterInput) {
+    filterList(filterInput) {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
 
@@ -209,7 +225,7 @@ export const FvSelect2 = {
 
       vm.handleCustomInput();
     },
-    handleSelect: function (selectItem, selectedValue) {
+    handleSelect(selectItem, selectedValue) {
       const vm = this;
       const selectInput = document.getElementById(vm.id);
 
@@ -250,15 +266,23 @@ export const FvSelect2 = {
 
       if (vm.dataList.length === vm.multiSelected.length) {
         selectAllCheckbox.checked = true;
+      } else if (vm.multiSelected.length === vm.dataList.filter(item => item[vm.lockedKey] === false).length && vm.multiSelected.length > 0) {
+        selectAllCheckbox.checked = true;
       } else {
         selectAllCheckbox.checked = false;
       }
     },
     selectAll(event) {
       const vm = this;
-      vm.dataList.forEach(element => element[vm.multiSelectKey] = event.target.checked);
+      vm.dataList = vm.dataList.map(element => {
+        if (!element[vm.lockedKey]) {
+          element[vm.multiSelectKey] = event.target.checked;
+        }
+        return element;
+      });
+
       if (event.target.checked) {
-        vm.multiSelected = vm.dataList;
+        vm.multiSelected = vm.dataList.filter(element => !element[vm.lockedKey]);
       } else {
         vm.multiSelected = [];
       }
@@ -266,14 +290,14 @@ export const FvSelect2 = {
     },
     removeAll() {
       if (this.multiSelect || this.multiSelect == "true") {
-        this.multiSelected = [];
+        this.multiSelected = this.multiSelected.filter(element => element[this.lockedKey] === true);
       }
       this.emitToVModel([]);
       this.$emit('onRemoveAll', this.dataList);
       this.dataList = [];
       this.closeMenu();
     },
-    handleCustomInput: function () {
+    handleCustomInput() {
       const vm = this;
       const customField = document.getElementById(`${vm.id}CustomField`);
 
@@ -304,7 +328,7 @@ export const FvSelect2 = {
         return element[vm.dataValue] === list2[index][vm.dataValue];
       });
     },
-    closeMenu: function () {
+    closeMenu() {
       const vm = this;
       const menu = document.querySelector(`[data-menu=${vm.id}]`);
       const filterInput = document.querySelector(`input[data-filter='${vm.id}']`);
@@ -343,9 +367,9 @@ export const FvSelect2 = {
   template:
     `
     <div class="input-group">
-      <input :id="id" :ref="selectRef" class="form-control shadow-none" style="background-color: transparent !important;" :value="getValue()" :placeholder="placeholder" :data-input="id" readonly="readonly" />
+      <input :id="id" :ref="selectRef" class="form-control shadow-none" style="background-color: transparent !important;" :value="getValue()" :placeholder="placeholder" :data-input="id" tabindex="-1" readonly="readonly" />
       <div class="input-group-append">
-        <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" style="border-color: #ced4da !important" :data-target="id" data-toggle="dropdown">
+        <button type="button" :ref="toggleButtonRef" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split shadow-none" style="border-color: #ced4da !important" :data-target="id" data-toggle="dropdown" tabindex="-1">
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
           <span v-if="multiSelect && dataList.length != 0" class="btn btn-sm btn-light px-2 mb-2 ml-2">
