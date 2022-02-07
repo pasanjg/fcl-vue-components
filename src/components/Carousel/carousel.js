@@ -5,5 +5,5 @@ export const FvCarousel =  {
       count: 0
     }
   },
-  template: '<button v-on:click="count++">You clicked Carousel {{ count }} times.</button>'
+  template: '<button @click="count++">You clicked Carousel {{ count }} times.</button>'
 };

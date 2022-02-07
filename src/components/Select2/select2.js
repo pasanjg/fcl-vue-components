@@ -47,6 +47,10 @@ export const FvSelect2 = {
     lockedKey: {
       type: String,
     },
+    allowClear: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -272,20 +276,16 @@ export const FvSelect2 = {
         selectAllCheckbox.checked = false;
       }
     },
-    selectAll(event) {
+    selectAll(checked) {
       const vm = this;
       vm.dataList = vm.dataList.map(element => {
         if (!element[vm.lockedKey]) {
-          element[vm.multiSelectKey] = event.target.checked;
+          element[vm.multiSelectKey] = checked;
         }
         return element;
       });
 
-      if (event.target.checked) {
-        vm.multiSelected = vm.dataList.filter(element => !element[vm.lockedKey]);
-      } else {
-        vm.multiSelected = [];
-      }
+      vm.multiSelected = vm.dataList.filter(element => element[vm.multiSelectKey]);
       this.renderList(vm.dataList);
     },
     removeAll() {
@@ -327,6 +327,15 @@ export const FvSelect2 = {
       return list1.length === list2.length && list1.every(function (element, index) {
         return element[vm.dataValue] === list2[index][vm.dataValue];
       });
+    },
+    clearSelection() {
+      if (multiSelect || multiSelect == "true") {
+        const selectAllCheckbox = document.getElementById(`${this.id}SelectAllCheckbox`);
+        selectAllCheckbox.checked = false;
+        this.selectAll(false);
+      } else {
+        this.emitToVModel({});
+      }
     },
     closeMenu() {
       const vm = this;
@@ -373,11 +382,20 @@ export const FvSelect2 = {
         </button>
         <div :key="id" class="w-100 dropdown-menu" :data-menu="id" v-auto-close="{ exclude: [selectRef, toggleButtonRef, filterInputRef], handler: 'closeMenu' }">
           <span v-if="multiSelect && dataList.length != 0" class="btn btn-sm btn-light px-2 mb-2 ml-2">
-            <input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" @click="selectAll($event)" />
+            <input :id="id+'SelectAllCheckbox'" class="mr-2" type="checkbox" @click="selectAll($event.target.checked)" />
             Select all
           </span>
-          <span v-if="hasOnRemoveAllListener" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" v-on:click="removeAll()">Remove all</span>
-          <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" :placeholder="filterPlaceholder" style="width: 95%;" />
+          <span v-if="hasOnRemoveAllListener" class="btn btn-sm btn-danger float-right px-2 mr-2 mb-2" @click="removeAll()">Remove all</span>
+          <div class="row">
+            <div class="col">
+              <input type="search" :ref="filterInputRef" class="form-control shadow-none mx-auto mb-2" :data-filter="id" :placeholder="filterPlaceholder" style="width: 95%;" />
+            </div>
+            <div class="col-2" v-if="allowClear">
+              <button type="button" @click="clearSelection" class="btn btn-sm btn-outline-secondary shadow-none" style="border-color: #ced4da !important">
+                Clear Selection
+              </button>
+            </div>
+          </div>
           <span v-if="hasOnAddListener" :id="id+'CustomField'" class="dropdown-item">
             <i class="fa fa-plus text-muted"></i>
             <span>Add <strong>{{ customInputValue }}</strong> to list</span>

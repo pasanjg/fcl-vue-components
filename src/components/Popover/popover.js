@@ -5,5 +5,5 @@ export const FvPopover = {
       count: 0
     }
   },
-  template: '<button v-on:click="count++">You clicked Popover {{ count }} times.</button>'
+  template: '<button @click="count++">You clicked Popover {{ count }} times.</button>'
 };

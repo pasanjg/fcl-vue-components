@@ -26,7 +26,7 @@ export const Select2View = {
         { "value": "blue", "displayName": "Blue", "isSelected": false },
       ],
       colorsLocked: [
-        { "value": "red", "displayName": "Red", "isLocked": true },
+        { "value": "red", "displayName": "Red", "isSelected": true, "isLocked": true },
         { "value": "green", "displayName": "Green", "isLocked": true },
         { "value": "purple", "displayName": "Purple", "isLocked": false },
         { "value": "orange", "displayName": "Orange", "isLocked": false },
@@ -50,9 +50,11 @@ export const Select2View = {
       selected: {},
       selected2: { "value": "cat", "displayName": "Cat" },
       selected3: { "value": "red", "displayName": "Red" },
-      selected4: { "value": "tesla", "displayName": "Tesla" },
+      selected4: { "value": "volvo", "displayName": "Volvo" },
+
       selectedMulti: [],
       selectedMultiLocked: [],
+      selectedMultiClear: [],
 
       type: {},
       choice: {},
@@ -208,6 +210,23 @@ export const Select2View = {
       <small>selected: {{selectedMultiLocked}}</small> <br /> <br />
       <small>{{selectedMultiLocked.length}} items selected</small> <br /> <br />
 			<fv-select2 id="demoLocked" :data-list="colorsLocked" multi-select="true" multi-select-key="isSelected" locked-key="isLocked" data-display="displayName" data-value="value" v-model="selectedMultiLocked" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
+      <br /> <hr /> <br />
+
+      <h6>Clear Selection</h6>
+      <h6><code>:allow-clear="true"</code></h6>
+      <textarea class="code-snippet" rows="9" readonly>
+      colorsLocked: [
+        { "value": "red", "displayName": "Red", "isSelected": true, "isLocked": true },
+        { "value": "green", "displayName": "Green", "isSelected": true, "isLocked": true },
+        { "value": "purple", "displayName": "Purple", "isSelected": false, "isLocked": false },
+        { "value": "orange", "displayName": "Orange", "isSelected": false, "isLocked": false },
+        { "value": "black", "displayName": "Black", "isSelected": false, "isLocked": true },
+        { "value": "violet", "displayName": "Violet", "isSelected": false, "isLocked": false },
+        { "value": "blue", "displayName": "Blue", "isSelected": false, "isLocked": false },
+      ],</textarea> <br /> <br />
+      <small>selected: {{selectedMultiClear}}</small> <br /> <br />
+      <small>{{selectedMultiClear.length}} items selected</small> <br /> <br />
+			<fv-select2 id="demoClear" :data-list="colorsLocked" multi-select="true" multi-select-key="isSelected" locked-key="isLocked" :allow-clear="true" data-display="displayName" data-value="value" v-model="selectedMultiClear" @onAdd="getNewItem" @onRemove="getRemovedItem" @onRemoveAll="getAllRemovedItems" placeholder="Select color"/>
       <br /> <hr /> <br />
 
       <h6>Placeholders</h6> <br />
