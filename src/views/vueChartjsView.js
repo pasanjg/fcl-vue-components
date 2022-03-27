@@ -62,6 +62,16 @@ export const VueChartJSView = {
         responsive: true,
         maintainAspectRatio: false
       },
+      height: 300,
+      width: 800,
+    }
+  },
+  computed: {
+    myStyles () {
+      return {
+        height: `${this.height}px`,
+        width: `${this.width}px`,
+      }
     }
   },
   template:
@@ -80,37 +90,62 @@ export const VueChartJSView = {
 
       <div class="row">
         <div class="col-md-6 mb-5">
-          <h5>Line chart</h5>
+          <h6>Line chart</h6>
           <line-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
-          <h5>Bar chart</h5>
+          <h6>Bar chart</h6>
           <bar-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
-          <h5>Pie chart</h5>
+          <h6>Pie chart</h6>
           <pie-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
-          <h5>Doughnut chart</h5>
+          <h6>Doughnut chart</h6>
           <doughnut-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
-          <h5>Radar chart</h5>
+          <h6>Radar chart</h6>
           <radar-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
-          <h5>Polar Area chart</h5>
+          <h6>Polar Area chart</h6>
           <polararea-chart :chart-data="chartData" :chart-options="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
-          <h5>Bubble chart</h5>
+          <h6>Bubble chart</h6>
           <bubble-chart :chart-data="chartDataBubble" :chartOptions="chartOptions" />
         </div>
         <div class="col-md-6 mb-5">
-          <h5>Scatter chart</h5>
+          <h6>Scatter chart</h6>
           <bubble-chart :chart-data="chartDataScatter" :chartOptions="chartOptions" />
         </div>
+      </div>
+      <div>
+        <h6>Resize chart</h6>
+        <a href="https://vue-chartjs.org/guide/#chart-with-dynamic-styles">See docs</a> <br /> <br />
+        <h6>
+          <pre><code>&lt;line-chart :styles="myStyles" :chart-data="chartData" :chart-options="chartOptions" /&gt;</code></pre>
+        </h6>
+        <line-chart :styles="myStyles" :chart-data="chartData" :chart-options="chartOptions" />
+        <textarea class="code-snippet mt-3" rows="15" readonly>
+          ...
+          data () {
+            return {
+              height: 300,
+              width: 300,
+            }
+          },
+          ....
+          computed: {
+            myStyles () {
+              return {
+                height: ` + '${this.height}px' + `,
+                width: ` + '${this.width}px' + `,
+              }
+            }
+        </textarea>
       </div>
 		</div>
   `,

@@ -21,6 +21,7 @@ import { DatePickerView } from "./views/datePickerView.js";
 import { VuelidateView } from "./views/vuelidateView.js";
 import { DynamicComponentsView } from "./views/dynamicComponentsView.js";
 import { AddToCalendarView } from "./views/addToCalendarView.js";
+import { VueStepperView } from "./views/vueStepperView.js";
 import { CustomWrapperView } from "./views/customWrapperView.js";
 
 export const routes = [
@@ -139,6 +140,12 @@ export const routes = [
     path: "/add-to-calendar",
     type: "external",
     component: AddToCalendarView,
+  },
+  {
+    name: "Vue Stepper",
+    path: "/vue-stepper",
+    type: "external",
+    component: VueStepperView,
   },
   // Draft
   {

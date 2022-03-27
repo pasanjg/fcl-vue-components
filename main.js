@@ -10,6 +10,7 @@ Vue.component("Sidebar", Sidebar);
 
 // Vue.use(window.vuelidate.default);
 Vue.component('v-runtime-template', window.VRuntimeTemplate);
+Vue.component('v-stepper', window.VStepper);
 
 // Draft components
 Vue.component('datatable', DataTableDraft);
