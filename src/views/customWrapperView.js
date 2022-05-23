@@ -12,7 +12,7 @@ export const CustomWrapperView = {
   template:
     `
 		<div>
-			<h3>Custom Wrappper</h3>
+			<h3>Custom Wrapper</h3>
       <br /> <br />
       {{ selectedValue }}
       <br /> <br />

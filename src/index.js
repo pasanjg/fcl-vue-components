@@ -14,6 +14,7 @@ import { FvListbox } from "./components/Listbox/listbox.js";
 import { ChartJS, chartTypes } from "./components/VueChartJS/vueChartjs.js";
 import { FvCardCarousel } from "./components/CardCarousel/cardCarousel.js";
 import { FvDataCards } from "./components/DataCards/dataCards.js";
+import { FvFieldWrapper } from "./components/FieldWrapper/fieldWrapper.js";
 
 import AutoClose from './directives/autoClose.js';
 import Loading from './directives/loading.js';
@@ -42,3 +43,4 @@ chartTypes.forEach(type => {
 });
 Vue.component('fv-card-carousel', FvCardCarousel);
 Vue.component('fv-datacards', FvDataCards);
+Vue.component('fv-fieldwrapper', FvFieldWrapper);

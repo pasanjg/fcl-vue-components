@@ -23,6 +23,7 @@ import { DynamicComponentsView } from "./views/dynamicComponentsView.js";
 import { AddToCalendarView } from "./views/addToCalendarView.js";
 import { VueStepperView } from "./views/vueStepperView.js";
 import { CustomWrapperView } from "./views/customWrapperView.js";
+import { FieldWrapperView } from "./views/fieldWrapperView.js";
 
 export const routes = [
   {
@@ -177,5 +178,11 @@ export const routes = [
     path: "/custom-wrapper",
     type: "draft",
     component: CustomWrapperView,
+  },
+  {
+    name: "Field Wrapper",
+    path: "/field-wrapper",
+    type: "draft",
+    component: FieldWrapperView,
   },
 ];
