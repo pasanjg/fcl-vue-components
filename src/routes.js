@@ -24,6 +24,7 @@ import { AddToCalendarView } from "./views/addToCalendarView.js";
 import { VueStepperView } from "./views/vueStepperView.js";
 import { CustomWrapperView } from "./views/customWrapperView.js";
 import { FieldWrapperView } from "./views/fieldWrapperView.js";
+import { VueTourView } from "./views/vueTourView.js";
 
 export const routes = [
   {
@@ -147,6 +148,12 @@ export const routes = [
     path: "/vue-stepper",
     type: "external",
     component: VueStepperView,
+  },
+  {
+    name: "Vue Tour",
+    path: "/vue-tour",
+    type: "external",
+    component: VueTourView,
   },
   // Draft
   {

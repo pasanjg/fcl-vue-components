@@ -28,6 +28,6 @@ new Vue({
   el: '#root',
   router: router,
   provide() {
-    return providers
+    return providers;
   },
 });

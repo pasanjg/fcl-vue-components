@@ -18,6 +18,7 @@ import { FvFieldWrapper } from "./components/FieldWrapper/fieldWrapper.js";
 
 import AutoClose from './directives/autoClose.js';
 import Loading from './directives/loading.js';
+import { vueTourWrapper } from "./components/VueTour/vueTourWrapper.js";
 
 // Custom directives
 Vue.use(AutoClose);
@@ -44,3 +45,4 @@ chartTypes.forEach(type => {
 Vue.component('fv-card-carousel', FvCardCarousel);
 Vue.component('fv-datacards', FvDataCards);
 Vue.component('fv-fieldwrapper', FvFieldWrapper);
+Vue.component('fv-tour', vueTourWrapper);

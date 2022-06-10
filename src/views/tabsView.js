@@ -151,7 +151,7 @@ export const TabsView = {
       </fv-tab-content>
 
       <fv-tab-content tabid="techTab" id="amazon">
-        <img height="180" src="https://beechholdings.co.uk/wp-content/uploads/2020/01/amazon-logo-png-transparent-5.png" alt="" /> <br />
+        <img height="180" src="https://thumbs.dreamstime.com/b/simple-vector-filled-flat-amazon-icon-logo-solid-black-pictogram-isolated-white-background-amazon-logo-159029074.jpg" alt="" /> <br />
         <a href="https://amazon.com" target="blank">Amazon</a>
       </fv-tab-content>
 
