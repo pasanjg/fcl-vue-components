@@ -18,6 +18,10 @@ Vue.component(window.vuedraggable.name, window.vuedraggable);
 Vue.component('add-to-calendar', window.AddToCalendar);
 Vue.component('fv-custom-wrapper', FvCustomWrapper);
 
+Vue.use(window.VueDndrop);
+Vue.component(window.VueDndrop.Container.name, window.VueDndrop.Container);
+Vue.component(window.VueDndrop.Draggable.name, window.VueDndrop.Draggable);
+
 const router = new VueRouter({
   routes: routes,
   mode: "history",

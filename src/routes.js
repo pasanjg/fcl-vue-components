@@ -11,7 +11,8 @@ import { Select2View } from "./views/select2View.js";
 import { ListboxView } from "./views/listboxView.js";
 import { AutoCloseView } from "./views/autoCloseView.js";
 import { LoadingView } from "./views/loadingView.js";
-import { VueDraggableView } from "./views/vueDraggableView.js";
+import { SortableVueDraggableView } from "./views/sortableVueDraggableView.js";
+import { vueDNDropView } from "./views/vueDNDropView.js";
 import { FullCalendarView } from "./views/fullcalendarView.js";
 import { DataCardsView } from "./views/dataCardsView.js";
 import { VueChartJSView } from "./views/vueChartjsView.js";
@@ -114,10 +115,16 @@ export const routes = [
     component: FullCalendarView,
   },
   {
-    name: "VueDraggable",
-    path: "/vuedraggable",
+    name: "SortableVueDraggable",
+    path: "/sortable-vuedraggable",
     type: "external",
-    component: VueDraggableView,
+    component: SortableVueDraggableView,
+  },
+  {
+    name: "VueDNDrop",
+    path: "/vuedndrop",
+    type: "external",
+    component: vueDNDropView,
   },
   {
     name: "DataTable",
