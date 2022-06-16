@@ -12,7 +12,7 @@ export const DataTableDraft = {
   data: function () {
     return {
 
-    }
+    };
   },
   computed: {
     getGridData: {
@@ -40,6 +40,17 @@ export const DataTableDraft = {
         data: vm.griddata,
         columns: vm.getColumns,
         columnDefs: vm.columnDefs,
+        dom: "Bfrtip",
+        buttons: [
+          'selected',
+          'selectedSingle',
+          'selectAll',
+          'selectNone',
+          'selectRows',
+          'selectColumns',
+          'selectCells'
+        ],
+        select: true,
       });
     },
   },
