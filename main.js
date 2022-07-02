@@ -5,6 +5,9 @@ import { FvCustomWrapper } from "./src/components/CustomWrapper/customWrapper.js
 
 import { providers } from './src/providers/providers.js';
 
+import enUs from './src/lang/enUS.json' assert { type: "json" };
+import si from './src/lang/si.json' assert { type: "json" };
+
 // Register global components
 Vue.component("Sidebar", Sidebar);
 
@@ -22,6 +25,16 @@ Vue.use(window.VueDndrop);
 Vue.component(window.VueDndrop.Container.name, window.VueDndrop.Container);
 Vue.component(window.VueDndrop.Draggable.name, window.VueDndrop.Draggable);
 
+const messages = {
+  'en-US': enUs,
+  'si': si,
+};
+
+const i18n = new window.VueI18n({
+  locale: 'en-US',
+  messages,
+});
+
 const router = new VueRouter({
   routes: routes,
   mode: "history",
@@ -30,7 +43,8 @@ const router = new VueRouter({
 
 new Vue({
   el: '#root',
-  router: router,
+  router,
+  i18n,
   provide() {
     return providers;
   },

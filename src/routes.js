@@ -26,6 +26,7 @@ import { VueStepperView } from "./views/vueStepperView.js";
 import { CustomWrapperView } from "./views/customWrapperView.js";
 import { FieldWrapperView } from "./views/fieldWrapperView.js";
 import { VueTourView } from "./views/vueTourView.js";
+import { Vuei18nView } from "./views/vuei18nView.js";
 
 export const routes = [
   {
@@ -161,6 +162,12 @@ export const routes = [
     path: "/vue-tour",
     type: "external",
     component: VueTourView,
+  },
+  {
+    name: "Vue i18n",
+    path: "/vue-i18n",
+    type: "external",
+    component: Vuei18nView,
   },
   // Draft
   {
